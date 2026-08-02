@@ -1,0 +1,304 @@
+{
+  "arxiv": {
+    "categories": ["cs.IR", "cs.LG", "cs.AI", "stat.ML"],
+    "keywords": [
+      "recommender system",
+      "recommendation",
+      "personalization",
+      "collaborative filtering",
+      "learning to rank",
+      "sequential recommendation",
+      "session-based recommendation",
+      "retrieval augmented recommendation",
+      "generative recommendation",
+      "multimodal recommendation",
+      "graph recommendation",
+      "counterfactual recommendation",
+      "bandit recommendation",
+      "ranking model"
+    ]
+  },
+  "openreview": {
+    "venue_ids": [
+      "ICLR.cc/2026/Conference",
+      "NeurIPS.cc/2026/Conference",
+      "ICML.cc/2026/Conference"
+    ]
+  },
+  "conference_portals": [
+    {"name": "SIGIR", "url": "https://sigir.org/", "scope": "information retrieval, recommendation, ranking"},
+    {"name": "RecSys", "url": "https://recsys.acm.org/", "scope": "recommender systems"},
+    {"name": "KDD", "url": "https://www.kdd.org/", "scope": "data mining, ranking, ads, recommendation"},
+    {"name": "The Web Conference", "url": "https://www2026.thewebconf.org/", "scope": "web search, recommendation, user modeling"},
+    {"name": "WSDM", "url": "https://www.wsdm-conference.org/", "scope": "web search, recommendation, personalization"},
+    {"name": "CIKM", "url": "https://www.cikm.org/", "scope": "information retrieval, recommendation, knowledge"}
+  ],
+  "discovery_queries": [
+    "site:mp.weixin.qq.com 推荐算法 粗排 重排 推荐系统",
+    "site:tech.dewu.com 推荐 搜索 广告 算法",
+    "site:tech.meituan.com 推荐 召回 排序 搜索",
+    "site:developer.huaweicloud.com 推荐系统 RES 粗排",
+    "site:developer.aliyun.com 淘天 推荐 搜索 排序",
+    "site:arxiv.org/abs recommendation reranking coarse ranking retrieval"
+  ],
+  "rss_feeds": [
+    {
+      "name": "Google Research Blog",
+      "url": "https://research.google/blog/rss/",
+      "source_type": "industry"
+    },
+    {
+      "name": "Netflix TechBlog",
+      "url": "https://netflixtechblog.com/feed",
+      "source_type": "industry"
+    },
+    {
+      "name": "Spotify Engineering",
+      "url": "https://engineering.atspotify.com/feed",
+      "source_type": "industry"
+    },
+    {
+      "name": "Meta Engineering",
+      "url": "https://engineering.fb.com/feed/",
+      "source_type": "industry"
+    },
+    {
+      "name": "Amazon Science",
+      "url": "https://www.amazon.science/index.rss",
+      "source_type": "industry"
+    },
+    {
+      "name": "Pinterest Engineering",
+      "url": "https://medium.com/feed/pinterest-engineering",
+      "source_type": "industry"
+    }
+  ],
+  "official_portals": [
+    {
+      "name": "美团技术团队",
+      "url": "https://tech.meituan.com/",
+      "scope": "搜索、推荐、广告、机器学习、系统实践"
+    },
+    {
+      "name": "火山引擎开发者社区（字节跳动技术团队）",
+      "url": "https://developer.volcengine.com/",
+      "scope": "推荐算法、机器学习、实时计算、工程实践"
+    },
+    {
+      "name": "腾讯云开发者社区",
+      "url": "https://cloud.tencent.com/developer/",
+      "scope": "推荐系统、广告、机器学习、工程实践"
+    },
+    {
+      "name": "阿里云开发者社区",
+      "url": "https://developer.aliyun.com/",
+      "scope": "推荐、搜索、广告、机器学习和实时计算"
+    },
+    {
+      "name": "得物技术",
+      "url": "https://tech.dewu.com/",
+      "scope": "搜索、推荐、广告、算法平台和工程实践"
+    },
+    {
+      "name": "华为开发者联盟推荐服务",
+      "url": "https://developer.huawei.com/consumer/cn/hnc-recommendationservice/",
+      "scope": "信息流内容推荐、实时推荐、A/B 测试和隐私合规"
+    },
+    {
+      "name": "华为云推荐系统 RES",
+      "url": "https://developer.huaweicloud.com/tags/200293/blog_1",
+      "scope": "推荐算法、粗排、精排和推荐工程"
+    },
+    {
+      "name": "快手技术与研究信号",
+      "url": "https://ir.kuaishou.com/",
+      "scope": "短视频、直播、电商推荐和内容理解"
+    }
+  ],
+  "wechat_accounts": [
+    {
+      "name": "美团技术团队",
+      "account": "meituantech",
+      "url": "https://tech.meituan.com/tech-salon.html",
+      "note": "公众号文章没有稳定公开 RSS；以官网同步文章和用户提供的公众号链接为准。"
+    },
+    {
+      "name": "字节跳动技术团队",
+      "account": "字节跳动技术团队",
+      "url": "https://developer.volcengine.com/",
+      "note": "以火山引擎开发者社区公开文章作为可验证入口。"
+    },
+    {
+      "name": "淘天/阿里妈妈技术",
+      "account": "阿里妈妈技术",
+      "url": "https://developer.aliyun.com/",
+      "note": "公众号文章没有稳定公开 RSS；以阿里云开发者社区、阿里官方论文和用户提供的公众号链接交叉核验。"
+    },
+    {
+      "name": "得物技术",
+      "account": "得物技术",
+      "url": "https://tech.dewu.com/",
+      "note": "以得物技术官网文章列表作为公众号和官网内容的可验证镜像。"
+    },
+    {
+      "name": "华为云开发者",
+      "account": "华为云开发者",
+      "url": "https://developer.huaweicloud.com/tags/200293/blog_1",
+      "note": "以华为云开发者博客和 RES 官方文档作为可验证入口。"
+    },
+    {
+      "name": "哔哩哔哩技术",
+      "account": "哔哩哔哩技术",
+      "url": "https://www.bilibili.com/",
+      "note": "暂未发现稳定公开的官方技术博客 RSS；仅纳入用户提供的官方文章/视频链接，不把普通 UP 主教程当作大厂技术来源。"
+    }
+  ],
+  "manual_urls": [
+    {
+      "name": "美团：大规模异构图召回在到店推荐广告的应用",
+      "url": "https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html",
+      "source_type": "industry"
+    },
+    {
+      "name": "美团：综合业务推荐系统的质量模型及实践",
+      "url": "https://tech.meituan.com/2022/06/16/recommendation-system-quality-model.html",
+      "source_type": "industry"
+    },
+    {
+      "name": "字节跳动：一文读懂推荐系统中的 debias",
+      "url": "https://developer.volcengine.com/articles/7599494081681981481",
+      "source_type": "industry"
+    },
+    {
+      "name": "字节跳动：人人都能搭建大规模推荐系统",
+      "url": "https://developer.volcengine.com/articles/7599494337362559017",
+      "source_type": "industry"
+    },
+    {
+      "name": "腾讯云：百亿级通用推荐系统实践",
+      "url": "https://cloud.tencent.cn/developer/article/1004433",
+      "source_type": "industry"
+    },
+    {
+      "name": "得物技术：推荐/搜索/广告技术文章",
+      "url": "https://tech.dewu.com/section/?category_id=2",
+      "source_type": "industry"
+    },
+    {
+      "name": "得物技术：搜推广技术文章",
+      "url": "https://tech.dewu.com/section?category_id=8",
+      "source_type": "industry"
+    },
+    {
+      "name": "华为开发者：信息流内容推荐服务",
+      "url": "https://developer.huawei.com/consumer/cn/hnc-recommendationservice/",
+      "source_type": "industry"
+    },
+    {
+      "name": "华为云：推荐系统 RES 博客",
+      "url": "https://developer.huaweicloud.com/tags/200293/blog_1",
+      "source_type": "industry"
+    },
+    {
+      "name": "阿里云：智能开放搜索 OpenSearch",
+      "url": "https://help.aliyun.com/zh/open-search/",
+      "source_type": "industry"
+    }
+  ],
+  "historical_picks": [
+    {
+      "id": "history:youtube-deep-neural-networks-recommendations",
+      "source_type": "historical_industry",
+      "source_name": "Google Research",
+      "title": "Deep Neural Networks for YouTube Recommendations",
+      "authors": ["Paul Covington", "Jay Adams", "Emre Sargin"],
+      "summary": "A classic industrial recommendation system paper describing a two-stage architecture with candidate generation followed by ranking for YouTube-scale video recommendation.",
+      "url": "https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/",
+      "published": "2016-09-15",
+      "categories": ["historical", "retrieval", "ranking"]
+      ,"topic": "coarse_reranking"
+    },
+    {
+      "id": "history:alibaba-din",
+      "source_type": "historical_paper",
+      "source_name": "Alibaba / arXiv",
+      "title": "Deep Interest Network for Click-Through Rate Prediction",
+      "authors": ["Guorui Zhou", "Xiaoqiang Zhu", "Chengru Song"],
+      "summary": "A classic Alibaba CTR ranking paper that models diverse user interests with attention over historical behaviors and became a reference point for industrial ranking models.",
+      "url": "https://arxiv.org/abs/1706.06978",
+      "published": "2017-06-23",
+      "categories": ["historical", "ranking", "ctr"]
+      ,"topic": "coarse_reranking"
+    },
+    {
+      "id": "history:alibaba-dien",
+      "source_type": "historical_paper",
+      "source_name": "Alibaba / arXiv",
+      "title": "Deep Interest Evolution Network for Click-Through Rate Prediction",
+      "authors": ["Guorui Zhou", "Na Wang", "Xiaoqiang Zhu"],
+      "summary": "A classic Alibaba ranking model that represents the evolution of user interests over behavior sequences and uses interest states for CTR prediction.",
+      "url": "https://arxiv.org/abs/1809.03672",
+      "published": "2018-09-10",
+      "categories": ["historical", "ranking", "sequential recommendation", "ctr"]
+      ,"topic": "sequential_user_modeling"
+    },
+    {
+      "id": "history:meituan-heterogeneous-graph-retrieval",
+      "source_type": "historical_industry",
+      "source_name": "美团技术团队",
+      "title": "大规模异构图召回在美团到店推荐广告的应用",
+      "authors": [],
+      "summary": "A Meituan engineering article describing heterogeneous graph retrieval for local-life recommendation advertising, including sparse feedback and spatiotemporal interest challenges.",
+      "url": "https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html",
+      "published": "2022-11-24",
+      "categories": ["historical", "retrieval", "recommendation ads", "graph"]
+      ,"topic": "retrieval_candidate_generation"
+    }
+  ],
+  "topic_groups": {
+    "retrieval_candidate_generation": {
+      "weight": 3.0,
+      "keywords": ["retrieval", "candidate generation", "two-tower", "dual encoder", "embedding retrieval", "ann", "approximate nearest neighbor", "vector search", "matching", "召回", "候选生成", "向量检索"]
+    },
+    "ranking_learning_to_rank": {
+      "weight": 3.0,
+      "keywords": ["ranking", "learning to rank", "ltr", "ranker", "reranking", "calibration", "multitask ranking", "click-through rate", "ctr", "conversion rate", "cvr", "排序", "粗排", "精排", "排序模型"]
+    },
+    "coarse_reranking": {
+      "weight": 3.4,
+      "keywords": ["coarse ranking", "coarse retrieval", "reranking", "re-ranking", "cascade ranking", "粗排", "重排", "精排", "级联排序"]
+    },
+    "sequential_user_modeling": {
+      "weight": 2.8,
+      "keywords": ["sequential recommendation", "session-based", "user modeling", "behavior sequence", "next item", "sasrec", "bert4rec", "transformer recommender", "用户兴趣", "用户建模", "行为序列"]
+    },
+    "generative_llm_recommendation": {
+      "weight": 2.8,
+      "keywords": ["generative recommendation", "llm recommender", "llm-native recommendation", "large language model recommender", "rag for recommendation", "retrieval augmented recommendation", "conversational recommendation", "prompt-based recommendation", "生成式推荐", "大模型推荐", "推荐大模型"]
+    },
+    "multimodal_recommendation": {
+      "weight": 2.4,
+      "keywords": ["multimodal recommendation", "vision-language recommendation", "image recommendation", "video recommendation", "cross-modal recommendation", "clip recommendation", "多模态推荐", "跨模态推荐"]
+    },
+    "graph_knowledge_social": {
+      "weight": 2.3,
+      "keywords": ["graph recommendation", "knowledge graph", "gnn", "social recommendation", "heterogeneous graph", "lightgcn", "图推荐", "知识图谱", "图神经网络", "异构图"]
+    },
+    "bandit_rl_causal": {
+      "weight": 2.6,
+      "keywords": ["bandit", "reinforcement learning", "counterfactual", "causal", "off-policy", "uplift", "long-term value", "exploration", "强化学习", "因果", "去偏", "探索"]
+    },
+    "evaluation_debiasing_fairness": {
+      "weight": 2.5,
+      "keywords": ["debias", "bias", "fairness", "diversity", "novelty", "serendipity", "offline evaluation", "online evaluation", "a/b test", "interleaving", "去偏", "偏差", "公平性", "质量模型", "AB实验"]
+    },
+    "systems_serving_infra": {
+      "weight": 2.0,
+      "keywords": ["serving", "feature store", "real-time", "latency", "throughput", "cache", "inference optimization", "production recommender", "实时推荐", "特征生产", "推理框架", "服务质量"]
+    },
+    "ads_marketplace": {
+      "weight": 2.0,
+      "keywords": ["ads ranking", "auction", "marketplace", "sponsored", "creator marketplace", "supply demand", "conversion optimization", "推荐广告", "搜索广告", "广告排序"]
+    }
+  }
+}
