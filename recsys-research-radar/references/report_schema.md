@@ -27,6 +27,7 @@ List source counts and failures:
 - OpenReview/top-conference items fetched
 - industry posts fetched
 - industry coverage by company/source
+- adjacent signals from search, advertising, and LLM/RAG/agent work, with transfer relevance noted
 - manual URLs reviewed
 - source errors
 
@@ -48,6 +49,7 @@ The preceding industry coverage section should be only a compact index. Do not r
 ## Topic Clusters And Trends
 
 Group the current-window items by topic and summarize 2-4 evidence-backed trends. Treat coarse ranking and reranking as a first-class cluster.
+Keep search/information retrieval, ads ranking/CTR/CVR, and LLM/RAG/agent signals visible as adjacent clusters when they provide a concrete recommendation transfer point.
 
 ## Historical Picks
 
