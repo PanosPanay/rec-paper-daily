@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-08-03</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-08-03</h1>
+<blockquote>今日窗口：最近 3 个自然日（Asia/Shanghai）；中文优先，保留原文标题、链接和证据。</blockquote>
+<blockquote>今日结论：没有获得可靠的新论文条目；大厂技术来源新增/重现 3 篇，适合做工程复盘和小实验。</blockquote>
+<h2>今天发生了什么</h2>
+<p>今天可核验的有效信号主要来自美团、华为云和字节跳动技术站。arXiv 本轮请求超时，OpenReview 返回 403，因此不把旧论文或未验证摘要包装成今日新论文。</p>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>召回与候选生成：1 项</li>
+<li>图与知识增强推荐：1 项</li>
+<li>粗排与重排：1 项</li>
+<li>评估、去偏与公平性：1 项</li>
+<li>今日趋势：工程实践仍集中在多阶段推荐链路，召回信号、级联排序和去偏评估需要一起看。</li>
+<li>今日趋势：粗排/精排/LTR 的知识入口较多，但文章质量和时效性差异明显，适合先做方法地图再深读原文。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<ul>
+<li><a href="https://developer.huaweicloud.com/tags/200293/blog_1">推荐系统 RES：粗排、精排与 LTR 相关文章入口</a> — 华为云；覆盖粗排模型汇总、精排和 Learning to Rank 主题。</li>
+<li>🔎 相关性 4.6 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.45</li>
+<li>📝 建议：快速总结；先整理排序链路、候选压缩率、NDCG/AUC 和线上延迟指标。</li>
+</ul>
+<h2>🏢 大厂技术文章覆盖</h2>
+<p>共 3 篇，均来自官方技术站或官方开发者入口；页面内容存在脚本/聚合页噪声，细节以原文页面为准。</p>
+<h3>1. <a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告的应用</a></h3>
+<ul>
+<li>来源：美团技术团队</li>
+<li>主题：异构图召回、推荐广告、本地生活</li>
+<li>核心内容：介绍将用户、商品、商家等多类节点和关系用于到店推荐广告召回的工程实践；页面摘要能确认其聚焦海量商品候选发现，但完整模型细节需要打开原文核验。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.61</li>
+<li>📝 建议：快速总结</li>
+<li>局限性：文章较早，且当前抓取结果受到页面脚本影响，不能仅凭摘要判断线上收益。</li>
+<li>小实验：在 MovieLens-small 或合成用户-物品图上比较 MF、LightGCN 与简单异构关系传播的 Recall@50、NDCG@50 和推理耗时。</li>
+</ul>
+<h3>2. <a href="https://developer.huaweicloud.com/tags/200293/blog_1">推荐系统 RES：粗排、精排与 LTR 相关文章入口</a></h3>
+<ul>
+<li>来源：华为云开发者社区</li>
+<li>主题：粗排、精排、Learning to Rank</li>
+<li>核心内容：聚合推荐系统入门、粗排模型、精排和 LTR 指标等文章，适合建立排序链路的概念地图，不应视为一篇单独的新研究论文。</li>
+<li>🔎 相关性 4.6 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.45</li>
+<li>📝 建议：快速总结</li>
+<li>局限性：入口页包含多篇旧文章，发布日期和内容粒度不一致。</li>
+<li>小实验：比较单阶段 LambdaMART/逻辑回归排序与“轻量粗排 + 精排”级联，在 NDCG@10、候选压缩率和 p95 延迟之间做权衡。</li>
+</ul>
+<h3>3. <a href="https://developer.volcengine.com/articles/7599494081681981481">一文读懂推荐系统中的 Debias</a></h3>
+<ul>
+<li>来源：字节跳动 / 火山引擎开发者社区</li>
+<li>主题：推荐系统去偏与公平性</li>
+<li>核心内容：从推荐系统去偏角度提供概念和方法入口；当前页面含较多安全脚本内容，具体方法、公式和实验结论需要人工打开原文核验。</li>
+<li>🔎 相关性 2.5 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.48</li>
+<li>📝 建议：快速总结</li>
+<li>局限性：抓取文本不足以支持对具体算法收益的判断。</li>
+<li>小实验：在 MovieLens-small 上按物品流行度分桶，比较普通采样评估与去偏评估的 NDCG@10、目录覆盖率和 Gini 曝光不均衡。</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">Deep Neural Networks for YouTube Recommendations</a> — YouTube 两阶段召回/排序经典架构。</li>
+<li><a href="https://arxiv.org/abs/1706.06978">Deep Interest Network</a> — Alibaba CTR 用户兴趣建模经典基线。</li>
+<li><a href="https://arxiv.org/abs/1809.03672">Deep Interest Evolution Network</a> — Alibaba 序列兴趣演化建模经典基线。</li>
+<li><a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告的应用</a> — 异构图召回工程参考；这是历史文章，不是今日新增。</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<p>今日暂无可靠的新论文深读项。原因：arXiv 请求超时，OpenReview 入口返回 403；下一次运行会继续重试，并保留来源错误记录。</p>
+<h2>📝 业界文章深读队列</h2>
+<p>今日没有达到“深读”阈值的业界文章；上方 3 篇均适合先快速总结，其中美团异构图召回最值得优先复盘。</p>
+<h2>🗂️ 结构化卡片摘要</h2>
+<p>本次 3 张业界卡片已写入 <code>cards-2026-08-03.json</code>，包含来源、主题、评分、局限性、实验建议和证据链接。由于部分官方页面为聚合页或含安全脚本，未将页面噪声误写成方法结论。</p>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li><strong>异构图召回复现</strong>：MF vs. LightGCN vs. 简单异构关系传播；指标为 Recall@50、NDCG@50、构图和查询耗时。</li>
+<li><strong>粗排-精排级联</strong>：单阶段排序 vs. 轻量粗排 + 精排；指标为 NDCG@10、候选压缩率、p95 延迟。</li>
+<li><strong>去偏评估</strong>：普通采样 vs. 流行度分桶去偏评估；指标为 NDCG@10、目录覆盖率、Gini 曝光不均衡。</li>
+</ul>
+<h2>可靠性说明</h2>
+<ul>
+<li>主要来源：美团技术团队、华为云开发者社区、火山引擎开发者社区。</li>
+<li>抓取限制：arXiv 本轮超时；OpenReview 的 ICLR/NeurIPS/ICML 入口返回 403；RSS 本轮未命中新增条目。</li>
+<li>结论边界：大厂文章部分为旧文或聚合入口，已明确标注，不代表今日发布；页面摘要不足处标为待人工核验。</li>
+<li>输出文件：<code>daily-2026-08-03.md</code>、<code>cards-2026-08-03.json</code>、<code>ideas-2026-08-03.json</code>。</li>
+</ul></main></body>
+</html>
