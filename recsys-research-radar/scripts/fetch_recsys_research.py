@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 import re
 import subprocess
 import sys
@@ -34,9 +35,13 @@ SKILL_DIR = SCRIPT_DIR.parent
 DEFAULT_CATALOG = SKILL_DIR / "references" / "source_catalog.json"
 DEFAULT_OUTPUT_DIR = Path("/Users/wangbaojiang/Nutstore Files/我的坚果云/日常/推荐论文日报")
 
-ARXIV_API = "https://export.arxiv.org/api/query"
+ARXIV_API_MIRRORS = (
+    "https://export.arxiv.org/api/query",
+    "https://arxiv.org/api/query",
+)
+OPENALEX_API = "https://api.openalex.org/works"
 SEMANTIC_SCHOLAR_API = "https://api.semanticscholar.org/graph/v1/paper/search"
-OPENREVIEW_NOTES_API = "https://api.openreview.net/notes"
+OPENREVIEW_NOTES_API = "https://api2.openreview.net/notes"
 USER_AGENT = "RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)"
 LOCAL_TZ = ZoneInfo("Asia/Shanghai")
 TOPIC_LABELS_ZH = {
@@ -355,6 +360,8 @@ class SourceItem:
     url: str
     published: str | None = None
     categories: list[str] | None = None
+    summary_zh: str | None = None
+    contribution_zh: str | None = None
 
 
 def now_iso() -> str:
@@ -428,14 +435,26 @@ def save_state(path: Path, state: dict[str, Any]) -> None:
     path.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def fetch_bytes(url: str, timeout: float = 30.0) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+def fetch_bytes(
+    url: str,
+    timeout: float = 30.0,
+    headers: dict[str, str] | None = None,
+) -> bytes:
+    request_headers = {"User-Agent": USER_AGENT}
+    if headers:
+        request_headers.update(headers)
+    req = urllib.request.Request(url, headers=request_headers)
     opener = urllib.request.build_opener(HTTP308RedirectHandler)
     with opener.open(req, timeout=timeout) as resp:
         return resp.read()
 
 
-def fetch_curl_bytes(url: str, timeout: float = 90.0, attempts: int = 3) -> bytes:
+def fetch_curl_bytes(
+    url: str,
+    timeout: float = 90.0,
+    attempts: int = 3,
+    headers: dict[str, str] | None = None,
+) -> bytes:
     """Fetch public APIs through curl because urllib can stall in local proxy/DNS setups."""
     last_error = ""
     for attempt in range(1, attempts + 1):
@@ -445,6 +464,8 @@ def fetch_curl_bytes(url: str, timeout: float = 90.0, attempts: int = 3) -> byte
                     "curl",
                     "-fsSL",
                     "--retry",
+                    "2",
+                    "--retry-delay",
                     "1",
                     "--retry-all-errors",
                     "--connect-timeout",
@@ -453,8 +474,9 @@ def fetch_curl_bytes(url: str, timeout: float = 90.0, attempts: int = 3) -> byte
                     str(int(timeout)),
                     "-A",
                     USER_AGENT,
-                    url,
-                ],
+                ]
+                + [arg for key, value in (headers or {}).items() for arg in ("-H", f"{key}: {value}")]
+                + [url],
                 check=True,
                 capture_output=True,
                 timeout=timeout + 10,
@@ -463,7 +485,9 @@ def fetch_curl_bytes(url: str, timeout: float = 90.0, attempts: int = 3) -> byte
                 return result.stdout
             last_error = "empty response"
         except (OSError, subprocess.SubprocessError) as exc:
-            last_error = str(exc)
+            stderr = getattr(exc, "stderr", b"")
+            detail = stderr.decode("utf-8", errors="ignore").strip() if isinstance(stderr, bytes) else str(stderr)
+            last_error = f"{exc}; {detail}" if detail else str(exc)
         if attempt < attempts:
             time.sleep(2 ** (attempt - 1))
     raise urllib.error.URLError(f"curl failed after {attempts} attempts: {last_error}")
@@ -533,6 +557,16 @@ def build_arxiv_query(categories: list[str], keywords: list[str]) -> str:
     return f"({cats}) AND ({kws})"
 
 
+def build_arxiv_queries(categories: list[str], keywords: list[str], chunk_size: int = 8) -> list[str]:
+    """Split the catalog into short queries so one oversized request cannot sink the run."""
+    if not keywords:
+        return [build_arxiv_query(categories, keywords)]
+    return [
+        build_arxiv_query(categories, keywords[index:index + chunk_size])
+        for index in range(0, len(keywords), chunk_size)
+    ]
+
+
 def fetch_arxiv(
     catalog: dict[str, Any],
     max_results: int,
@@ -543,38 +577,79 @@ def fetch_arxiv(
     cfg = catalog.get("arxiv", {})
     categories = cfg.get("categories", [])
     keywords = cfg.get("keywords", [])
-    query = build_arxiv_query(categories, keywords)
-    params = urllib.parse.urlencode(
-        {
-            "search_query": query,
-            "start": 0,
-            "max_results": max_results,
-            "sortBy": "submittedDate",
-            "sortOrder": "descending",
-        }
-    )
-    url = f"{ARXIV_API}?{params}"
     errors: list[str] = []
-    try:
-        has_cache = bool(cache_path and cache_path.exists())
-        content = fetch_arxiv_bytes(
-            url,
-            timeout=25.0 if has_cache else 90.0,
-            attempts=1 if has_cache else 3,
+    has_cache = bool(cache_path and cache_path.exists())
+    items_by_id: dict[str, SourceItem] = {}
+    query_failures = 0
+    for query in build_arxiv_queries(categories, keywords):
+        params = urllib.parse.urlencode(
+            {
+                "search_query": query,
+                "start": 0,
+                "max_results": min(max_results, 50),
+                "sortBy": "submittedDate",
+                "sortOrder": "descending",
+            }
         )
-    except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        errors.append(f"arXiv primary API failed: {exc}")
-        cached_items = load_arxiv_cache(cache_path, max_results)
-        if cached_items:
-            errors.append("arXiv fallback used: most recent local metadata cache")
-            return cached_items, errors
+        content = None
+        for mirror_index, api in enumerate(ARXIV_API_MIRRORS):
+            url = f"{api}?{params}"
+            try:
+                content = fetch_arxiv_bytes(
+                    url,
+                    timeout=25.0 if has_cache else 60.0,
+                    attempts=2,
+                )
+                if mirror_index:
+                    errors.append(f"arXiv fallback used: {api}")
+                break
+            except (urllib.error.URLError, TimeoutError, OSError) as exc:
+                query_failures += 1
+                errors.append(f"warning: arXiv endpoint failed ({api}): {exc}")
+        if content is None:
+            continue
+        try:
+            for item in parse_arxiv_feed(content, window_start, window_end):
+                items_by_id[item.id] = item
+        except ET.ParseError as exc:
+            errors.append(f"warning: arXiv response parse failed: {exc}")
+
+    if items_by_id:
+        items = list(items_by_id.values())[:max_results]
+        save_arxiv_cache(cache_path, items)
+        return items, errors
+
+    if query_failures:
+        fallback_items, fallback_errors = fetch_openalex_arxiv(catalog, max_results, window_start, window_end)
+        if fallback_items:
+            errors.append("arXiv fallback used: OpenAlex index of arXiv-linked works")
+            save_arxiv_cache(cache_path, fallback_items)
+            return fallback_items, errors + fallback_errors
+        errors.extend(f"warning: {error}" for error in fallback_errors)
+
+    if os.environ.get("SEMANTIC_SCHOLAR_API_KEY"):
         fallback_items, fallback_errors = fetch_semantic_scholar(catalog, max_results, window_start, window_end)
         if fallback_items:
             errors.append("arXiv fallback used: Semantic Scholar arXiv index")
             save_arxiv_cache(cache_path, fallback_items)
             return fallback_items, errors + fallback_errors
-        return [], errors + fallback_errors
+        errors.extend(f"warning: {error}" for error in fallback_errors)
+    else:
+        errors.append("warning: Semantic Scholar fallback skipped: set SEMANTIC_SCHOLAR_API_KEY for this optional source")
 
+    cached_items = load_arxiv_cache(cache_path, max_results)
+    if cached_items:
+        errors.append("arXiv fallback used: most recent local metadata cache")
+        return cached_items, errors
+    errors.append("error: arXiv unavailable after mirror, OpenAlex, Semantic Scholar, and cache fallbacks")
+    return [], errors
+
+
+def parse_arxiv_feed(
+    content: bytes,
+    window_start: datetime,
+    window_end: datetime,
+) -> list[SourceItem]:
     ns = {"atom": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
     root = ET.fromstring(content)
     items: list[SourceItem] = []
@@ -614,8 +689,7 @@ def fetch_arxiv(
                 categories=categories,
             )
         )
-    save_arxiv_cache(cache_path, items)
-    return items, errors
+    return items
 
 
 def save_arxiv_cache(path: Path | None, items: list[SourceItem]) -> None:
@@ -639,6 +713,82 @@ def load_arxiv_cache(path: Path | None, limit: int) -> list[SourceItem]:
         record["source_name"] = "arXiv (本地缓存兜底)"
         cached.append(SourceItem(**record))
     return cached
+
+
+def reconstruct_openalex_abstract(inverted_index: dict[str, list[int]] | None) -> str:
+    if not inverted_index:
+        return ""
+    words = [
+        (position, word)
+        for word, positions in inverted_index.items()
+        for position in positions
+    ]
+    return " ".join(word for _, word in sorted(words))
+
+
+def fetch_openalex_arxiv(
+    catalog: dict[str, Any],
+    max_results: int,
+    window_start: datetime,
+    window_end: datetime,
+) -> tuple[list[SourceItem], list[str]]:
+    """Use OpenAlex as a second metadata index when arXiv's API is unreachable."""
+    queries = [
+        "recommender system",
+        "recommendation ranking retrieval",
+        "generative recommendation",
+    ]
+    items: dict[str, SourceItem] = {}
+    errors: list[str] = []
+    date_filter = (
+        f"from_publication_date:{window_start.date().isoformat()},"
+        f"to_publication_date:{window_end.date().isoformat()}"
+    )
+    for query in queries:
+        params = urllib.parse.urlencode(
+            {
+                "search": query,
+                "filter": date_filter,
+                "per-page": min(25, max_results),
+            }
+        )
+        try:
+            payload = json.loads(fetch_curl_bytes(f"{OPENALEX_API}?{params}", timeout=30, attempts=2))
+        except (json.JSONDecodeError, urllib.error.URLError, TimeoutError, OSError) as exc:
+            errors.append(f"OpenAlex arXiv fallback failed for {query}: {exc}")
+            continue
+        for work in payload.get("results", []):
+            locations = [work.get("primary_location"), work.get("best_oa_location")]
+            arxiv_url = ""
+            for location in locations:
+                landing = (location or {}).get("landing_page_url") or ""
+                match = re.search(r"arxiv\.org/(?:abs|pdf)/([0-9.]+)", landing)
+                if match:
+                    arxiv_url = f"https://arxiv.org/abs/{match.group(1)}"
+                    break
+            if not arxiv_url:
+                continue
+            arxiv_id = arxiv_url.rsplit("/", 1)[-1]
+            authors = [
+                (author.get("author") or {}).get("display_name", "")
+                for author in work.get("authorships", [])
+            ]
+            items[f"arxiv:{arxiv_id}"] = SourceItem(
+                id=f"arxiv:{arxiv_id}",
+                source_type="arxiv",
+                source_name="arXiv (OpenAlex fallback)",
+                title=normalize_space(work.get("title", "")),
+                authors=[author for author in authors if author],
+                summary=reconstruct_openalex_abstract(work.get("abstract_inverted_index")),
+                url=arxiv_url,
+                published=work.get("publication_date"),
+                categories=["OpenAlex index"],
+            )
+            if len(items) >= max_results:
+                break
+        if len(items) >= max_results:
+            break
+    return list(items.values())[:max_results], errors
 
 
 def fetch_semantic_scholar(
@@ -695,25 +845,45 @@ def fetch_semantic_scholar(
 
 
 def fetch_openreview(catalog: dict[str, Any], max_results: int, window_start: datetime, window_end: datetime) -> tuple[list[SourceItem], list[str]]:
+    access_token = os.environ.get("OPENREVIEW_ACCESS_TOKEN") or os.environ.get("OPENREVIEW_TOKEN")
+    if not access_token:
+        return [], [
+            "warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; "
+            "use the official conference portal when no credential is configured"
+        ]
     venue_ids = catalog.get("openreview", {}).get("venue_ids", [])
     items: list[SourceItem] = []
     errors: list[str] = []
     per_venue = max(1, max_results // max(1, len(venue_ids)))
+    headers = {"Cookie": f"openreview.accessToken={access_token}"}
     for venue_id in venue_ids:
-        params = urllib.parse.urlencode({"content.venueid": venue_id, "limit": per_venue})
+        params = urllib.parse.urlencode(
+            {"content.venue_id": venue_id, "limit": per_venue, "sort": "tmdate:desc"}
+        )
         url = f"{OPENREVIEW_NOTES_API}?{params}"
         try:
-            payload = json.loads(fetch_bytes(url).decode("utf-8"))
+            payload = json.loads(fetch_bytes(url, headers=headers).decode("utf-8"))
+        except urllib.error.HTTPError as exc:
+            if exc.code in {401, 403}:
+                errors.append(f"warning: OpenReview API2 authorization failed for {venue_id}: HTTP {exc.code}")
+            else:
+                errors.append(f"warning: OpenReview API2 fetch failed for {venue_id}: HTTP {exc.code}")
+            continue
         except (urllib.error.URLError, TimeoutError, OSError, json.JSONDecodeError) as exc:
-            errors.append(f"OpenReview fetch failed for {venue_id}: {exc}")
+            errors.append(f"warning: OpenReview API2 fetch failed for {venue_id}: {exc}")
             continue
         for note in payload.get("notes", []):
             content = note.get("content", {})
             title = normalize_space(text_of(content.get("title")))
             abstract = normalize_space(text_of(content.get("abstract")))
-            authors = text_of(content.get("authors"))
-            author_list = [a.strip() for a in authors.split(",") if a.strip()]
-            cdate = note.get("cdate") or note.get("mdate")
+            raw_authors = content.get("authors")
+            if isinstance(raw_authors, dict) and "value" in raw_authors:
+                raw_authors = raw_authors["value"]
+            if isinstance(raw_authors, list):
+                author_list = [text_of(author) for author in raw_authors if text_of(author)]
+            else:
+                author_list = [author.strip() for author in text_of(raw_authors).split(",") if author.strip()]
+            cdate = note.get("pdate") or note.get("cdate") or note.get("mdate")
             published = None
             if isinstance(cdate, (int, float)):
                 published = datetime.fromtimestamp(cdate / 1000, timezone.utc).date().isoformat()
@@ -828,6 +998,23 @@ def parse_feed_entries(root: ET.Element, source_name: str, source_type: str) -> 
     return out
 
 
+def extract_meta_description(page: str) -> str:
+    for tag in re.findall(r"<meta\b[^>]*>", page, flags=re.I):
+        attributes = {
+            key.lower(): html.unescape(value)
+            for key, value in re.findall(r"([:\w-]+)\s*=\s*[\"'](.*?)[\"']", tag, flags=re.I | re.S)
+        }
+        name = (attributes.get("name") or attributes.get("property") or "").lower()
+        if name in {"description", "og:description", "twitter:description"}:
+            return normalize_space(attributes.get("content", ""))
+    return ""
+
+
+def extract_page_text(page: str) -> str:
+    cleaned = re.sub(r"<(script|style|noscript|svg)\b.*?</\1>", " ", page, flags=re.I | re.S)
+    return normalize_space(re.sub(r"<[^>]+>", " ", cleaned))
+
+
 def fetch_manual_urls(catalog: dict[str, Any], lookback_days: int) -> tuple[list[SourceItem], list[str]]:
     items: list[SourceItem] = []
     errors: list[str] = []
@@ -835,15 +1022,21 @@ def fetch_manual_urls(catalog: dict[str, Any], lookback_days: int) -> tuple[list
         url = raw.get("url") if isinstance(raw, dict) else str(raw)
         name = raw.get("name", "Manual URL") if isinstance(raw, dict) else "Manual URL"
         source_type = raw.get("source_type", "manual") if isinstance(raw, dict) else "manual"
+        configured_title = normalize_space(raw.get("title", "")) if isinstance(raw, dict) else ""
+        configured_summary = normalize_space(raw.get("summary", "")) if isinstance(raw, dict) else ""
+        configured_summary_zh = normalize_space(raw.get("summary_zh", "")) if isinstance(raw, dict) else ""
+        configured_contribution_zh = normalize_space(raw.get("contribution_zh", "")) if isinstance(raw, dict) else ""
         try:
             page = fetch_bytes(url).decode("utf-8", errors="ignore")
         except (urllib.error.URLError, TimeoutError, OSError) as exc:
             errors.append(f"Manual URL fetch failed for {url}: {exc}")
             continue
         title_match = re.search(r"<title[^>]*>(.*?)</title>", page, flags=re.I | re.S)
-        title = normalize_space(title_match.group(1)) if title_match else url
-        text = normalize_space(page)
-        if not any(contains_keyword(f"{title}\n{text}".lower(), k) for k in RECSYS_KEYWORDS):
+        title = configured_title or (normalize_space(title_match.group(1)) if title_match else url)
+        text = extract_page_text(page)
+        summary = configured_summary or extract_meta_description(page) or text[:1200]
+        relevance_text = f"{title}\n{summary}\n{configured_summary_zh}\n{text}"
+        if not any(contains_keyword(relevance_text.lower(), k) for k in RECSYS_KEYWORDS):
             continue
         items.append(
             SourceItem(
@@ -852,10 +1045,12 @@ def fetch_manual_urls(catalog: dict[str, Any], lookback_days: int) -> tuple[list
                 source_name=name,
                 title=title,
                 authors=[],
-                summary=text[:1200],
+                summary=summary,
                 url=url,
-                published=None,
-                categories=[],
+                published=raw.get("published") if isinstance(raw, dict) else None,
+                categories=raw.get("categories", []) if isinstance(raw, dict) else [],
+                summary_zh=configured_summary_zh or None,
+                contribution_zh=configured_contribution_zh or None,
             )
         )
     return items, errors
@@ -1047,9 +1242,9 @@ def score_item(item: SourceItem, catalog: dict[str, Any]) -> dict[str, Any]:
         "discovered_at": now_iso(),
         "url": item.url,
         "abstract_or_excerpt": shorten(item.summary, 1200),
-        "abstract_or_excerpt_zh": "",
+        "abstract_or_excerpt_zh": item.summary_zh or "",
         "core_contribution": extract_contribution(item.title, item.summary),
-        "core_contribution_zh": "",
+        "core_contribution_zh": item.contribution_zh or "",
         "methods": extract_methods(text, matched_keywords),
         "methods_zh": [],
         "claims": extract_claims(item.summary),
@@ -1096,13 +1291,20 @@ def build_deep_read_reason(
 
 
 def dedupe_items(items: list[SourceItem]) -> list[SourceItem]:
-    seen: set[str] = set()
+    seen: dict[str, SourceItem] = {}
     out: list[SourceItem] = []
     for item in items:
         key = re.sub(r"\W+", "", item.title.lower())[:160] or item.url
-        if key in seen:
+        existing = seen.get(key)
+        if existing:
+            if len(item.summary) > len(existing.summary):
+                existing.summary = item.summary
+            if item.summary_zh:
+                existing.summary_zh = item.summary_zh
+            if item.contribution_zh:
+                existing.contribution_zh = item.contribution_zh
             continue
-        seen.add(key)
+        seen[key] = item
         out.append(item)
     return out
 
@@ -1225,12 +1427,18 @@ def render_report(
     lines.append("")
     for key in sorted(counts):
         lines.append(f"- {key}: {counts[key]}")
-    if errors:
+    blocking_errors = [error for error in errors if error.startswith("error:")]
+    warnings = [error for error in errors if not error.startswith("error:")]
+    if blocking_errors:
         lines.append("- source_errors:")
-        for err in errors:
+        for err in blocking_errors:
             lines.append(f"  - {err}")
     else:
         lines.append("- source_errors: none")
+    if warnings:
+        lines.append("- source_notes:")
+        for warning in warnings:
+            lines.append(f"  - {warning}")
     lines.append("")
     lines.append("## 📊 今日主题聚类与趋势")
     lines.append("")
@@ -1277,17 +1485,27 @@ def render_report(
         for source_name, count in sorted(industry_counts.items(), key=lambda pair: (-pair[1], pair[0])):
             lines.append(f"- {source_name}: {count}")
         lines.append("")
-        lines.append("### Article Index")
+        lines.append("### 文章结构化摘要")
         lines.append("")
-        for card in sorted(
-            (c for c in cards if c["source_type"] == "industry"),
+        industry_cards = sorted(
+            (c for c in new_cards if c["source_type"] == "industry"),
             key=lambda c: c["priority_score"],
             reverse=True,
-        ):
-            lines.append(
-                f"- [{card.get('title_zh') or card['title']}]({card['url']}) — "
-                f"{card['source_name']}；{action_line(card)}"
-            )
+        )
+        for card in industry_cards[:8]:
+            summary = card.get("abstract_or_excerpt_zh") or card.get("abstract_or_excerpt") or "来源页未提供可验证摘要，建议打开原文核验。"
+            summary_label = "中文摘要" if card.get("abstract_or_excerpt_zh") else "摘要（原文摘要，待中文翻译）"
+            contribution = card.get("core_contribution_zh") or card.get("core_contribution") or "未能从来源页提取明确贡献。"
+            methods = card.get("methods_zh") or card.get("methods") or []
+            lines.append(f"#### {card.get('title_zh') or card['title']}")
+            lines.append(f"- 原始标题：{card['title']}")
+            lines.append(f"- 来源：{card['source_name']}；发布时间：{card.get('published') or '未标注'}")
+            lines.append(f"- 原始链接：[{card['url']}]({card['url']})")
+            lines.append(f"- {summary_label}：{summary}")
+            lines.append(f"- 核心贡献/可借鉴：{contribution}")
+            lines.append(f"- 方法/关键机制：{', '.join(methods) if methods else '未从摘要中提取'}")
+            lines.append(f"- {score_line(card)}")
+            lines.append(f"- {action_line(card)}")
             lines.append("")
     else:
         lines.append("- no relevant industry cards in this window")
@@ -1317,12 +1535,20 @@ def render_report(
     lines.append("")
     lines.append("## 📝 业界文章深读队列")
     lines.append("")
-    if not industry_deep_reads:
+    industry_queue = sorted(
+        (c for c in new_cards if c["source_type"] == "industry"),
+        key=lambda c: c["priority_score"],
+        reverse=True,
+    )
+    if not industry_queue:
         lines.append("本窗口没有达到深读阈值的业界文章；相关业界文章仍见上方“大厂技术文章覆盖”。")
-    for idx, card in enumerate(industry_deep_reads[:8], 1):
+    for idx, card in enumerate(industry_queue[:8], 1):
+        summary = card.get("abstract_or_excerpt_zh") or card.get("abstract_or_excerpt") or "来源页未提供可验证摘要，建议打开原文核验。"
+        contribution = card.get("core_contribution_zh") or card.get("core_contribution") or "未能从来源页提取明确贡献。"
         lines.append(f"{idx}. [{card.get('title_zh') or card['title']}]({card['url']})")
         lines.append(f"   - source: {card['source_name']}")
-        lines.append(f"   - contribution: {card.get('core_contribution_zh') or card['core_contribution']}")
+        lines.append(f"   - 摘要：{summary}")
+        lines.append(f"   - 核心贡献/可借鉴：{contribution}")
         lines.append(f"   - {score_line(card)}")
         lines.append(f"   - {action_line(card)}")
         lines.append(f"   - why: {card.get('deep_read_reason_zh') or card['deep_read_reason']}")
@@ -1597,7 +1823,7 @@ def main(argv: list[str] | None = None) -> int:
     paths["state"] = str(state_path)
 
     print(json.dumps({"counts": counts, "cards": len(cards), "ideas": len(ideas), "paths": paths}, ensure_ascii=False, indent=2))
-    if errors:
+    if any(error.startswith("error:") for error in errors):
         return 2
     return 0
 
