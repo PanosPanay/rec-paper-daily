@@ -31,7 +31,7 @@ The default window is workday-aware: a normal run covers the previous calendar d
 
 The default output directory also contains `radar-state.json`, which records first/last seen times and suppresses already reported items from later daily sections. Use `--include-seen` for an audit or repeat-reading run.
 
-ArXiv collection is resilient to intermittent network failures: it retries the canonical API through `curl`, then falls back to Semantic Scholar's arXiv-indexed metadata, and finally uses `arxiv-cache.json` from the most recent successful run. Reports must label fallback or cached items and must not present cached metadata as newly published.
+ArXiv collection is resilient to intermittent network failures: it retries the canonical API through `curl`, then uses `arxiv-cache.json` from the most recent successful run for a fast fallback; when no cache exists, it falls back to Semantic Scholar's arXiv-indexed metadata. Reports must label fallback or cached items and must not present cached metadata as newly published.
 
 If network access is unavailable or a deterministic smoke test is needed:
 
