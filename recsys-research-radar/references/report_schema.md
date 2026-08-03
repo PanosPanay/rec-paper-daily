@@ -29,7 +29,7 @@ List source counts and failures:
 - industry coverage by company/source
 - adjacent signals from search, advertising, and LLM/RAG/agent work, with transfer relevance noted
 - manual URLs reviewed
-- source errors
+- blocking source errors and recoverable source notes separately
 
 ## Paper Deep-Read Queue
 
@@ -43,8 +43,8 @@ For each top item:
 
 ## Industry Article Deep-Read Queue
 
-Keep company engineering/research articles in a separate queue from papers. Link each article and include source company, why it matters, novelty assessment, and recommended action.
-The preceding industry coverage section should be only a compact index. Do not repeat full industry cards in the paper structured-card section.
+Keep company engineering/research articles in a separate queue from papers. Each selected article must include a Chinese-first summary, original title/link, core contribution or transferable mechanism, methods/constraints when available, novelty assessment, scores, and recommended action.
+The preceding industry coverage section may be a compact company index plus structured summaries. Do not repeat full industry cards in the paper structured-card section.
 
 ## Topic Clusters And Trends
 
