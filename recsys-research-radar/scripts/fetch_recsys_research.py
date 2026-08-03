@@ -556,18 +556,23 @@ def fetch_arxiv(
     url = f"{ARXIV_API}?{params}"
     errors: list[str] = []
     try:
-        content = fetch_arxiv_bytes(url)
+        has_cache = bool(cache_path and cache_path.exists())
+        content = fetch_arxiv_bytes(
+            url,
+            timeout=25.0 if has_cache else 90.0,
+            attempts=1 if has_cache else 3,
+        )
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         errors.append(f"arXiv primary API failed: {exc}")
+        cached_items = load_arxiv_cache(cache_path, max_results)
+        if cached_items:
+            errors.append("arXiv fallback used: most recent local metadata cache")
+            return cached_items, errors
         fallback_items, fallback_errors = fetch_semantic_scholar(catalog, max_results, window_start, window_end)
         if fallback_items:
             errors.append("arXiv fallback used: Semantic Scholar arXiv index")
             save_arxiv_cache(cache_path, fallback_items)
             return fallback_items, errors + fallback_errors
-        cached_items = load_arxiv_cache(cache_path, max_results)
-        if cached_items:
-            errors.append("arXiv fallback used: most recent local metadata cache")
-            return cached_items, errors + fallback_errors
         return [], errors + fallback_errors
 
     ns = {"atom": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
