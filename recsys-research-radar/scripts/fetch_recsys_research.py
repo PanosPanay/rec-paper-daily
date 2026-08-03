@@ -41,6 +41,7 @@ USER_AGENT = "RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localh
 LOCAL_TZ = ZoneInfo("Asia/Shanghai")
 TOPIC_LABELS_ZH = {
     "retrieval_candidate_generation": "召回与候选生成",
+    "search_retrieval": "搜索与信息检索",
     "coarse_reranking": "粗排与重排",
     "ranking_learning_to_rank": "排序、粗排与重排",
     "sequential_user_modeling": "序列推荐与用户建模",
@@ -62,6 +63,9 @@ ACTION_ICONS = {
 RELATED_READING = {
     "retrieval_candidate_generation": [
         {"title": "Deep Neural Networks for YouTube Recommendations", "url": "https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/", "relation": "经典的候选生成与排序两阶段工业架构"},
+    ],
+    "search_retrieval": [
+        {"title": "DeepCT: Deep Reinforcement Learning for Contextual Text Representation", "url": "https://arxiv.org/abs/1808.09600", "relation": "把查询/文档表示学习引入信息检索，可迁移到推荐召回与重排"},
     ],
     "coarse_reranking": [
         {"title": "Deep Interest Network for Click-Through Rate Prediction", "url": "https://arxiv.org/abs/1706.06978", "relation": "工业 CTR 排序和用户兴趣建模的经典基线"},
@@ -137,6 +141,33 @@ RECSYS_ANCHORS = (
     "industrial recommendation",
     "ctr",
     "cvr",
+)
+
+ADJACENT_TRANSFER_ANCHORS = (
+    "information retrieval",
+    "search ranking",
+    "query understanding",
+    "query rewriting",
+    "semantic search",
+    "dense retrieval",
+    "ad ranking",
+    "ads ranking",
+    "ctr prediction",
+    "cvr prediction",
+    "multi-objective ranking",
+    "llm recommender",
+    "large language model recommendation",
+    "generative recommendation",
+    "agentic recommendation",
+    "retrieval augmented generation",
+    "信息检索",
+    "搜索排序",
+    "查询理解",
+    "广告排序",
+    "点击率预测",
+    "转化率预测",
+    "大模型推荐",
+    "生成式推荐",
 )
 
 NOVELTY_CUES = (
@@ -254,6 +285,11 @@ EXPERIMENT_TEMPLATES = {
         "experiment": "Compare a two-tower retrieval baseline against the proposed retrieval signal on a small implicit-feedback matrix.",
         "baseline": "matrix factorization or BM25-style popularity retrieval",
         "metric": "Recall@50, NDCG@50, and embedding build/query time",
+    },
+    "search_retrieval": {
+        "experiment": "Compare a lexical BM25 retriever, dense retriever, and a lightweight reranker on a small query-item relevance set.",
+        "baseline": "BM25 or TF-IDF retrieval",
+        "metric": "Recall@50, NDCG@10, query latency, and performance on tail queries",
     },
     "ranking_learning_to_rank": {
         "experiment": "Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.",
@@ -717,7 +753,10 @@ def fetch_rss(catalog: dict[str, Any], max_results: int, window_start: datetime,
             if not within_window(item.published, window_start, window_end):
                 continue
             haystack = f"{item.title}\n{item.summary}".lower()
-            if not any(contains_keyword(haystack, k) for k in RECSYS_KEYWORDS):
+            if not any(
+                contains_keyword(haystack, k)
+                for k in RECSYS_KEYWORDS + ADJACENT_TRANSFER_ANCHORS
+            ):
                 continue
             items.append(item)
             kept += 1
@@ -919,6 +958,9 @@ def score_item(item: SourceItem, catalog: dict[str, Any]) -> dict[str, Any]:
     matched_topics, matched_keywords, topic_weight = match_topics(text, topic_groups)
     categories = [c.lower() for c in item.categories or []]
     has_recsys_anchor = any(contains_keyword(text, anchor) for anchor in RECSYS_ANCHORS)
+    has_adjacent_transfer_signal = any(
+        contains_keyword(text, anchor) for anchor in ADJACENT_TRANSFER_ANCHORS
+    )
 
     relevance = 0.0
     if matched_topics:
@@ -927,8 +969,10 @@ def score_item(item: SourceItem, catalog: dict[str, Any]) -> dict[str, Any]:
         relevance += 0.4
     if item.source_type in {"conference", "industry"} and matched_topics:
         relevance += 0.3
-    if item.source_type == "arxiv" and not has_recsys_anchor:
+    if item.source_type == "arxiv" and not (has_recsys_anchor or has_adjacent_transfer_signal):
         relevance -= 1.7
+    if has_adjacent_transfer_signal and not has_recsys_anchor:
+        relevance -= 0.5
     relevance = clamp_score(relevance)
 
     novelty = 1.0 + sum(0.45 for cue in NOVELTY_CUES if cue in text)
