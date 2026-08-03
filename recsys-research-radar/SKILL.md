@@ -31,7 +31,7 @@ The default window is workday-aware: a normal run covers the previous calendar d
 
 The default output directory also contains `radar-state.json`, which records first/last seen times and suppresses already reported items from later daily sections. Use `--include-seen` for an audit or repeat-reading run.
 
-ArXiv collection is resilient to intermittent network failures: it retries the canonical API through `curl`, then uses `arxiv-cache.json` from the most recent successful run for a fast fallback; when no cache exists, it falls back to Semantic Scholar's arXiv-indexed metadata. Reports must label fallback or cached items and must not present cached metadata as newly published.
+ArXiv collection is resilient to intermittent network failures: it splits long keyword filters into short queries, tries both `export.arxiv.org` and `arxiv.org`, then uses OpenAlex's arXiv-linked metadata, an optional Semantic Scholar API-key path, and finally `arxiv-cache.json`. Reports must label fallback or cached items and must not present cached metadata as newly published. A recovered fallback is a warning, not a failed run; only exhaustion of all fallbacks is an error.
 
 If network access is unavailable or a deterministic smoke test is needed:
 
@@ -57,7 +57,7 @@ Default sources:
 
 - arXiv: `cs.IR`, `cs.LG`, `cs.AI`, `stat.ML`, filtered by recommender keywords.
 - Adjacent arXiv signals: information retrieval/search ranking, ads ranking/CTR/CVR, and LLM/RAG/agent work when the method has a clear transfer path to recommendation.
-- OpenReview: configurable venue IDs for conferences that expose accepted submissions through OpenReview.
+- OpenReview: configurable venue IDs for conference submissions, abstracts, authors, public dates, decisions, and forum links. The current API 2 requires `OPENREVIEW_ACCESS_TOKEN`; without it, skip OpenReview cleanly and use the official conference portal/manual URL path instead of repeatedly calling the legacy API.
 - RSS/Atom: company research and engineering blogs from major recommender-system practitioners.
 - Adjacent industry sources: Google/Microsoft search and ads research, Alibaba/Tencent commercial ranking, and selected LLM/RAG/agent engineering posts. Keep them in a separate adjacent-signal view when they are not direct recommendation work.
 - Official portals: use `official_portals` as discovery surfaces for Chinese big-tech technical sites and developer communities.
@@ -69,7 +69,7 @@ Treat conference and industry feeds as best-effort adapters. If a conference doe
 
 Search, advertising, and large-model items are included only when they offer a concrete recommendation transfer point: retrieval/candidate generation, query or item understanding, ranking/reranking, CTR/CVR or multi-objective optimization, auctions/marketplace allocation, user modeling, RAG, agents, or generative recommendation. Exclude generic search-engine news, generic ad-tech news, and general LLM announcements.
 
-For each daily run, report industry coverage by company/source, not only a single RSS total. Prefer recent official posts; retain older seed articles only as background context and label them as such. When a Chinese portal is JavaScript-rendered or blocks automated access, search the portal in the current session, open the official article page, and pass its URL through `manual_urls` for the card pipeline.
+For each daily run, report industry coverage by company/source, not only a single RSS total. Every selected industry item must include a Chinese-first summary, original title/link, core contribution or transferable mechanism, evidence limits, scores, and an action recommendation; a bare link is not a valid industry card. Prefer recent official posts; retain older seed articles only as background context and label them as such. When a Chinese portal is JavaScript-rendered or blocks automated access, search the portal in the current session, open the official article page, and pass its URL through `manual_urls` for the card pipeline.
 
 ## Card Schema
 
@@ -147,7 +147,7 @@ The report must include:
 - today's topic clusters and 2-4 trend observations
 - curated new-item queue capped at 5-10 items
 - separate paper deep-read and industry-article deep-read queues
-- keep the industry article index compact and do not repeat full industry cards in the paper structured-card section
+- include a compact but structured industry-article section with summaries; do not repeat full industry cards in the paper structured-card section
 - clearly labeled historical picks when useful
 - novelty notes
 - action recommendations
