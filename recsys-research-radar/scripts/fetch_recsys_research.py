@@ -13,6 +13,7 @@ import argparse
 import html
 import json
 import re
+import subprocess
 import sys
 import textwrap
 import time
@@ -20,7 +21,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass
 from datetime import date, datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -34,6 +35,7 @@ DEFAULT_CATALOG = SKILL_DIR / "references" / "source_catalog.json"
 DEFAULT_OUTPUT_DIR = Path("/Users/wangbaojiang/Nutstore Files/我的坚果云/日常/推荐论文日报")
 
 ARXIV_API = "https://export.arxiv.org/api/query"
+SEMANTIC_SCHOLAR_API = "https://api.semanticscholar.org/graph/v1/paper/search"
 OPENREVIEW_NOTES_API = "https://api.openreview.net/notes"
 USER_AGENT = "RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)"
 LOCAL_TZ = ZoneInfo("Asia/Shanghai")
@@ -397,6 +399,44 @@ def fetch_bytes(url: str, timeout: float = 30.0) -> bytes:
         return resp.read()
 
 
+def fetch_curl_bytes(url: str, timeout: float = 90.0, attempts: int = 3) -> bytes:
+    """Fetch public APIs through curl because urllib can stall in local proxy/DNS setups."""
+    last_error = ""
+    for attempt in range(1, attempts + 1):
+        try:
+            result = subprocess.run(
+                [
+                    "curl",
+                    "-fsSL",
+                    "--retry",
+                    "1",
+                    "--retry-all-errors",
+                    "--connect-timeout",
+                    "15",
+                    "--max-time",
+                    str(int(timeout)),
+                    "-A",
+                    USER_AGENT,
+                    url,
+                ],
+                check=True,
+                capture_output=True,
+                timeout=timeout + 10,
+            )
+            if result.stdout:
+                return result.stdout
+            last_error = "empty response"
+        except (OSError, subprocess.SubprocessError) as exc:
+            last_error = str(exc)
+        if attempt < attempts:
+            time.sleep(2 ** (attempt - 1))
+    raise urllib.error.URLError(f"curl failed after {attempts} attempts: {last_error}")
+
+
+def fetch_arxiv_bytes(url: str, timeout: float = 90.0, attempts: int = 3) -> bytes:
+    return fetch_curl_bytes(url, timeout=timeout, attempts=attempts)
+
+
 def text_of(value: Any) -> str:
     if value is None:
         return ""
@@ -457,7 +497,13 @@ def build_arxiv_query(categories: list[str], keywords: list[str]) -> str:
     return f"({cats}) AND ({kws})"
 
 
-def fetch_arxiv(catalog: dict[str, Any], max_results: int, window_start: datetime, window_end: datetime) -> tuple[list[SourceItem], list[str]]:
+def fetch_arxiv(
+    catalog: dict[str, Any],
+    max_results: int,
+    window_start: datetime,
+    window_end: datetime,
+    cache_path: Path | None = None,
+) -> tuple[list[SourceItem], list[str]]:
     cfg = catalog.get("arxiv", {})
     categories = cfg.get("categories", [])
     keywords = cfg.get("keywords", [])
@@ -474,9 +520,19 @@ def fetch_arxiv(catalog: dict[str, Any], max_results: int, window_start: datetim
     url = f"{ARXIV_API}?{params}"
     errors: list[str] = []
     try:
-        content = fetch_bytes(url)
+        content = fetch_arxiv_bytes(url)
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
-        return [], [f"arXiv fetch failed: {exc}"]
+        errors.append(f"arXiv primary API failed: {exc}")
+        fallback_items, fallback_errors = fetch_semantic_scholar(catalog, max_results, window_start, window_end)
+        if fallback_items:
+            errors.append("arXiv fallback used: Semantic Scholar arXiv index")
+            save_arxiv_cache(cache_path, fallback_items)
+            return fallback_items, errors + fallback_errors
+        cached_items = load_arxiv_cache(cache_path, max_results)
+        if cached_items:
+            errors.append("arXiv fallback used: most recent local metadata cache")
+            return cached_items, errors + fallback_errors
+        return [], errors + fallback_errors
 
     ns = {"atom": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
     root = ET.fromstring(content)
@@ -517,7 +573,84 @@ def fetch_arxiv(catalog: dict[str, Any], max_results: int, window_start: datetim
                 categories=categories,
             )
         )
+    save_arxiv_cache(cache_path, items)
     return items, errors
+
+
+def save_arxiv_cache(path: Path | None, items: list[SourceItem]) -> None:
+    if path is None or not items:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps([asdict(item) for item in items], ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def load_arxiv_cache(path: Path | None, limit: int) -> list[SourceItem]:
+    if path is None or not path.exists():
+        return []
+    try:
+        records = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+    cached: list[SourceItem] = []
+    for record in records[:limit]:
+        if not record.get("id") or not record.get("title"):
+            continue
+        record["source_name"] = "arXiv (本地缓存兜底)"
+        cached.append(SourceItem(**record))
+    return cached
+
+
+def fetch_semantic_scholar(
+    catalog: dict[str, Any],
+    max_results: int,
+    window_start: datetime,
+    window_end: datetime,
+) -> tuple[list[SourceItem], list[str]]:
+    """Use Semantic Scholar's arXiv-indexed metadata as a scholarly fallback."""
+    queries = [
+        "recommender system",
+        "recommendation ranking retrieval",
+        "generative recommendation",
+    ]
+    items: dict[str, SourceItem] = {}
+    errors: list[str] = []
+    for query in queries:
+        params = urllib.parse.urlencode(
+            {
+                "query": query,
+                "limit": min(15, max_results),
+                "fields": "title,abstract,authors,publicationDate,externalIds",
+            }
+        )
+        try:
+            payload = json.loads(fetch_curl_bytes(f"{SEMANTIC_SCHOLAR_API}?{params}", timeout=45, attempts=2))
+        except (json.JSONDecodeError, urllib.error.URLError, TimeoutError, OSError) as exc:
+            errors.append(f"Semantic Scholar fallback failed for {query}: {exc}")
+            continue
+        for paper in payload.get("data", []):
+            external_ids = paper.get("externalIds") or {}
+            arxiv_id = external_ids.get("ArXiv")
+            published = paper.get("publicationDate")
+            if not arxiv_id or not within_window(published, window_start, window_end):
+                continue
+            item_id = f"arxiv:{arxiv_id}"
+            items[item_id] = SourceItem(
+                id=item_id,
+                source_type="arxiv",
+                source_name="arXiv (Semantic Scholar fallback)",
+                title=normalize_space(paper.get("title", "")),
+                authors=[a.get("name", "") for a in paper.get("authors", []) if a.get("name")],
+                summary=normalize_space(paper.get("abstract", "")),
+                url=f"https://arxiv.org/abs/{arxiv_id}",
+                published=published,
+                categories=["cs.IR"],
+            )
+            if len(items) >= max_results:
+                break
+        if len(items) >= max_results:
+            break
+        time.sleep(1)
+    return list(items.values()), errors
 
 
 def fetch_openreview(catalog: dict[str, Any], max_results: int, window_start: datetime, window_end: datetime) -> tuple[list[SourceItem], list[str]]:
@@ -1289,7 +1422,13 @@ def collect_items(
     counts: dict[str, int] = {}
 
     if "arxiv" in sources:
-        items, errs = fetch_arxiv(catalog, args.max_results, window_start, window_end)
+        items, errs = fetch_arxiv(
+            catalog,
+            args.max_results,
+            window_start,
+            window_end,
+            cache_path=args.output_dir / "arxiv-cache.json",
+        )
         all_items.extend(items)
         errors.extend(errs)
         counts["arxiv"] = len(items)
