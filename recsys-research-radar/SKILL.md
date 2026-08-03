@@ -56,14 +56,18 @@ Use `references/source_catalog.json` as the editable source registry.
 Default sources:
 
 - arXiv: `cs.IR`, `cs.LG`, `cs.AI`, `stat.ML`, filtered by recommender keywords.
+- Adjacent arXiv signals: information retrieval/search ranking, ads ranking/CTR/CVR, and LLM/RAG/agent work when the method has a clear transfer path to recommendation.
 - OpenReview: configurable venue IDs for conferences that expose accepted submissions through OpenReview.
 - RSS/Atom: company research and engineering blogs from major recommender-system practitioners.
+- Adjacent industry sources: Google/Microsoft search and ads research, Alibaba/Tencent commercial ranking, and selected LLM/RAG/agent engineering posts. Keep them in a separate adjacent-signal view when they are not direct recommendation work.
 - Official portals: use `official_portals` as discovery surfaces for Chinese big-tech technical sites and developer communities.
 - WeChat accounts: use `wechat_accounts` as a monitored registry; public WeChat articles usually have no stable RSS, so ingest a user-provided article URL or a corresponding official-site mirror and preserve the account name as provenance.
 - Manual URLs: use when the user provides conference proceedings pages, company posts, X/Twitter threads, WeChat posts, or PDFs that have no stable public feed. The catalog includes verified seed articles from Meituan, ByteDance/Volcengine, and Tencent Cloud.
 - Historical picks: use `historical_picks` for a small, clearly labeled set of classic industrial papers/articles. Keep them separate from the current-window ranking and never present them as today's new work.
 
 Treat conference and industry feeds as best-effort adapters. If a conference does not expose a stable API/feed, add the official proceedings or accepted-papers URL to `manual_urls`, fetch/read it in the current session, then include the relevant items in the card pipeline.
+
+Search, advertising, and large-model items are included only when they offer a concrete recommendation transfer point: retrieval/candidate generation, query or item understanding, ranking/reranking, CTR/CVR or multi-objective optimization, auctions/marketplace allocation, user modeling, RAG, agents, or generative recommendation. Exclude generic search-engine news, generic ad-tech news, and general LLM announcements.
 
 For each daily run, report industry coverage by company/source, not only a single RSS total. Prefer recent official posts; retain older seed articles only as background context and label them as such. When a Chinese portal is JavaScript-rendered or blocks automated access, search the portal in the current session, open the official article page, and pass its URL through `manual_urls` for the card pipeline.
 
