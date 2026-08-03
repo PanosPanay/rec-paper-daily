@@ -15,7 +15,19 @@
       "graph recommendation",
       "counterfactual recommendation",
       "bandit recommendation",
-      "ranking model"
+      "ranking model",
+      "information retrieval",
+      "search ranking",
+      "query understanding",
+      "semantic search",
+      "dense retrieval",
+      "ads ranking",
+      "ctr prediction",
+      "cvr prediction",
+      "multi-objective ranking",
+      "llm recommender",
+      "large language model recommendation",
+      "agentic recommendation"
     ]
   },
   "openreview": {
@@ -40,6 +52,11 @@
     "site:developer.huaweicloud.com 推荐系统 RES 粗排",
     "site:developer.aliyun.com 淘天 推荐 搜索 排序",
     "site:arxiv.org/abs recommendation reranking coarse ranking retrieval"
+    ,"site:research.google 搜索 排序 推荐 广告 大模型",
+    "site:microsoft.com/en-us/research search ranking recommendation ads",
+    "site:openai.com/research recommendation ranking retrieval",
+    "site:developer.aliyun.com 搜索广告 CTR CVR 多目标排序",
+    "site:cloud.tencent.com/developer 广告排序 搜索推荐 大模型"
   ],
   "rss_feeds": [
     {
@@ -70,6 +87,11 @@
     {
       "name": "Pinterest Engineering",
       "url": "https://medium.com/feed/pinterest-engineering",
+      "source_type": "industry"
+    },
+    {
+      "name": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/feed/",
       "source_type": "industry"
     }
   ],
@@ -113,6 +135,26 @@
       "name": "快手技术与研究信号",
       "url": "https://ir.kuaishou.com/",
       "scope": "短视频、直播、电商推荐和内容理解"
+    },
+    {
+      "name": "Google Research",
+      "url": "https://research.google/",
+      "scope": "搜索、广告、推荐、用户建模和生成式 AI；只纳入可迁移到推荐的内容"
+    },
+    {
+      "name": "Microsoft Research",
+      "url": "https://www.microsoft.com/en-us/research/research-area/information-retrieval/",
+      "scope": "信息检索、搜索排序、推荐和用户行为建模"
+    },
+    {
+      "name": "OpenAI Research",
+      "url": "https://openai.com/research/",
+      "scope": "大模型、Agent、RAG 和评估；只纳入对推荐/搜索/广告有直接借鉴价值的内容"
+    },
+    {
+      "name": "阿里妈妈/淘天搜索广告",
+      "url": "https://www.alimama.com/",
+      "scope": "搜索广告、CTR/CVR、多目标排序、竞价和商业化推荐"
     }
   ],
   "wechat_accounts": [
@@ -260,6 +302,10 @@
       "weight": 3.0,
       "keywords": ["retrieval", "candidate generation", "two-tower", "dual encoder", "embedding retrieval", "ann", "approximate nearest neighbor", "vector search", "matching", "召回", "候选生成", "向量检索"]
     },
+    "search_retrieval": {
+      "weight": 2.5,
+      "keywords": ["information retrieval", "search ranking", "query understanding", "query rewriting", "semantic search", "dense retrieval", "sparse retrieval", "search relevance", "信息检索", "搜索排序", "查询理解", "搜索相关性"]
+    },
     "ranking_learning_to_rank": {
       "weight": 3.0,
       "keywords": ["ranking", "learning to rank", "ltr", "ranker", "reranking", "calibration", "multitask ranking", "click-through rate", "ctr", "conversion rate", "cvr", "排序", "粗排", "精排", "排序模型"]
@@ -298,7 +344,7 @@
     },
     "ads_marketplace": {
       "weight": 2.0,
-      "keywords": ["ads ranking", "auction", "marketplace", "sponsored", "creator marketplace", "supply demand", "conversion optimization", "推荐广告", "搜索广告", "广告排序"]
+      "keywords": ["ad ranking", "ads ranking", "ad auction", "auction", "marketplace", "sponsored", "creator marketplace", "supply demand", "conversion optimization", "ctr prediction", "cvr prediction", "multi-objective ranking", "推荐广告", "搜索广告", "广告排序", "多目标排序"]
     }
   }
 }
