@@ -17,19 +17,19 @@ blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; c
 </style>
 </head>
 <body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-08-03</h1>
-<blockquote>抓取结果保留英文原文；中文翻译由 skill 的翻译阶段补齐并置于原文之前。</blockquote>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
 <blockquote>新增窗口：上一个工作日及周末窗口；日报精选上限：8 项。</blockquote>
 <h2>Executive Answer</h2>
-<p>Found 18 new relevant recommendation-research items. 9 are deep-read or experiment candidates.<br> 优先阅读：<a href="https://arxiv.org/pdf/2607.28940v1">TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</a>；原文标题：TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings；原因：matches ranking_learning_to_rank, sequential_user_modeling, bandit_rl_causal; high relevance; small experiment appears plausible (difficulty 2.4/5).</p>
-<h2>Source Coverage</h2>
+<p>本窗口新增 18 项与推荐算法相关的论文或业界文章，其中 9 项适合深读或尝试实验。<br> 优先阅读：<a href="https://arxiv.org/pdf/2607.28940v1">TransX：通过行为流与服务流交叉扩展 Transformer 推荐</a>；原文标题：TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings；原因：与排序、粗排与重排、序列推荐与用户建模、探索、强化学习与因果评估相关；相关性较高；适合先做小型实验（实现难度 2.4/5）</p>
+<h2>来源覆盖</h2>
 <ul>
 <li>arxiv: 20</li>
 <li>historical: 4</li>
 <li>manual: 10</li>
 <li>openreview: 0</li>
 <li>rss: 1</li>
-<li>source_errors: none</li>
-<li>source_notes:</li>
+<li>来源错误：无</li>
+<li>来源备注：</li>
 <li>warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; use the official conference portal when no credential is configured</li>
 </ul>
 <h2>📊 今日主题聚类与趋势</h2>
@@ -47,7 +47,7 @@ blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; c
 <h2>🔀 粗排与重排专题</h2>
 <p>本专题只收录明确命中粗排、重排或级联排序关键词的条目，便于单独跟踪效果-延迟权衡。</p>
 <ul>
-<li><a href="https://arxiv.org/pdf/2607.29402v1">Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</a> — arXiv；try_experiment</li>
+<li><a href="https://arxiv.org/pdf/2607.29402v1">弥合检索增强生成中的问答鸿沟：假设性提示 Embedding</a> — arXiv；尝试小实验</li>
 </ul>
 <h2>🏢 大厂技术文章覆盖</h2>
 <ul>
@@ -60,339 +60,357 @@ blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; c
 <li>阿里云：智能开放搜索 OpenSearch: 1</li>
 </ul>
 <h3>文章结构化摘要</h3>
-<p>#### GenRec: Towards LLM-Native Recommendation at Netflix</p>
+<p>#### GenRec：迈向 Netflix 的 LLM 原生推荐</p>
 <ul>
 <li>原始标题：GenRec: Towards LLM-Native Recommendation at Netflix</li>
 <li>来源：Netflix TechBlog；发布时间：Thu, 30 Jul 2026 20:10:15 GMT</li>
 <li>原始链接：<a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3?source=rss----2615bd06b42e---4">https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3?source=rss----2615bd06b42e---4</a></li>
-<li>中文摘要：Netflix 探讨 LLM 原生推荐：把推荐任务组织成生成式决策流程，同时面对用户建模、候选约束、质量评估、成本和线上延迟等工程问题。</li>
-<li>核心贡献/可借鉴：适合与传统召回-排序级联对照，先做小规模 RAG/LLM 重排实验，再测量质量、覆盖、错误率、成本和 p95 延迟的变化。</li>
-<li>方法/关键机制：ranking, ranker, llm-native recommendation, reinforcement learning, exploration, offline evaluation</li>
+<li>中文摘要：Netflix 介绍一种 LLM 原生推荐方向：把用户上下文、画像、历史、物品元数据和推荐任务组织进统一上下文，减少对大量手工特征与专用模型结构的依赖。文章同时讨论热门内容偏置、目录外幻觉、业务约束、个性化、成本和延迟等生产问题，并通过前缀缓存与 prefill-only 服务控制开销。</li>
+<li>核心贡献/可借鉴：将推荐流程重构为面向上下文的生成式决策，并把工程重点从手工特征工程转向上下文工程，同时保留线上指标、成本和业务约束的评估。</li>
+<li>方法/关键机制：排序, 排序器, LLM 原生推荐, 强化学习, 探索, 方法说明待补充</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 2.5 · 🧩 难度 3.2 · 🎯 优先级 3.016</li>
-<li>🧪 建议：try_experiment</li>
+<li>🧪 建议：尝试小实验</li>
 </ul>
-<p>#### 大规模异构图召回在美团到店推荐广告的应用</p>
+<p>#### 美团到店推荐广告中的大规模异构图召回</p>
 <ul>
 <li>原始标题：大规模异构图召回在美团到店推荐广告的应用</li>
 <li>来源：美团：大规模异构图召回在到店推荐广告的应用；发布时间：2022-11-24</li>
 <li>原始链接：<a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html</a></li>
-<li>中文摘要：美团介绍在到店推荐广告中落地大规模异构图召回：把用户、商品、店铺、时间和地理关系建图，用图神经网络建模长期兴趣，再与短期时空序列融合；同时通过离线 Embedding、KV 缓存和并行特征抽取控制线上延迟。文章报告离线 Hitrate 提升，以及线上 RPS 累计提升约 10%–15%。</li>
-<li>核心贡献/可借鉴：把异构图召回从模型设计推进到亿级节点、百亿级边训练和低延迟在线部署，适合借鉴“图召回 + 时空用户建模 + 服务优化”的完整链路。</li>
-<li>方法/关键机制：retrieval, 召回, 异构图, serving, latency, marketplace</li>
+<li>中文摘要：美团介绍在到店推荐广告中落地大规模异构图召回：把用户、商品、店铺、时间和地理关系建图，用图模型建模长期兴趣，再与短期时空序列融合，并通过离线 Embedding、KV 缓存和并行特征抽取控制线上延迟。</li>
+<li>核心贡献/可借鉴：把异构图召回从模型设计推进到大规模训练和低延迟在线部署，形成“图召回 + 时空用户建模 + 服务优化”的完整链路。</li>
+<li>方法/关键机制：召回/检索, 方法说明待补充, 方法说明待补充, 在线服务, 延迟优化, 方法说明待补充</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 2.0 · 🧩 难度 2.8 · 🎯 优先级 2.914</li>
-<li>🧪 建议：try_experiment</li>
+<li>🧪 建议：尝试小实验</li>
 </ul>
-<p>#### 一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</p>
+<p>#### 一站式智能搜索业务开发平台：智能开放搜索 OpenSearch</p>
 <ul>
 <li>原始标题：一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</li>
 <li>来源：阿里云：智能开放搜索 OpenSearch；发布时间：未标注</li>
 <li>原始链接：<a href="https://help.aliyun.com/zh/open-search/">https://help.aliyun.com/zh/open-search/</a></li>
 <li>中文摘要：阿里云 OpenSearch 是面向搜索和 RAG 的一站式平台，包含查询语义理解、机器学习排序、向量检索、召回、效果评估和 LLM 服务，可迁移到推荐的召回与重排链路。</li>
 <li>核心贡献/可借鉴：值得借鉴的是把查询理解、召回、排序和评估做成可组合组件，并把向量检索与传统排序放在同一条可观测链路中。</li>
-<li>方法/关键机制：retrieval, query understanding, ranking, rag, llm</li>
+<li>方法/关键机制：召回/检索, 方法说明待补充, 排序, 方法说明待补充, 大语言模型（LLM）</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.638</li>
-<li>🧪 建议：try_experiment</li>
+<li>🧪 建议：尝试小实验</li>
 </ul>
 <p>#### 推荐系统 RES 博客</p>
 <ul>
 <li>原始标题：推荐系统 RES 博客</li>
 <li>来源：华为云：推荐系统 RES 博客；发布时间：未标注</li>
 <li>原始链接：<a href="https://developer.huaweicloud.com/tags/200293/blog_1">https://developer.huaweicloud.com/tags/200293/blog_1</a></li>
-<li>中文摘要：华为云 RES 推荐系统标签聚合页，集中提供召回、排序和推荐服务相关的工程文章入口；这是来源目录页，不应被当作单篇技术结论。</li>
-<li>核心贡献/可借鉴：适合做粗排、精排和推荐工程的补充检索入口，具体方法需要进入单篇文章后再核验。</li>
-<li>方法/关键机制：retrieval, ranking</li>
+<li>中文摘要：华为云 RES 推荐系统标签页聚合召回、排序和推荐服务相关的工程文章与文档，是后续检索具体技术文章的官方入口。</li>
+<li>核心贡献/可借鉴：可作为粗排、精排、召回和推荐服务工程实践的补充检索入口，但不能把该聚合页当作单篇技术结论。</li>
+<li>方法/关键机制：召回/检索, 排序</li>
 <li>🔎 相关性 4.4 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.218</li>
-<li>📝 建议：summarize</li>
+<li>📝 建议：快速总结</li>
 </ul>
-<p>#### 一文读懂推荐系统中的 debias</p>
+<p>#### 一文读懂推荐系统中的去偏（Debias）</p>
 <ul>
 <li>原始标题：一文读懂推荐系统中的 debias</li>
 <li>来源：字节跳动：一文读懂推荐系统中的 debias；发布时间：2026-01-26</li>
 <li>原始链接：<a href="https://developer.volcengine.com/articles/7599494081681981481">https://developer.volcengine.com/articles/7599494081681981481</a></li>
-<li>中文摘要：字节跳动梳理推荐系统中的位置偏差、曝光偏差和选择偏差，解释为什么“未点击”不一定等于负反馈，以及这些偏差如何沿着曝光、反馈、训练和评估链路累积。</li>
+<li>中文摘要：字节跳动梳理推荐系统中的位置偏差、曝光偏差和选择偏差，解释为什么未点击不一定等于负反馈，以及偏差如何沿着曝光、反馈、训练和评估链路累积。</li>
 <li>核心贡献/可借鉴：适合作为去偏实验的概念地图：先区分展现与真正曝光，再比较随机负采样、重加权和反事实评估对长尾内容与排序指标的影响。</li>
-<li>方法/关键机制：ranking, debias, bias</li>
+<li>方法/关键机制：排序, 方法说明待补充, 方法说明待补充</li>
 <li>🔎 相关性 4.1 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.083</li>
-<li>📝 建议：summarize</li>
+<li>📝 建议：快速总结</li>
 </ul>
-<p>#### 为君作磐石——人人都能搭建大规模推荐系统</p>
+<p>#### 为君作磐石：人人都能搭建大规模推荐系统</p>
 <ul>
 <li>原始标题：为君作磐石——人人都能搭建大规模推荐系统</li>
 <li>来源：字节跳动：人人都能搭建大规模推荐系统；发布时间：未标注</li>
 <li>原始链接：<a href="https://developer.volcengine.com/articles/7599494337362559017">https://developer.volcengine.com/articles/7599494337362559017</a></li>
-<li>中文摘要：字节跳动从训练和 Serving 两条线讲解大规模推荐系统：多目标预估、百亿到万亿级样本、超大 Embedding、分布式训练、特征一致性和实时模型更新都需要一起设计。</li>
-<li>核心贡献/可借鉴：更像一张工业系统架构地图，适合用来检查自己的推荐链路是否遗漏训练吞吐、模型存储、在线特征一致性和回滚监控等基础能力。</li>
-<li>方法/关键机制：ranking, serving, real-time</li>
+<li>中文摘要：字节跳动从训练和 Serving 两条线讲解大规模推荐系统，涵盖多目标预估、百亿到万亿级样本、超大 Embedding、分布式训练、特征一致性和实时模型更新。</li>
+<li>核心贡献/可借鉴：它更像一张工业系统架构地图，可用于检查推荐链路是否遗漏训练吞吐、模型存储、在线特征一致性、实时更新和回滚监控。</li>
+<li>方法/关键机制：排序, 在线服务, 实时处理</li>
 <li>🔎 相关性 3.8 · ✨ 新颖性 1.0 · 🧩 难度 3.1 · 🎯 优先级 1.888</li>
-<li>📝 建议：summarize</li>
+<li>📝 建议：快速总结</li>
 </ul>
 <p>#### 信息流内容推荐服务</p>
 <ul>
 <li>原始标题：信息流内容推荐服务</li>
 <li>来源：华为开发者：信息流内容推荐服务；发布时间：未标注</li>
 <li>原始链接：<a href="https://developer.huawei.com/consumer/cn/hnc-recommendationservice/">https://developer.huawei.com/consumer/cn/hnc-recommendationservice/</a></li>
-<li>中文摘要：华为提供信息流内容推荐服务，融合用户个性化、内容热度、内容相关性、精品调性和多内容类型，面向内容分发效率与经营转化。</li>
+<li>中文摘要：华为提供信息流内容推荐服务，融合用户个性化、内容热度、内容相关性、精品调性和多种内容类型，面向内容分发效率与经营转化。</li>
 <li>核心贡献/可借鉴：可作为推荐服务产品化的参考入口，重点关注多目标融合、内容质量约束、实时推荐和 A/B 测试接口。</li>
-<li>方法/关键机制：ranking</li>
+<li>方法/关键机制：排序</li>
 <li>🔎 相关性 2.8 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.498</li>
-<li>📝 建议：summarize</li>
+<li>📝 建议：快速总结</li>
 </ul>
 <h2>🏛️ 历史精选</h2>
 <ul>
-<li><a href="https://arxiv.org/abs/1809.03672">Deep Interest Evolution Network for Click-Through Rate Prediction</a></li>
-<li>source: Alibaba / arXiv (historical pick)</li>
-<li>why: matches ranking_learning_to_rank, sequential_user_modeling, ads_marketplace; high relevance; small experiment appears plausible (difficulty 2.2/5).</li>
-<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">Deep Neural Networks for YouTube Recommendations</a></li>
-<li>source: Google Research (historical pick)</li>
-<li>why: matches retrieval_candidate_generation, ranking_learning_to_rank, multimodal_recommendation; high relevance; small experiment appears plausible (difficulty 2.2/5).</li>
-<li><a href="https://arxiv.org/abs/1706.06978">Deep Interest Network for Click-Through Rate Prediction</a></li>
-<li>source: Alibaba / arXiv (historical pick)</li>
-<li>why: matches ranking_learning_to_rank; small experiment appears plausible (difficulty 2.2/5).</li>
+<li><a href="https://arxiv.org/abs/1809.03672">用于点击率预测的深度兴趣演化网络（DIEN）</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">用于点击率预测的深度兴趣网络（DIN）</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
 </ul>
 <h2>📚 论文深读队列</h2>
 <ul>
-<li><a href="https://arxiv.org/pdf/2607.28940v1">TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</a></li>
-<li>original title: TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</li>
-<li>source: arXiv (arxiv)</li>
+<li><a href="https://arxiv.org/pdf/2607.28940v1">TransX：通过行为流与服务流交叉扩展 Transformer 推荐</a></li>
+<li>原文标题：TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</li>
+<li>来源：arXiv（arxiv）</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 2.4 · 🧩 难度 2.4 · 🎯 优先级 3.137</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches ranking_learning_to_rank, sequential_user_modeling, bandit_rl_causal; high relevance; small experiment appears plausible (difficulty 2.4/5).</li>
-<li><a href="https://arxiv.org/pdf/2607.29000v1">PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</a></li>
-<li>original title: PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</li>
-<li>source: arXiv (arxiv)</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、探索、强化学习与因果评估相关；相关性较高；适合先做小型实验（实现难度 2.4/5）</li>
+<li><a href="https://arxiv.org/pdf/2607.29000v1">PaletteID：用于多模态 CTR 预测的原型组合语义标识符</a></li>
+<li>原文标题：PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</li>
+<li>来源：arXiv（arxiv）</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 1.9 · 🧩 难度 1.9 · 🎯 优先级 3.047</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches ranking_learning_to_rank, evaluation_debiasing_fairness, ads_marketplace; high relevance; small experiment appears plausible (difficulty 1.9/5).</li>
-<li><a href="https://arxiv.org/pdf/2607.28895v1">LLM-Based Generative Retrieval for Snapchat Content Recommendation</a></li>
-<li>original title: LLM-Based Generative Retrieval for Snapchat Content Recommendation</li>
-<li>source: arXiv (arxiv)</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与排序、粗排与重排、评估、去偏与公平性、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 1.9/5）</li>
+<li><a href="https://arxiv.org/pdf/2607.28895v1">SnapLGR：用于 Snapchat 内容推荐的基于 LLM 的生成式召回</a></li>
+<li>原文标题：LLM-Based Generative Retrieval for Snapchat Content Recommendation</li>
+<li>来源：arXiv（arxiv）</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 1.9 · 🧩 难度 1.9 · 🎯 优先级 3.047</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches retrieval_candidate_generation, multimodal_recommendation, evaluation_debiasing_fairness; high relevance; small experiment appears plausible (difficulty 1.9/5).</li>
-<li><a href="https://arxiv.org/pdf/2607.29213v1">GALA: Generative Aligned Learning for Adaptive Multimodal Representation in the Taobao Shangou Recommender System</a></li>
-<li>original title: GALA: Generative Aligned Learning for Adaptive Multimodal Representation in the Taobao Shangou Recommender System</li>
-<li>source: arXiv (arxiv)</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、多模态推荐、评估、去偏与公平性相关；相关性较高；适合先做小型实验（实现难度 1.9/5）</li>
+<li><a href="https://arxiv.org/pdf/2607.29213v1">GALA：淘宝闪购推荐系统的生成式对齐自适应多模态表示学习</a></li>
+<li>原文标题：GALA: Generative Aligned Learning for Adaptive Multimodal Representation in the Taobao Shangou Recommender System</li>
+<li>来源：arXiv（arxiv）</li>
 <li>🔎 相关性 3.9 · ✨ 新颖性 3.7 · 🧩 难度 2.4 · 🎯 优先级 3.032</li>
-<li>📖 建议：deep_read</li>
-<li>why: matches ranking_learning_to_rank, systems_serving_infra; high relevance; clear novelty cues; small experiment appears plausible (difficulty 2.4/5).</li>
-<li><a href="https://arxiv.org/pdf/2607.29402v1">Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</a></li>
-<li>original title: Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</li>
-<li>source: arXiv (arxiv)</li>
+<li>📖 建议：深读</li>
+<li>原因：与排序、粗排与重排、服务、延迟与基础设施相关；相关性较高；包含明确的新颖性线索；适合先做小型实验（实现难度 2.4/5）</li>
+<li><a href="https://arxiv.org/pdf/2607.29402v1">弥合检索增强生成中的问答鸿沟：假设性提示 Embedding</a></li>
+<li>原文标题：Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</li>
+<li>来源：arXiv（arxiv）</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 1.4 · 🧩 难度 1.9 · 🎯 优先级 2.897</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches retrieval_candidate_generation, ranking_learning_to_rank, coarse_reranking; high relevance; small experiment appears plausible (difficulty 1.9/5).</li>
-<li><a href="https://arxiv.org/pdf/2607.28971v1">Don't Contrast the Impossible: Region-Constrained Batching for Contrastive User Modeling on a Local Community Platform</a></li>
-<li>original title: Don't Contrast the Impossible: Region-Constrained Batching for Contrastive User Modeling on a Local Community Platform</li>
-<li>source: arXiv (arxiv)</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 1.9/5）</li>
+<li><a href="https://arxiv.org/pdf/2607.28971v1">不要对不可能样本做对比：本地社区平台中的区域约束批处理用户建模</a></li>
+<li>原文标题：Don't Contrast the Impossible: Region-Constrained Batching for Contrastive User Modeling on a Local Community Platform</li>
+<li>来源：arXiv（arxiv）</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 1.4 · 🧩 难度 2.4 · 🎯 优先级 2.837</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches retrieval_candidate_generation, ranking_learning_to_rank, sequential_user_modeling; high relevance; small experiment appears plausible (difficulty 2.4/5).</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、序列推荐与用户建模相关；相关性较高；适合先做小型实验（实现难度 2.4/5）</li>
 </ul>
 <h2>📝 业界文章深读队列</h2>
 <ul>
-<li><a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3?source=rss----2615bd06b42e---4">GenRec: Towards LLM-Native Recommendation at Netflix</a></li>
-<li>source: Netflix TechBlog</li>
-<li>摘要：Netflix 探讨 LLM 原生推荐：把推荐任务组织成生成式决策流程，同时面对用户建模、候选约束、质量评估、成本和线上延迟等工程问题。</li>
-<li>核心贡献/可借鉴：适合与传统召回-排序级联对照，先做小规模 RAG/LLM 重排实验，再测量质量、覆盖、错误率、成本和 p95 延迟的变化。</li>
+<li><a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3?source=rss----2615bd06b42e---4">GenRec：迈向 Netflix 的 LLM 原生推荐</a></li>
+<li>来源：Netflix TechBlog</li>
+<li>摘要：Netflix 介绍一种 LLM 原生推荐方向：把用户上下文、画像、历史、物品元数据和推荐任务组织进统一上下文，减少对大量手工特征与专用模型结构的依赖。文章同时讨论热门内容偏置、目录外幻觉、业务约束、个性化、成本和延迟等生产问题，并通过前缀缓存与 prefill-only 服务控制开销。</li>
+<li>核心贡献/可借鉴：将推荐流程重构为面向上下文的生成式决策，并把工程重点从手工特征工程转向上下文工程，同时保留线上指标、成本和业务约束的评估。</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 2.5 · 🧩 难度 3.2 · 🎯 优先级 3.016</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches ranking_learning_to_rank, generative_llm_recommendation, bandit_rl_causal; high relevance (difficulty 3.2/5).</li>
-<li><a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告的应用</a></li>
-<li>source: 美团：大规模异构图召回在到店推荐广告的应用</li>
-<li>摘要：美团介绍在到店推荐广告中落地大规模异构图召回：把用户、商品、店铺、时间和地理关系建图，用图神经网络建模长期兴趣，再与短期时空序列融合；同时通过离线 Embedding、KV 缓存和并行特征抽取控制线上延迟。文章报告离线 Hitrate 提升，以及线上 RPS 累计提升约 10%–15%。</li>
-<li>核心贡献/可借鉴：把异构图召回从模型设计推进到亿级节点、百亿级边训练和低延迟在线部署，适合借鉴“图召回 + 时空用户建模 + 服务优化”的完整链路。</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与排序、粗排与重排、生成式/大模型推荐、探索、强化学习与因果评估相关；相关性较高（实现难度 3.2/5）</li>
+<li><a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">美团到店推荐广告中的大规模异构图召回</a></li>
+<li>来源：美团：大规模异构图召回在到店推荐广告的应用</li>
+<li>摘要：美团介绍在到店推荐广告中落地大规模异构图召回：把用户、商品、店铺、时间和地理关系建图，用图模型建模长期兴趣，再与短期时空序列融合，并通过离线 Embedding、KV 缓存和并行特征抽取控制线上延迟。</li>
+<li>核心贡献/可借鉴：把异构图召回从模型设计推进到大规模训练和低延迟在线部署，形成“图召回 + 时空用户建模 + 服务优化”的完整链路。</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 2.0 · 🧩 难度 2.8 · 🎯 优先级 2.914</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches retrieval_candidate_generation, graph_knowledge_social, systems_serving_infra; high relevance; small experiment appears plausible (difficulty 2.8/5).</li>
-<li><a href="https://help.aliyun.com/zh/open-search/">一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</a></li>
-<li>source: 阿里云：智能开放搜索 OpenSearch</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、图与知识增强推荐、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 2.8/5）</li>
+<li><a href="https://help.aliyun.com/zh/open-search/">一站式智能搜索业务开发平台：智能开放搜索 OpenSearch</a></li>
+<li>来源：阿里云：智能开放搜索 OpenSearch</li>
 <li>摘要：阿里云 OpenSearch 是面向搜索和 RAG 的一站式平台，包含查询语义理解、机器学习排序、向量检索、召回、效果评估和 LLM 服务，可迁移到推荐的召回与重排链路。</li>
 <li>核心贡献/可借鉴：值得借鉴的是把查询理解、召回、排序和评估做成可组合组件，并把向量检索与传统排序放在同一条可观测链路中。</li>
 <li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.638</li>
-<li>🧪 建议：try_experiment</li>
-<li>why: matches retrieval_candidate_generation, search_retrieval, ranking_learning_to_rank; high relevance; small experiment appears plausible (difficulty 2.6/5).</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、搜索与信息检索、排序、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
 <li><a href="https://developer.huaweicloud.com/tags/200293/blog_1">推荐系统 RES 博客</a></li>
-<li>source: 华为云：推荐系统 RES 博客</li>
-<li>摘要：华为云 RES 推荐系统标签聚合页，集中提供召回、排序和推荐服务相关的工程文章入口；这是来源目录页，不应被当作单篇技术结论。</li>
-<li>核心贡献/可借鉴：适合做粗排、精排和推荐工程的补充检索入口，具体方法需要进入单篇文章后再核验。</li>
+<li>来源：华为云：推荐系统 RES 博客</li>
+<li>摘要：华为云 RES 推荐系统标签页聚合召回、排序和推荐服务相关的工程文章与文档，是后续检索具体技术文章的官方入口。</li>
+<li>核心贡献/可借鉴：可作为粗排、精排、召回和推荐服务工程实践的补充检索入口，但不能把该聚合页当作单篇技术结论。</li>
 <li>🔎 相关性 4.4 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.218</li>
-<li>📝 建议：summarize</li>
-<li>why: matches retrieval_candidate_generation, ranking_learning_to_rank; high relevance; small experiment appears plausible (difficulty 2.6/5).</li>
-<li><a href="https://developer.volcengine.com/articles/7599494081681981481">一文读懂推荐系统中的 debias</a></li>
-<li>source: 字节跳动：一文读懂推荐系统中的 debias</li>
-<li>摘要：字节跳动梳理推荐系统中的位置偏差、曝光偏差和选择偏差，解释为什么“未点击”不一定等于负反馈，以及这些偏差如何沿着曝光、反馈、训练和评估链路累积。</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与召回与候选生成、排序、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.volcengine.com/articles/7599494081681981481">一文读懂推荐系统中的去偏（Debias）</a></li>
+<li>来源：字节跳动：一文读懂推荐系统中的 debias</li>
+<li>摘要：字节跳动梳理推荐系统中的位置偏差、曝光偏差和选择偏差，解释为什么未点击不一定等于负反馈，以及偏差如何沿着曝光、反馈、训练和评估链路累积。</li>
 <li>核心贡献/可借鉴：适合作为去偏实验的概念地图：先区分展现与真正曝光，再比较随机负采样、重加权和反事实评估对长尾内容与排序指标的影响。</li>
 <li>🔎 相关性 4.1 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.083</li>
-<li>📝 建议：summarize</li>
-<li>why: matches ranking_learning_to_rank, evaluation_debiasing_fairness; high relevance; small experiment appears plausible (difficulty 2.6/5).</li>
-<li><a href="https://developer.volcengine.com/articles/7599494337362559017">为君作磐石——人人都能搭建大规模推荐系统</a></li>
-<li>source: 字节跳动：人人都能搭建大规模推荐系统</li>
-<li>摘要：字节跳动从训练和 Serving 两条线讲解大规模推荐系统：多目标预估、百亿到万亿级样本、超大 Embedding、分布式训练、特征一致性和实时模型更新都需要一起设计。</li>
-<li>核心贡献/可借鉴：更像一张工业系统架构地图，适合用来检查自己的推荐链路是否遗漏训练吞吐、模型存储、在线特征一致性和回滚监控等基础能力。</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排、评估、去偏与公平性相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.volcengine.com/articles/7599494337362559017">为君作磐石：人人都能搭建大规模推荐系统</a></li>
+<li>来源：字节跳动：人人都能搭建大规模推荐系统</li>
+<li>摘要：字节跳动从训练和 Serving 两条线讲解大规模推荐系统，涵盖多目标预估、百亿到万亿级样本、超大 Embedding、分布式训练、特征一致性和实时模型更新。</li>
+<li>核心贡献/可借鉴：它更像一张工业系统架构地图，可用于检查推荐链路是否遗漏训练吞吐、模型存储、在线特征一致性、实时更新和回滚监控。</li>
 <li>🔎 相关性 3.8 · ✨ 新颖性 1.0 · 🧩 难度 3.1 · 🎯 优先级 1.888</li>
-<li>📝 建议：summarize</li>
-<li>why: matches ranking_learning_to_rank, systems_serving_infra; high relevance (difficulty 3.1/5).</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排、服务、延迟与基础设施相关；相关性较高（实现难度 3.1/5）</li>
 <li><a href="https://developer.huawei.com/consumer/cn/hnc-recommendationservice/">信息流内容推荐服务</a></li>
-<li>source: 华为开发者：信息流内容推荐服务</li>
-<li>摘要：华为提供信息流内容推荐服务，融合用户个性化、内容热度、内容相关性、精品调性和多内容类型，面向内容分发效率与经营转化。</li>
+<li>来源：华为开发者：信息流内容推荐服务</li>
+<li>摘要：华为提供信息流内容推荐服务，融合用户个性化、内容热度、内容相关性、精品调性和多种内容类型，面向内容分发效率与经营转化。</li>
 <li>核心贡献/可借鉴：可作为推荐服务产品化的参考入口，重点关注多目标融合、内容质量约束、实时推荐和 A/B 测试接口。</li>
 <li>🔎 相关性 2.8 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.498</li>
-<li>📝 建议：summarize</li>
-<li>why: matches ranking_learning_to_rank; small experiment appears plausible (difficulty 2.6/5).</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.6/5）</li>
 </ul>
 <h2>🗂️ 论文结构化卡片</h2>
-<h3>TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</h3>
+<h3>TransX：通过行为流与服务流交叉扩展 Transformer 推荐</h3>
 <ul>
-<li>original title: TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</li>
-<li>link: https://arxiv.org/pdf/2607.28940v1</li>
-<li>contribution: We propose TransX, a production-oriented encoder-decoder architecture that reformulates recommendation as a sequence-to-sequence action transduction problem.</li>
-<li>methods: ctr, behavior sequence, causal, serving, real-time, latency</li>
-<li>limitations: However, collapsing heterogeneous data sources -- such as long-term user behaviors and real-time serving events -- into a single monolithic token stream that obscures their distinct causal roles and temporal characteristics, leading to i...; Extensive offline experiments and large-scale online A/B tests on LinkedIn's recommender systems show that TransX consistently outperforms state-of-the-art DLRMs and sequential baselines, and delivers substantial CTR lift (+6.0%) and con...</li>
-<li>future directions: Modern industrial recommender systems (RecSys) increasingly adopt Transformer-based sequence models, with an emerging paradigm that frames recommendation as next-token prediction over a unified monolithic user sequence.; TransX explicitly decouples behavior-stream modeling from serving-event modeling and conditions next-action decoding on scalable cross-attention between nearline behavior encodings and real-time serving representations.</li>
-<li>related reading: <a href="https://arxiv.org/abs/1809.03672">Deep Interest Evolution Network for Click-Through Rate Prediction</a></li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: ranking_learning_to_rank, sequential_user_modeling, bandit_rl_causal, systems_serving_infra</li>
-<li>evidence: matched keywords: behavior sequence, causal, ctr, latency, real-time, serving; categories/venue: cs.IR</li>
-<li>possible experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
+<li>原文标题：TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</li>
+<li>原始链接：https://arxiv.org/pdf/2607.28940v1</li>
+<li>中文摘要：工业推荐系统越来越多使用基于 Transformer 的序列模型，但把长期行为和实时服务事件压成一条单一 token 流，会混淆二者的因果角色与时间特征，并增加训练和服务成本。TransX 将推荐重写为序列到序列的动作转换任务，分别建模行为流和服务事件流，再用可扩展的交叉注意力生成下一步动作。</li>
+<li>核心贡献：提出面向生产的 TransX 编解码架构，解耦行为流与服务事件流，并通过交叉注意力连接近线行为表示和实时服务表示。</li>
+<li>方法：点击率预测（CTR）, 行为序列建模, 因果方法, 在线服务, 实时处理, 延迟优化</li>
+<li>局限性：合并长期行为和实时服务事件会混淆二者的因果角色与时间特征，这是统一 token 流方案的主要问题。；线上收益依赖 LinkedIn 的生产数据、流量和服务架构；在公开小数据集上的复现不能直接等价于论文报告的生产效果。</li>
+<li>未来方向：工业推荐正在把序列建模视为下一 token 预测，仍需验证这种统一表述在不同业务中的适用边界。；可进一步研究行为流与服务流的更细粒度交叉方式，以及在不同推荐业务和延迟预算下的泛化。</li>
+<li>拓展阅读：<a href="https://arxiv.org/abs/1809.03672">用于点击率预测的深度兴趣演化网络</a>（把用户兴趣演化引入序列行为建模）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：排序、粗排与重排, 序列推荐与用户建模, 探索、强化学习与因果评估, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: behavior sequence, causal, ctr, latency, real-time, serving；categories/venue: cs.IR</li>
+<li>小型实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
 </ul>
-<h3>PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</h3>
+<h3>PaletteID：用于多模态 CTR 预测的原型组合语义标识符</h3>
 <ul>
-<li>original title: PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</li>
-<li>link: https://arxiv.org/pdf/2607.29000v1</li>
-<li>contribution: To address these issues, we propose PaletteID (PID), a prototype-based semantic identifier.</li>
-<li>methods: click-through rate, ctr, diversity, ctr prediction</li>
-<li>limitations: However, existing methods still provide limited gains due to two major limitations.</li>
-<li>future directions: not explicit</li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: ranking_learning_to_rank, evaluation_debiasing_fairness, ads_marketplace</li>
-<li>evidence: matched keywords: click-through rate, ctr, ctr prediction, diversity; categories/venue: cs.IR, cs.LG</li>
-<li>possible experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
+<li>原文标题：PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</li>
+<li>原始链接：https://arxiv.org/pdf/2607.29000v1</li>
+<li>中文摘要：图像和文本等多模态信息有助于提升点击率预测，并缓解物品冷启动和长尾问题。PaletteID 针对语义标识符的码本分配损失细粒度信息、残差码依赖前缀等问题，用一组紧凑原型组合多模态表示，使层次化标识符更具表达能力。</li>
+<li>核心贡献：提出基于原型的语义标识符 PaletteID（PID），以原型组合替代受前缀限制的语义编码，改善多模态 CTR 预测中的表示能力。</li>
+<li>方法：点击率预测（CTR）, 点击率预测（CTR）, 方法说明待补充, 点击率预测</li>
+<li>局限性：论文指出现有语义标识符存在码本分配和前缀依赖问题；PID 对不同多模态编码器、码本规模和长尾切分的敏感性仍需单独核验。</li>
+<li>未来方向：可在相同码本规模和相同多模态编码器下做消融，分离原型组合、残差路径和长尾收益各自的贡献。</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：排序、粗排与重排, 评估、去偏与公平性, 广告与市场排序</li>
+<li>证据：matched keywords: click-through rate, ctr, ctr prediction, diversity；categories/venue: cs.IR, cs.LG</li>
+<li>小型实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
 </ul>
-<h3>LLM-Based Generative Retrieval for Snapchat Content Recommendation</h3>
+<h3>SnapLGR：用于 Snapchat 内容推荐的基于 LLM 的生成式召回</h3>
 <ul>
-<li>original title: LLM-Based Generative Retrieval for Snapchat Content Recommendation</li>
-<li>link: https://arxiv.org/pdf/2607.28895v1</li>
-<li>contribution: Pretrained large language models (LLMs) are promising retrieval engines because they combine rich semantic priors, strong sequence modeling capabilities, and favorable scaling behavior.</li>
-<li>methods: retrieval, video recommendation, a/b test, serving, latency, contrastive learning</li>
-<li>limitations: However, turning a pretrained LLM into a generative retriever in production deployment raises several challenges: the model must learn an internal item vocabulary that was absent from pretraining, and generate valid item identifiers unde...; We address these challenges through the design and launch of SnapLGR, an LLM-based generative retrieval system for short-video recommendation at Snapchat.</li>
-<li>future directions: Pretrained large language models (LLMs) are promising retrieval engines because they combine rich semantic priors, strong sequence modeling capabilities, and favorable scaling behavior.</li>
-<li>related reading: <a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">Deep Neural Networks for YouTube Recommendations</a></li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: retrieval_candidate_generation, multimodal_recommendation, evaluation_debiasing_fairness, systems_serving_infra</li>
-<li>evidence: matched keywords: a/b test, latency, retrieval, serving, video recommendation; categories/venue: cs.IR</li>
-<li>possible experiment: Compare a two-tower retrieval baseline against the proposed retrieval signal on a small implicit-feedback matrix.</li>
+<li>原文标题：LLM-Based Generative Retrieval for Snapchat Content Recommendation</li>
+<li>原始链接：https://arxiv.org/pdf/2607.28895v1</li>
+<li>中文摘要：预训练大语言模型具有较强的语义先验和序列建模能力，但将其用于生产级生成式召回时，需要学习预训练阶段不存在的物品词表，并在严格的延迟和成本约束下生成有效物品标识。SnapLGR 使用多模态语义标识符、基于 Personalized PageRank 的共同参与对比学习和生成式召回服务，面向 Snapchat 短视频推荐。</li>
+<li>核心贡献：设计并上线 SnapLGR，将多模态语义标识符、共同参与图上的对比学习和 LLM 生成式召回组合成一套短视频推荐系统。</li>
+<li>方法：召回/检索, 视频推荐, 线上 A/B 实验, 在线服务, 延迟优化, 对比学习</li>
+<li>局限性：将预训练 LLM 变成生成式召回器，需要学习预训练中不存在的内部物品词表，并在严格约束下生成有效物品 ID。；生产部署需要同时解决内部物品词表、有效 ID 生成、严格延迟和成本约束；线上指标来自 Snapchat 流量，公开数据复现只能验证方法趋势。</li>
+<li>未来方向：可继续研究语义 ID 冲突、码本利用率和生成错误之间的权衡，并比较生成式召回与两塔召回在不同流量分层上的收益。</li>
+<li>拓展阅读：<a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a>（经典的候选生成与排序两阶段工业架构）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：召回与候选生成, 多模态推荐, 评估、去偏与公平性, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: a/b test, latency, retrieval, serving, video recommendation；categories/venue: cs.IR</li>
+<li>小型实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
 </ul>
-<h3>GALA: Generative Aligned Learning for Adaptive Multimodal Representation in the Taobao Shangou Recommender System</h3>
+<h3>GALA：淘宝闪购推荐系统的生成式对齐自适应多模态表示学习</h3>
 <ul>
-<li>original title: GALA: Generative Aligned Learning for Adaptive Multimodal Representation in the Taobao Shangou Recommender System</li>
-<li>link: https://arxiv.org/pdf/2607.29213v1</li>
-<li>contribution: To address these issues, we present GALA, a three-stage pipeline whose core innovation lies in an intermediate "generative RL alignment" stage that constructs multimodal pretraining data from user behavior and refines it via conversion-based rewards, effect...</li>
-<li>methods: ranking, serving</li>
-<li>limitations: Modern recommender systems in food delivery increasingly leverage multimodal signals, including images, text, and user interaction histories, to enhance user experience, yet effective fusion of these heterogeneous modalities remains chal...</li>
-<li>future directions: Large-scale online A/B tests further report a 0.55 percent increase in order volume, confirming GALA's effectiveness at industrial scale and its robustness across diverse demand patterns.</li>
-<li>datasets/benchmarks: taobao</li>
-<li>matched topics: ranking_learning_to_rank, systems_serving_infra</li>
-<li>evidence: matched keywords: ranking, serving; categories/venue: cs.IR, cs.LG</li>
-<li>possible experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
+<li>原文标题：GALA: Generative Aligned Learning for Adaptive Multimodal Representation in the Taobao Shangou Recommender System</li>
+<li>原始链接：https://arxiv.org/pdf/2607.29213v1</li>
+<li>中文摘要：外卖推荐越来越依赖图像、文本和用户行为等多模态信号，但内容语义预训练与行为驱动排序通常分离，导致语义表示与用户行为难以对齐。GALA 构建三阶段流程，在中间加入生成式强化学习对齐阶段，用用户行为生成多模态预训练数据，并通过转化奖励缩小预训练与微调之间的差距。</li>
+<li>核心贡献：提出三阶段多模态推荐流程，核心是利用用户行为构造预训练数据，并以转化奖励进行生成式 RL 对齐，使内容语义表示更贴近下游排序目标。</li>
+<li>方法：排序, 在线服务</li>
+<li>局限性：方法依赖外卖场景中的多模态内容、行为日志和转化反馈；生成式 RL 对齐的训练成本、奖励稀疏性和跨业务迁移能力需要单独评估。</li>
+<li>未来方向：可在公开点击数据上用轻量级行为奖励近似生成式对齐，并检查离线 AUC/PCOC 改善是否能迁移到长尾物品和不同场景。</li>
+<li>数据集/基准：淘宝数据</li>
+<li>主题：排序、粗排与重排, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: ranking, serving；categories/venue: cs.IR, cs.LG</li>
+<li>小型实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
 </ul>
-<h3>Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</h3>
+<h3>弥合检索增强生成中的问答鸿沟：假设性提示 Embedding</h3>
 <ul>
-<li>original title: Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</li>
-<li>link: https://arxiv.org/pdf/2607.29402v1</li>
-<li>contribution: To address these challenges, we propose Hypothetical Prompt Embeddings (HyPE), a framework that shifts the generation of hypothetical content from query time to the indexing phase.</li>
-<li>methods: retrieval, matching, ranking, re-ranking, latency, rag</li>
-<li>limitations: However, bridging the style gap between user queries and relevant information in document text remains a persistent challenge in retrieval-augmented systems, often addressed by runtime solutions (e.g., Hypothetical Document Embeddings (H...; To address these challenges, we propose Hypothetical Prompt Embeddings (HyPE), a framework that shifts the generation of hypothetical content from query time to the indexing phase.; Our experimental results on six common datasets show that HyPE can improve retrieval context precision by up to 42 percentage points and claim recall by up to 45 percentage points, compared to standard approaches, while remaining compati...</li>
-<li>future directions: not explicit</li>
-<li>related reading: <a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">Deep Neural Networks for YouTube Recommendations</a>; <a href="https://arxiv.org/abs/1706.06978">Deep Interest Network for Click-Through Rate Prediction</a></li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: retrieval_candidate_generation, ranking_learning_to_rank, coarse_reranking, systems_serving_infra</li>
-<li>evidence: matched keywords: latency, matching, ranking, re-ranking, retrieval; categories/venue: cs.IR, cs.CL</li>
-<li>possible experiment: Compare a two-tower retrieval baseline against the proposed retrieval signal on a small implicit-feedback matrix.</li>
+<li>原文标题：Bridging the Question-Answer Gap in Retrieval-Augmented Generation: Hypothetical Prompt Embeddings</li>
+<li>原始链接：https://arxiv.org/pdf/2607.29402v1</li>
+<li>中文摘要：RAG 系统需要弥合用户问题与文档文本之间的表达风格差异。HyDE 等运行时方法能改善对齐，但会增加查询时计算。HyPE 把假设内容生成提前到索引阶段，为每个文本块预计算多个假设性提示，并用提示表示文本块，把检索转化为问题-问题匹配。</li>
+<li>核心贡献：提出 HyPE，将假设性内容生成从查询时移到索引时，以预计算提示 Embedding 降低在线检索开销。</li>
+<li>方法：召回/检索, 方法说明待补充, 排序, 方法说明待补充, 延迟优化, 方法说明待补充</li>
+<li>局限性：查询与文档的表达风格差异仍然存在，运行时生成假设文档会增加在线计算。；HyPE 把假设内容生成移到索引阶段，意味着索引流程需要额外生成内容。；索引阶段需要额外生成和存储假设性提示；提示质量、索引更新成本和领域迁移效果是推荐场景落地时的主要风险。</li>
+<li>未来方向：可把 HyPE 迁移到查询-物品或用户意图-物品描述匹配，比较预计算成本与在线延迟收益。</li>
+<li>拓展阅读：<a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a>（经典的候选生成与排序两阶段工业架构）；<a href="https://arxiv.org/abs/1706.06978">用于点击率预测的深度兴趣网络</a>（工业 CTR 排序和用户兴趣建模的经典基线）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：召回与候选生成, 排序、粗排与重排, 粗排与重排, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: latency, matching, ranking, re-ranking, retrieval；categories/venue: cs.IR, cs.CL</li>
+<li>小型实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
 </ul>
-<h3>Don't Contrast the Impossible: Region-Constrained Batching for Contrastive User Modeling on a Local Community Platform</h3>
+<h3>不要对不可能样本做对比：本地社区平台中的区域约束批处理用户建模</h3>
 <ul>
-<li>original title: Don't Contrast the Impossible: Region-Constrained Batching for Contrastive User Modeling on a Local Community Platform</li>
-<li>link: https://arxiv.org/pdf/2607.28971v1</li>
-<li>contribution: With offline evaluations and online A/B tests, we show that RCBS consistently improves user representation quality and consequently enhances home feed ranking, retrieval, and display ads ranking.</li>
-<li>methods: retrieval, ranking, user modeling, ads ranking, contrastive learning</li>
-<li>limitations: On local community platforms such as Karrot, however, exposure is geographically constrained; many user-item pairs are impossible by design yet still treated as negatives during training, diluting the contrastive learning signal.</li>
-<li>future directions: We address this impossible negatives problem and propose Region-Constrained Batch Sampling (RCBS), a simple yet effective batching method that constructs region-homogeneous mini-batches so that users are contrasted primarily against item...</li>
-<li>related reading: <a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">Deep Neural Networks for YouTube Recommendations</a>; <a href="https://arxiv.org/abs/1809.03672">Deep Interest Evolution Network for Click-Through Rate Prediction</a></li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: retrieval_candidate_generation, ranking_learning_to_rank, sequential_user_modeling, ads_marketplace</li>
-<li>evidence: matched keywords: ads ranking, ranking, retrieval, user modeling; categories/venue: cs.IR, cs.LG</li>
-<li>possible experiment: Compare a two-tower retrieval baseline against the proposed retrieval signal on a small implicit-feedback matrix.</li>
+<li>原文标题：Don't Contrast the Impossible: Region-Constrained Batching for Contrastive User Modeling on a Local Community Platform</li>
+<li>原始链接：https://arxiv.org/pdf/2607.28971v1</li>
+<li>中文摘要：推荐系统中的对比学习通常把批内其他物品当作负样本，隐含假设所有用户都可能看到所有物品。但本地社区平台存在地理曝光约束，许多用户-物品组合实际上不可能发生，却仍被当作负样本，从而稀释对比学习信号。RCBS 通过构造区域同质的 mini-batch，减少这类不可能负样本。</li>
+<li>核心贡献：提出区域约束批采样（RCBS），让用户主要与地理上可曝光的物品对比，并验证其对用户表示、首页排序、召回和广告排序的影响。</li>
+<li>方法：召回/检索, 排序, 方法说明待补充, 广告排序, 对比学习</li>
+<li>局限性：方法依赖曝光空间存在明确区域约束；如果业务曝光范围接近全局，区域批采样的收益可能减弱。</li>
+<li>未来方向：可将硬区域约束扩展为距离或供给可达性的软约束，并按用户活跃半径分析收益。</li>
+<li>拓展阅读：<a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a>（经典的候选生成与排序两阶段工业架构）；<a href="https://arxiv.org/abs/1809.03672">用于点击率预测的深度兴趣演化网络</a>（把用户兴趣演化引入序列行为建模）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：召回与候选生成, 排序、粗排与重排, 序列推荐与用户建模, 广告与市场排序</li>
+<li>证据：matched keywords: ads ranking, ranking, retrieval, user modeling；categories/venue: cs.IR, cs.LG</li>
+<li>小型实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
 </ul>
-<h3>Think2Go: Generative Next POI Recommendation with LLM Reasoning</h3>
+<h3>Think2Go：带 LLM 推理的生成式下一 POI 推荐</h3>
 <ul>
-<li>original title: Think2Go: Generative Next POI Recommendation with LLM Reasoning</li>
-<li>link: https://arxiv.org/pdf/2607.28997v1</li>
-<li>contribution: To address these limitations, we propose Think2Go, a novel generative next POI recommendation framework, which enhances the model's comprehension of SID representations and explores diverse spatial-temporal patterns via test-time computational scaling.</li>
-<li>methods: calibration, reinforcement learning, exploration, llm</li>
-<li>limitations: However, the inherent sparsity and complexity of user mobility patterns limit the computational capacity of non-reasoning models to capture deep intent, while large language models (LLMs) perform suboptimally because they lack a deep und...; To address these limitations, we propose Think2Go, a novel generative next POI recommendation framework, which enhances the model's comprehension of SID representations and explores diverse spatial-temporal patterns via test-time computa...</li>
-<li>future directions: Next Point-of-Interest (POI) recommendation task focuses on mining user behavioral preference patterns from historical check-ins to provide personalized suggestions for the next destination.; Existing methods primarily rely on shallow contextual information and handcrafted feature interactions to predict the next POI.; To address these limitations, we propose Think2Go, a novel generative next POI recommendation framework, which enhances the model's comprehension of SID representations and explores diverse spatial-temporal patterns via test-time computa...</li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: ranking_learning_to_rank, bandit_rl_causal</li>
-<li>evidence: matched keywords: calibration, exploration, reinforcement learning; categories/venue: cs.IR</li>
-<li>possible experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
+<li>原文标题：Think2Go: Generative Next POI Recommendation with LLM Reasoning</li>
+<li>原始链接：https://arxiv.org/pdf/2607.28997v1</li>
+<li>中文摘要：下一兴趣点（POI）推荐需要从历史签到中挖掘用户偏好和时空规律。Think2Go 使用生成式框架增强 LLM 对语义 ID 的理解，并通过测试时计算扩展探索多样的时空模式，以应对移动行为稀疏且复杂的问题。</li>
+<li>核心贡献：提出 Think2Go 生成式下一 POI 推荐框架，通过语义 ID 理解和测试时计算扩展提升对深层用户意图及时空模式的建模。</li>
+<li>方法：校准, 强化学习, 探索, 大语言模型（LLM）</li>
+<li>局限性：用户移动模式的稀疏性和复杂性限制了非推理模型捕捉深层意图的能力，而通用 LLM 也可能因缺乏领域知识而表现不佳。；移动轨迹数据稀疏且具有强地域性；测试时增加计算可能带来线上延迟和成本，公开实验未必代表生产约束。</li>
+<li>未来方向：下一 POI 推荐需要从历史签到中挖掘用户偏好，以提供个性化的下一目的地建议。；现有方法主要依赖浅层上下文和手工特征交互，仍有必要比较更结构化的时空表示。；可先在小型轨迹数据上比较不同测试时计算预算，观察准确率、覆盖率和延迟的共同变化。</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：排序、粗排与重排, 探索、强化学习与因果评估</li>
+<li>证据：matched keywords: calibration, exploration, reinforcement learning；categories/venue: cs.IR</li>
+<li>小型实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
 </ul>
-<h3>EvoReason: Self-Evolving Reasoning Primitive-Guided On-Policy Distillation for Latent Reasoning in Generative Recommendation</h3>
+<h3>EvoReason：面向生成式推荐的自进化推理原语引导在线蒸馏</h3>
 <ul>
-<li>original title: EvoReason: Self-Evolving Reasoning Primitive-Guided On-Policy Distillation for Latent Reasoning in Generative Recommendation</li>
-<li>link: https://arxiv.org/pdf/2607.29010v1</li>
-<li>contribution: To address this challenge, we propose EvoReason, a self-evolving latent reasoning framework that adaptively aligns explicit reasoning supervision with the student's latent reasoning space through primitive-guided on-policy distillation.</li>
-<li>methods: generative recommendation, latency, distillation</li>
-<li>limitations: However, recommendation reasoning trajectories contain diverse reasoning processes with redundant expressions and unstable reasoning paths, making raw CoT supervision suboptimal for learning transferable latent reasoning representations.; To address this challenge, we propose EvoReason, a self-evolving latent reasoning framework that adaptively aligns explicit reasoning supervision with the student's latent reasoning space through primitive-guided on-policy distillation.</li>
-<li>future directions: not explicit</li>
-<li>related reading: <a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3">GenRec: Towards LLM-Native Recommendation at Netflix</a></li>
-<li>datasets/benchmarks: not explicit</li>
-<li>matched topics: generative_llm_recommendation, systems_serving_infra</li>
-<li>evidence: matched keywords: generative recommendation, latency; categories/venue: cs.IR</li>
-<li>possible experiment: Evaluate a small LLM/RAG recommendation prompt against a non-generative retrieval/ranking pipeline on sampled items.</li>
+<li>原文标题：EvoReason: Self-Evolving Reasoning Primitive-Guided On-Policy Distillation for Latent Reasoning in Generative Recommendation</li>
+<li>原始链接：https://arxiv.org/pdf/2607.29010v1</li>
+<li>中文摘要：生成式推荐可以利用推理增强预测，但将显式 CoT 轨迹直接蒸馏到潜在推理表示，默认文本推理足以监督学生空间，且没有充分考虑推荐任务中的隐式决策结构。EvoReason 通过推理原语和在线策略蒸馏，使显式推理监督逐步适配学生模型的潜在推理空间。</li>
+<li>核心贡献：提出自进化潜在推理框架，用推理原语引导在线策略蒸馏，减少生成式推荐中显式推理轨迹与潜在表示之间的不匹配。</li>
+<li>方法：方法说明待补充, 延迟优化, 知识蒸馏</li>
+<li>局限性：推荐推理轨迹包含多样、冗余且不稳定的推理路径，直接使用原始 CoT 监督可能不利于学习可迁移的潜在推理表示。；方法依赖推理原语设计和教师模型质量；潜在推理表示难以直接解释，且额外蒸馏过程可能增加训练复杂度。</li>
+<li>未来方向：可比较不同推理原语粒度和蒸馏频率，并测量推荐质量、推理延迟和错误类型的变化。</li>
+<li>拓展阅读：<a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3">GenRec：迈向 Netflix 的 LLM 原生推荐</a>（业界大模型原生推荐架构实践）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：生成式/大模型推荐, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: generative recommendation, latency；categories/venue: cs.IR</li>
+<li>小型实验：在采样物品上，对比小型 LLM/RAG 推荐提示与非生成式召回-排序链路。</li>
 </ul>
 <h2>💡 研究创意与小型实验</h2>
 <ul>
-<li>Mini test: TransX: Scaling Transformer-based Recommendation via Behavioral and Serving S...</li>
-<li>hypothesis: The method or signal described in the source item improves at least one offline recommendation metric over a simple baseline on a small dataset.</li>
-<li>experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
-<li>baseline: logistic regression or LambdaMART-style ranking baseline</li>
-<li>dataset/setup: MovieLens-1M converted to user sequences, or synthetic sessions</li>
-<li>metric: NDCG@10, AUC, calibration error, and inference latency</li>
-<li>failure modes: offline metric lift does not reproduce, gain appears only on popularity-heavy users/items, added complexity increases latency or instability</li>
-<li>Mini test: PaletteID: Prototype-Composed Semantic Identifiers for Multimodal CTR Prediction</li>
-<li>hypothesis: The method or signal described in the source item improves at least one offline recommendation metric over a simple baseline on a small dataset.</li>
-<li>experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
-<li>baseline: logistic regression or LambdaMART-style ranking baseline</li>
-<li>dataset/setup: MovieLens-small or a synthetic implicit-feedback matrix</li>
-<li>metric: NDCG@10, AUC, calibration error, and inference latency</li>
-<li>failure modes: offline metric lift does not reproduce, gain appears only on popularity-heavy users/items, added complexity increases latency or instability</li>
-<li>Mini test: LLM-Based Generative Retrieval for Snapchat Content Recommendation</li>
-<li>hypothesis: The method or signal described in the source item improves at least one offline recommendation metric over a simple baseline on a small dataset.</li>
-<li>experiment: Compare a two-tower retrieval baseline against the proposed retrieval signal on a small implicit-feedback matrix.</li>
-<li>baseline: matrix factorization or BM25-style popularity retrieval</li>
-<li>dataset/setup: Amazon review subset with text metadata, or a tiny image/text item catalog</li>
-<li>metric: Recall@50, NDCG@50, and embedding build/query time</li>
-<li>failure modes: offline metric lift does not reproduce, gain appears only on popularity-heavy users/items, added complexity increases latency or instability</li>
-<li>Mini test: GALA: Generative Aligned Learning for Adaptive Multimodal Representation in t...</li>
-<li>hypothesis: The method or signal described in the source item improves at least one offline recommendation metric over a simple baseline on a small dataset.</li>
-<li>experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
-<li>baseline: logistic regression or LambdaMART-style ranking baseline</li>
-<li>dataset/setup: taobao</li>
-<li>metric: NDCG@10, AUC, calibration error, and inference latency</li>
-<li>failure modes: offline metric lift does not reproduce, gain appears only on popularity-heavy users/items, added complexity increases latency or instability</li>
-<li>Mini test: GenRec: Towards LLM-Native Recommendation at Netflix</li>
-<li>hypothesis: The method or signal described in the source item improves at least one offline recommendation metric over a simple baseline on a small dataset.</li>
-<li>experiment: Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.</li>
-<li>baseline: logistic regression or LambdaMART-style ranking baseline</li>
-<li>dataset/setup: synthetic logged bandit feedback with known propensities</li>
-<li>metric: NDCG@10, AUC, calibration error, and inference latency</li>
-<li>failure modes: offline metric lift does not reproduce, gain appears only on popularity-heavy users/items, added complexity increases latency or instability</li>
+<li>小实验：TransX：通过行为流与服务流交叉扩展 Transformer 推荐</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：提出面向生产的 TransX 编解码架构，解耦行为流与服务事件流，并通过交叉注意力连接近线行为表示和实时服务表示。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：将 MovieLens-1M 转为用户行为序列，或使用合成会话</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：PaletteID：用于多模态 CTR 预测的原型组合语义标识符</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：提出基于原型的语义标识符 PaletteID（PID），以原型组合替代受前缀限制的语义编码，改善多模态 CTR 预测中的表示能力。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：SnapLGR：用于 Snapchat 内容推荐的基于 LLM 的生成式召回</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：设计并上线 SnapLGR，将多模态语义标识符、共同参与图上的对比学习和 LLM 生成式召回组合成一套短视频推荐系统。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：带文本元数据的 Amazon 评论子集，或小型图像/文本物品目录</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：GALA：淘宝闪购推荐系统的生成式对齐自适应多模态表示学习</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：提出三阶段多模态推荐流程，核心是利用用户行为构造预训练数据，并以转化奖励进行生成式 RL 对齐，使内容语义表示更贴近下游排序目标。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：淘宝数据</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：GenRec：迈向 Netflix 的 LLM 原生推荐</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：将推荐流程重构为面向上下文的生成式决策，并把工程重点从手工特征工程转向上下文工程，同时保留线上指标、成本和业务约束的评估。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：带已知倾向得分的合成 bandit 日志反馈</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
 </ul>
-<h2>Action Plan</h2>
+<h2>✅ 行动计划</h2>
 <ul>
-<li>read today: TransX: Scaling Transformer-based Recommendation via Behavioral and Serving Stream Crossings</li>
-<li>implement this week: Mini test: TransX: Scaling Transformer-based Recommendation via Behavioral and Serving S...</li>
-<li>track for later: Language Models Agree With Each Other, Not With Readers</li>
-<li>coverage gaps to fix: inspect failed sources or add official proceedings/manual URLs.</li>
+<li>今日深读：TransX：通过行为流与服务流交叉扩展 Transformer 推荐</li>
+<li>本周尝试：小实验：TransX：通过行为流与服务流交叉扩展 Transformer 推荐</li>
+<li>后续跟踪：语言模型彼此一致，却不一定与读者一致</li>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
 </ul></main></body>
 </html>
