@@ -22,3 +22,16 @@ export OPENREVIEW_ACCESS_TOKEN="你的 OpenReview access token"
 ```
 
 arXiv 会拆分查询并轮换两个官方域名；若运行环境 DNS 或外网暂时不可达，会依次尝试 OpenAlex、可选的 Semantic Scholar API key 和本地缓存，并在日报中标注实际使用的来源。
+
+## 中文翻译落盘
+
+抓取脚本会保留英文原文，同时为中文字段预留结构化位置。日报发布前必须完成翻译落盘：
+
+```bash
+python3 recsys-research-radar/scripts/translation_pass.py \
+  --cards "/Users/wangbaojiang/Nutstore Files/我的坚果云/日常/推荐论文日报/cards-2026-08-03.json" \
+  --ideas "/Users/wangbaojiang/Nutstore Files/我的坚果云/日常/推荐论文日报/ideas-2026-08-03.json" \
+  --template "/Users/wangbaojiang/Nutstore Files/我的坚果云/日常/推荐论文日报/translations-2026-08-03.json"
+```
+
+由模型填充模板后，使用 `--translation-file ... --require-translations` 重新生成日报。校验未通过时不会把英文静默放进中文栏目。
