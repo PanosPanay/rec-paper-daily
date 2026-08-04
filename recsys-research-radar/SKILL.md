@@ -41,13 +41,24 @@ python3 recsys-research-radar/scripts/fetch_recsys_research.py --offline-sample 
 
 Read the generated markdown report and JSON cards before answering. Do not claim an item is current unless it appears in the fetched output or was independently verified during the current turn.
 
-After reading the artifacts, complete the translation pass before presenting results:
+After reading the artifacts, complete the translation pass before presenting results. The fetcher output is an intermediate artifact, not a user-facing report:
 
 - translate each selected item's title, abstract/excerpt, core contribution, methods, claims, datasets/benchmarks, deep-read reason, recommended action, and possible experiment into Chinese;
 - present Chinese first and retain the original English in a secondary note or an `原文` line when useful;
 - translate research ideas and the daily report's executive answer, queue, novelty notes, and action plan into Chinese;
 - keep names of methods, datasets, metrics, and venue names in English in parentheses on first mention;
 - never translate away evidence: preserve exact numbers, metric names, URLs, and quoted claims.
+
+Use the deterministic translation pass so the result is written to disk and checked before Pages is built:
+
+```bash
+python3 recsys-research-radar/scripts/translation_pass.py \
+  --cards /path/to/cards-YYYY-MM-DD.json \
+  --ideas /path/to/ideas-YYYY-MM-DD.json \
+  --template /path/to/translations-YYYY-MM-DD.json
+```
+
+Fill the template with Chinese values keyed by card ID and idea index, then rerun the fetch command with `--translation-file /path/to/translations-YYYY-MM-DD.json --require-translations`. A missing Chinese field must fail validation; the renderer must never silently substitute English into a Chinese field.
 
 ## Source Strategy
 
@@ -158,6 +169,7 @@ Keep the final user answer short and actionable. Link to the local generated rep
 
 ## Resources
 
-- `scripts/fetch_recsys_research.py`: fetch sources, build cards, rank items, generate ideas, and write a daily markdown report plus JSON artifacts.
+- `scripts/fetch_recsys_research.py`: fetch sources, build cards, rank items, generate ideas, merge the translation payload, and write a daily markdown report plus JSON artifacts.
+- `scripts/translation_pass.py`: create, apply, and validate the model-generated Chinese translation payload.
 - `references/source_catalog.json`: editable source registry, topic keywords, conference portals, discovery queries, and topic-tagged historical picks.
 - `references/report_schema.md`: report format and scoring rubric.
