@@ -29,6 +29,8 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+from translation_pass import apply_translation_payload, missing_translation_fields
+
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_DIR = SCRIPT_DIR.parent
@@ -64,6 +66,76 @@ ACTION_ICONS = {
     "summarize": "📝",
     "track": "👀",
     "ignore": "⏸️",
+}
+ACTION_LABELS_ZH = {
+    "deep_read": "深读",
+    "try_experiment": "尝试小实验",
+    "summarize": "快速总结",
+    "track": "持续跟踪",
+    "ignore": "忽略",
+}
+METHOD_LABELS_ZH = {
+    "a/b test": "线上 A/B 实验",
+    "ads ranking": "广告排序",
+    "attention": "注意力机制",
+    "bandit": "多臂老虎机/探索策略",
+    "behavior sequence": "行为序列建模",
+    "bm25": "BM25 词法检索",
+    "calibration": "校准",
+    "causal": "因果方法",
+    "click-through rate": "点击率预测（CTR）",
+    "contrastive learning": "对比学习",
+    "counterfactual": "反事实学习/评估",
+    "ctr": "点击率预测（CTR）",
+    "ctr prediction": "点击率预测",
+    "distillation": "知识蒸馏",
+    "dual encoder": "双编码器",
+    "exploration": "探索",
+    "gnn": "图神经网络（GNN）",
+    "graph neural network": "图神经网络（GNN）",
+    "large language model": "大语言模型（LLM）",
+    "latency": "延迟优化",
+    "learning to rank": "学习排序",
+    "llm": "大语言模型（LLM）",
+    "llm-native recommendation": "LLM 原生推荐",
+    "matrix factorization": "矩阵分解",
+    "multi-task": "多任务学习",
+    "real-time": "实时处理",
+    "reinforcement learning": "强化学习",
+    "reranking": "重排",
+    "retrieval": "召回/检索",
+    "ranking": "排序",
+    "ranker": "排序器",
+    "serving": "在线服务",
+    "sequential recommendation": "序列推荐",
+    "transformer": "Transformer 序列模型",
+    "two-tower": "双塔召回",
+    "vector search": "向量检索",
+    "video recommendation": "视频推荐",
+}
+DATASET_LABELS_ZH = {
+    "amazon": "Amazon 评论数据",
+    "alibaba": "阿里巴巴数据",
+    "avazu": "Avazu 广告点击数据",
+    "criteo": "Criteo 点击率数据",
+    "gowalla": "Gowalla 轨迹数据",
+    "kuairec": "KuaiRec 推荐数据",
+    "kuairand": "KuaiRand 推荐数据",
+    "lastfm": "Last.fm 音乐推荐数据",
+    "mind": "MIND 新闻推荐数据",
+    "ml-1m": "MovieLens-1M",
+    "ml-20m": "MovieLens-20M",
+    "movielens": "MovieLens 数据",
+    "steam": "Steam 物品推荐数据",
+    "taobao": "淘宝数据",
+    "yelp": "Yelp 商户数据",
+}
+RELATED_TITLE_LABELS_ZH = {
+    "Deep Neural Networks for YouTube Recommendations": "用于 YouTube 推荐的深度神经网络",
+    "DeepCT: Deep Reinforcement Learning for Contextual Text Representation": "DeepCT：用于上下文文本表示的深度强化学习",
+    "Deep Interest Network for Click-Through Rate Prediction": "用于点击率预测的深度兴趣网络",
+    "Deep Interest Evolution Network for Click-Through Rate Prediction": "用于点击率预测的深度兴趣演化网络",
+    "GenRec: Towards LLM-Native Recommendation at Netflix": "GenRec：迈向 Netflix 的 LLM 原生推荐",
 }
 RELATED_READING = {
     "retrieval_candidate_generation": [
@@ -457,6 +529,7 @@ def fetch_curl_bytes(
 ) -> bytes:
     """Fetch public APIs through curl because urllib can stall in local proxy/DNS setups."""
     last_error = ""
+    retry_max_time = max(5, min(int(timeout), 20))
     for attempt in range(1, attempts + 1):
         try:
             result = subprocess.run(
@@ -464,14 +537,16 @@ def fetch_curl_bytes(
                     "curl",
                     "-fsSL",
                     "--retry",
-                    "2",
+                    "1",
                     "--retry-delay",
                     "1",
                     "--retry-all-errors",
                     "--connect-timeout",
-                    "15",
+                    str(min(10, int(timeout))),
                     "--max-time",
                     str(int(timeout)),
+                    "--retry-max-time",
+                    str(retry_max_time),
                     "-A",
                     USER_AGENT,
                 ]
@@ -597,7 +672,7 @@ def fetch_arxiv(
             try:
                 content = fetch_arxiv_bytes(
                     url,
-                    timeout=25.0 if has_cache else 60.0,
+                    timeout=15.0 if has_cache else 30.0,
                     attempts=2,
                 )
                 if mirror_index:
@@ -1145,6 +1220,68 @@ def extract_datasets(text: str) -> list[str]:
     return found
 
 
+def translate_experiment_template(experiment: dict[str, str]) -> dict[str, str]:
+    experiment_text = experiment.get("experiment", "")
+    translations = {
+        "Compare a two-tower retrieval baseline against the proposed retrieval signal on a small implicit-feedback matrix.": "在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。",
+        "Compare a lexical BM25 retriever, dense retriever, and a lightweight reranker on a small query-item relevance set.": "在小型查询-物品相关性集合上，对比 BM25 词法检索、稠密检索和轻量级重排器。",
+        "Train a tiny reranker with and without the proposed feature/objective on a public click dataset subset.": "在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。",
+        "Compare a lightweight coarse ranker plus reranker cascade against a single-stage ranker on a small click dataset.": "在小型点击数据集上，对比轻量粗排加重排的级联方案与单阶段排序模型。",
+        "Test whether the sequence modeling change improves next-item prediction on MovieLens or synthetic sessions.": "在 MovieLens 或合成会话上，测试序列建模改动是否提升下一物品预测。",
+        "Evaluate a small LLM/RAG recommendation prompt against a non-generative retrieval/ranking pipeline on sampled items.": "在采样物品上，对比小型 LLM/RAG 推荐提示与非生成式召回-排序链路。",
+        "Add lightweight image/text embeddings to an item retrieval baseline and measure lift on sparse users.": "在物品召回基线上加入轻量图像/文本 Embedding，测量稀疏用户上的收益。",
+        "Compare graph propagation depth against matrix factorization on a small user-item graph.": "在小型用户-物品图上，对比不同图传播深度与矩阵分解。",
+        "Run an offline policy evaluation toy study for the proposed debiasing or exploration idea.": "针对论文提出的去偏或探索方法，运行一个离线策略评估玩具实验。",
+        "Measure the proposed metric or debiasing trick on a small recommendation benchmark with popularity slices.": "在带有流行度分层的小型推荐基准上，测量该指标或去偏技巧的效果。",
+        "Prototype the serving optimization on a tiny retrieval/ranking service and measure speed-quality tradeoff.": "在小型召回/排序服务中实现该服务优化原型，测量速度与质量的权衡。",
+        "Simulate the ranking or auction change on synthetic marketplace logs with constrained diversity.": "在带多样性约束的合成市场日志上，模拟排序或竞价机制改动。",
+    }
+    baseline_translations = {
+        "matrix factorization or BM25-style popularity retrieval": "矩阵分解或 BM25 风格的流行度召回",
+        "BM25 or TF-IDF retrieval": "BM25 或 TF-IDF 召回",
+        "logistic regression or LambdaMART-style ranking baseline": "逻辑回归或 LambdaMART 风格排序基线",
+        "single-stage logistic regression or LambdaMART ranker": "单阶段逻辑回归或 LambdaMART 排序器",
+        "popularity, item-kNN, or SASRec-lite": "流行度、item-kNN 或 SASRec-lite",
+        "retrieval plus heuristic reranking": "召回加启发式重排",
+        "ID-only collaborative filtering": "仅使用 ID 的协同过滤",
+        "BPR-MF or LightGCN with one fixed depth": "BPR-MF 或固定传播深度的 LightGCN",
+        "IPS/SNIPS or epsilon-greedy simulator": "IPS/SNIPS 或 epsilon-greedy 模拟器",
+        "standard sampled offline evaluation": "标准采样离线评估",
+        "unoptimized batch inference or exact search": "未优化的批量推理或精确搜索",
+        "CTR-only ranking or second-price auction toy model": "仅按 CTR 排序或二价竞价玩具模型",
+    }
+    metric_translations = {
+        "Recall@50, NDCG@50, and embedding build/query time": "Recall@50、NDCG@50，以及 Embedding 构建/查询耗时",
+        "Recall@50, NDCG@10, query latency, and performance on tail queries": "Recall@50、NDCG@10、查询延迟，以及长尾查询表现",
+        "NDCG@10, AUC, calibration error, and inference latency": "NDCG@10、AUC、校准误差和推理延迟",
+        "Recall@K, NDCG@10, p95 latency, and candidate reduction ratio": "Recall@K、NDCG@10、p95 延迟和候选集压缩比例",
+        "HitRate@10, NDCG@10, and cold-start breakdown": "HitRate@10、NDCG@10，以及冷启动分层结果",
+        "NDCG@10, coverage, refusal/error rate, and cost per query": "NDCG@10、覆盖率、拒答/错误率和单查询成本",
+        "Recall@20 and performance by user-history length": "Recall@20，以及按用户历史长度分层的表现",
+        "NDCG@20, training time, and popularity bias": "NDCG@20、训练耗时和流行度偏差",
+        "estimated reward bias, variance, and regret in simulation": "模拟中的估计奖励偏差、方差和遗憾值",
+        "NDCG@10, catalog coverage, Gini exposure, and slice lift": "NDCG@10、目录覆盖率、Gini 曝光指标和分层提升",
+        "p95 latency, throughput, Recall@K, and memory footprint": "p95 延迟、吞吐量、Recall@K 和内存占用",
+        "utility, revenue proxy, exposure fairness, and conversion proxy": "效用、收入代理指标、曝光公平性和转化代理指标",
+    }
+    return {
+        "experiment_zh": translations.get(experiment_text, "小型实验方案待补充"),
+        "baseline_zh": baseline_translations.get(experiment.get("baseline", ""), "基线方案待补充"),
+        "metric_zh": metric_translations.get(experiment.get("metric", ""), "评估指标待补充"),
+    }
+
+
+def translate_related_reading(items: list[dict[str, str]]) -> list[dict[str, str]]:
+    return [
+        {
+            "title_zh": RELATED_TITLE_LABELS_ZH.get(item.get("title", ""), "相关方法与背景阅读"),
+            "relation_zh": item.get("relation", "相关方法与背景"),
+            "url": item.get("url", ""),
+        }
+        for item in items
+    ]
+
+
 def shorten(value: str, width: int) -> str:
     value = normalize_space(value)
     if len(value) <= width:
@@ -1222,6 +1359,10 @@ def score_item(item: SourceItem, catalog: dict[str, Any]) -> dict[str, Any]:
         if template:
             experiments.append(template)
 
+    methods = extract_methods(text, matched_keywords)
+    datasets = extract_datasets(text)
+    related_reading = build_related_reading(matched_topics)
+
     evidence = []
     if matched_keywords:
         evidence.append("matched keywords: " + ", ".join(sorted(set(matched_keywords))[:8]))
@@ -1245,18 +1386,18 @@ def score_item(item: SourceItem, catalog: dict[str, Any]) -> dict[str, Any]:
         "abstract_or_excerpt_zh": item.summary_zh or "",
         "core_contribution": extract_contribution(item.title, item.summary),
         "core_contribution_zh": item.contribution_zh or "",
-        "methods": extract_methods(text, matched_keywords),
-        "methods_zh": [],
+        "methods": methods,
+        "methods_zh": [METHOD_LABELS_ZH.get(method.lower(), "方法说明待补充") for method in methods],
         "claims": extract_claims(item.summary),
         "claims_zh": [],
         "limitations": extract_limitations(item.summary),
         "limitations_zh": [],
         "future_directions": extract_future_directions(item.summary),
         "future_directions_zh": [],
-        "related_reading": build_related_reading(matched_topics),
-        "related_reading_zh": [],
-        "datasets_or_benchmarks": extract_datasets(text),
-        "datasets_or_benchmarks_zh": [],
+        "related_reading": related_reading,
+        "related_reading_zh": translate_related_reading(related_reading),
+        "datasets_or_benchmarks": datasets,
+        "datasets_or_benchmarks_zh": [DATASET_LABELS_ZH.get(dataset.lower(), "数据集说明待补充") for dataset in datasets],
         "matched_topics": matched_topics,
         "relevance_score": relevance,
         "novelty_score": novelty,
@@ -1264,11 +1405,11 @@ def score_item(item: SourceItem, catalog: dict[str, Any]) -> dict[str, Any]:
         "experimentability_score": experimentability,
         "priority_score": round(priority, 3),
         "recommended_action": action,
-        "recommended_action_zh": "",
+        "recommended_action_zh": ACTION_LABELS_ZH.get(action, "行动建议待补充"),
         "deep_read_reason": build_deep_read_reason(relevance, novelty, difficulty, matched_topics),
-        "deep_read_reason_zh": "",
+        "deep_read_reason_zh": build_deep_read_reason_zh(relevance, novelty, difficulty, matched_topics),
         "possible_experiments": experiments,
-        "possible_experiments_zh": [],
+        "possible_experiments_zh": [translate_experiment_template(experiment) for experiment in experiments],
         "translation_status": "pending_model_translation",
         "evidence": evidence,
         "fetched_at": now_iso(),
@@ -1288,6 +1429,20 @@ def build_deep_read_reason(
     if difficulty <= 3.0:
         reasons.append("small experiment appears plausible")
     return "; ".join(reasons) + f" (difficulty {difficulty}/5)."
+
+
+def build_deep_read_reason_zh(
+    relevance: float, novelty: float, difficulty: float, matched_topics: list[str]
+) -> str:
+    topics = [TOPIC_LABELS_ZH.get(topic, topic) for topic in matched_topics[:3]]
+    reasons = [f"与{ '、'.join(topics) }相关" if topics else "与推荐算法的直接关联仍需核验"]
+    if relevance >= 3.5:
+        reasons.append("相关性较高")
+    if novelty >= 3.0:
+        reasons.append("包含明确的新颖性线索")
+    if difficulty <= 3.0:
+        reasons.append("适合先做小型实验")
+    return "；".join(reasons) + f"（实现难度 {difficulty}/5）"
 
 
 def dedupe_items(items: list[SourceItem]) -> list[SourceItem]:
@@ -1319,32 +1474,40 @@ def build_ideas(cards: list[dict[str, Any]], limit: int = 5) -> list[dict[str, A
             continue
         template = experiments[0]
         title = card["title"]
+        template_zh = translate_experiment_template(template)
+        dataset_or_setup = choose_dataset(card)
         ideas.append(
             {
                 "title": "Mini test: " + shorten(title, 80),
-                "title_zh": "",
+                "title_zh": "小实验：对应原文论文/文章",
                 "source_item_ids": [card["id"]],
                 "hypothesis": (
                     "The method or signal described in the source item improves at least one "
                     "offline recommendation metric over a simple baseline on a small dataset."
                 ),
-                "hypothesis_zh": "",
+                "hypothesis_zh": "在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。",
                 "observation": shorten(card.get("core_contribution", ""), 300),
+                "observation_zh": "",
                 "smallest_experiment": template["experiment"],
-                "smallest_experiment_zh": "",
+                "smallest_experiment_zh": template_zh["experiment_zh"],
                 "baseline": template["baseline"],
-                "baseline_zh": "",
-                "dataset_or_setup": choose_dataset(card),
-                "dataset_or_setup_zh": "",
+                "baseline_zh": template_zh["baseline_zh"],
+                "dataset_or_setup": dataset_or_setup,
+                "dataset_or_setup_zh": translate_dataset_setup(dataset_or_setup),
                 "metric": template["metric"],
-                "metric_zh": "",
+                "metric_zh": template_zh["metric_zh"],
                 "expected_runtime": "< 30 minutes on a laptop CPU for a toy version",
+                "expected_runtime_zh": "笔记本 CPU 上运行玩具版本预计少于 30 分钟",
                 "failure_modes": [
                     "offline metric lift does not reproduce",
                     "gain appears only on popularity-heavy users/items",
                     "added complexity increases latency or instability",
                 ],
-                "failure_modes_zh": [],
+                "failure_modes_zh": [
+                    "离线指标提升无法复现",
+                    "收益只出现在高流行度用户或物品",
+                    "复杂度增加导致延迟或稳定性变差",
+                ],
                 "novelty_score": card["novelty_score"],
                 "feasibility_score": clamp_score(5.0 - card["implementation_difficulty"] + 1.0),
             }
@@ -1368,6 +1531,94 @@ def choose_dataset(card: dict[str, Any]) -> str:
     return "MovieLens-small or a synthetic implicit-feedback matrix"
 
 
+def translate_dataset_setup(value: str) -> str:
+    translations = {
+        "MovieLens-1M converted to user sequences, or synthetic sessions": "将 MovieLens-1M 转为用户行为序列，或使用合成会话",
+        "Amazon review subset with text metadata, or a tiny image/text item catalog": "带文本元数据的 Amazon 评论子集，或小型图像/文本物品目录",
+        "synthetic logged bandit feedback with known propensities": "带已知倾向得分的合成 bandit 日志反馈",
+        "MovieLens-small or a synthetic implicit-feedback matrix": "MovieLens-small 或合成隐式反馈矩阵",
+        "taobao": "淘宝数据",
+    }
+    return translations.get(value, "小型公开数据集或合成隐式反馈数据")
+
+
+def has_chinese_text(value: Any) -> bool:
+    if isinstance(value, str):
+        return bool(re.search(r"[\u3400-\u9fff]", value))
+    return False
+
+
+def zh_text(value: Any, pending: str) -> str:
+    return value.strip() if has_chinese_text(value) else pending
+
+
+def zh_title(card: dict[str, Any]) -> str:
+    return zh_text(card.get("title_zh"), "中文标题待补充")
+
+
+def zh_list(card: dict[str, Any], field: str, source_field: str, pending: str) -> list[str]:
+    translated = card.get(field)
+    if isinstance(translated, list) and translated and any(has_chinese_text(item) for item in translated):
+        return [str(item) for item in translated]
+    source = card.get(source_field) or []
+    if field == "methods_zh" and source:
+        return [METHOD_LABELS_ZH.get(str(item).lower(), "方法说明待补充") for item in source]
+    return [pending] if source else []
+
+
+def zh_action(card: dict[str, Any]) -> str:
+    return zh_text(card.get("recommended_action_zh"), ACTION_LABELS_ZH.get(card.get("recommended_action"), "行动建议待补充"))
+
+
+def zh_reason(card: dict[str, Any]) -> str:
+    translated = card.get("deep_read_reason_zh")
+    if has_chinese_text(translated):
+        return translated
+    topics = [TOPIC_LABELS_ZH.get(topic, topic) for topic in card.get("matched_topics", [])[:3]]
+    reasons = [f"与{ '、'.join(topics) }相关" if topics else "与推荐算法的直接关联仍需核验"]
+    if card.get("relevance_score", 0) >= 3.5:
+        reasons.append("相关性较高")
+    if card.get("novelty_score", 0) >= 3.0:
+        reasons.append("包含明确的新颖性线索")
+    if card.get("implementation_difficulty", 5) <= 3.0:
+        reasons.append("适合先做小型实验")
+    return "；".join(reasons) + f"（实现难度 {card.get('implementation_difficulty', '待评估')}/5）"
+
+
+def zh_experiment(card: dict[str, Any]) -> dict[str, str]:
+    translated = card.get("possible_experiments_zh")
+    if isinstance(translated, list):
+        for item in translated:
+            if isinstance(item, dict) and has_chinese_text(item.get("experiment_zh")):
+                return {
+                    "experiment_zh": str(item.get("experiment_zh", "")),
+                    "baseline_zh": str(item.get("baseline_zh", "基线方案待补充")),
+                    "metric_zh": str(item.get("metric_zh", "评估指标待补充")),
+                }
+    return {
+        "experiment_zh": "小型实验方案待补充",
+        "baseline_zh": "基线方案待补充",
+        "metric_zh": "评估指标待补充",
+    }
+
+
+def zh_related_reading(card: dict[str, Any]) -> list[str]:
+    translated = card.get("related_reading_zh")
+    if isinstance(translated, list) and translated:
+        rendered: list[str] = []
+        for item in translated:
+            if isinstance(item, dict) and has_chinese_text(item.get("title_zh")):
+                title = item["title_zh"]
+                relation = item.get("relation_zh") or "相关方法与背景"
+                url = item.get("url", "")
+                rendered.append(f"[{title}]({url})（{relation}）")
+        if rendered:
+            return rendered
+    if card.get("related_reading"):
+        return ["相关文献中文说明待补充"]
+    return []
+
+
 def render_report(
     cards: list[dict[str, Any]],
     ideas: list[dict[str, Any]],
@@ -1388,7 +1639,7 @@ def render_report(
 
     def action_line(card: dict[str, Any]) -> str:
         icon = ACTION_ICONS.get(card.get("recommended_action", ""), "➡️")
-        return f"{icon} 建议：{card.get('recommended_action_zh') or card['recommended_action']}"
+        return f"{icon} 建议：{zh_action(card)}"
 
     new_cards = [
         c for c in cards
@@ -1400,10 +1651,14 @@ def render_report(
     paper_deep_reads = [c for c in deep_reads if c["source_type"] != "industry"]
     industry_deep_reads = [c for c in deep_reads if c["source_type"] == "industry"]
     top_cards = [c for c in new_cards if c["source_type"] != "industry"][:report_limit]
+    translation_gaps = missing_translation_fields(cards, ideas)
     lines: list[str] = []
     lines.append(f"# 推荐算法研究日报 - {output_date}")
     lines.append("")
-    lines.append("> 抓取结果保留英文原文；中文翻译由 skill 的翻译阶段补齐并置于原文之前。")
+    if translation_gaps:
+        lines.append(f"> 翻译状态：有 {len(translation_gaps)} 个中文字段待补充；中文位置不会回退显示英文。")
+    else:
+        lines.append("> 翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。")
     lines.append(f"> 新增窗口：{window_label}；日报精选上限：{report_limit} 项。")
     if repeated_cards and not include_seen:
         lines.append(f"> 已自动去重：{len(repeated_cards)} 项此前已出现在日报中；可用 `--include-seen` 重新展示。")
@@ -1412,31 +1667,31 @@ def render_report(
     lines.append("")
     if new_cards:
         lines.append(
-            f"Found {len(new_cards)} new relevant recommendation-research items. "
-            f"{len(deep_reads)} are deep-read or experiment candidates."
+            f"本窗口新增 {len(new_cards)} 项与推荐算法相关的论文或业界文章，"
+            f"其中 {len(deep_reads)} 项适合深读或尝试实验。"
         )
         first = deep_reads[0] if deep_reads else new_cards[0]
         lines.append(
-            f"优先阅读：[{first.get('title_zh') or first['title']}]({first['url']})；"
-            f"原文标题：{first['title']}；原因：{first.get('deep_read_reason_zh') or first['deep_read_reason']}"
+            f"优先阅读：[{zh_title(first)}]({first['url']})；"
+            f"原文标题：{first['title']}；原因：{zh_reason(first)}"
         )
     else:
-        lines.append("No relevant items were fetched. Check source errors and widen the lookback window.")
+        lines.append("本窗口没有抓到足够相关的内容，请检查来源状态或适当扩大时间窗口。")
     lines.append("")
-    lines.append("## Source Coverage")
+    lines.append("## 来源覆盖")
     lines.append("")
     for key in sorted(counts):
         lines.append(f"- {key}: {counts[key]}")
     blocking_errors = [error for error in errors if error.startswith("error:")]
     warnings = [error for error in errors if not error.startswith("error:")]
     if blocking_errors:
-        lines.append("- source_errors:")
+        lines.append("- 来源错误：")
         for err in blocking_errors:
             lines.append(f"  - {err}")
     else:
-        lines.append("- source_errors: none")
+        lines.append("- 来源错误：无")
     if warnings:
-        lines.append("- source_notes:")
+        lines.append("- 来源备注：")
         for warning in warnings:
             lines.append(f"  - {warning}")
     lines.append("")
@@ -1469,8 +1724,8 @@ def render_report(
         lines.append("")
         for card in sorted(reranking_cards, key=lambda c: c["priority_score"], reverse=True)[:8]:
             lines.append(
-                f"- [{card.get('title_zh') or card['title']}]({card['url']}) — "
-                f"{card['source_name']}；{card.get('recommended_action_zh') or card['recommended_action']}"
+                f"- [{zh_title(card)}]({card['url']}) — "
+                f"{card['source_name']}；{zh_action(card)}"
             )
     else:
         lines.append("本窗口暂无明确命中粗排/重排关键词的条目。")
@@ -1493,30 +1748,29 @@ def render_report(
             reverse=True,
         )
         for card in industry_cards[:8]:
-            summary = card.get("abstract_or_excerpt_zh") or card.get("abstract_or_excerpt") or "来源页未提供可验证摘要，建议打开原文核验。"
-            summary_label = "中文摘要" if card.get("abstract_or_excerpt_zh") else "摘要（原文摘要，待中文翻译）"
-            contribution = card.get("core_contribution_zh") or card.get("core_contribution") or "未能从来源页提取明确贡献。"
-            methods = card.get("methods_zh") or card.get("methods") or []
-            lines.append(f"#### {card.get('title_zh') or card['title']}")
+            summary = zh_text(card.get("abstract_or_excerpt_zh"), "中文摘要待补充；请打开原文核验。")
+            contribution = zh_text(card.get("core_contribution_zh"), "中文核心贡献待补充。")
+            methods = zh_list(card, "methods_zh", "methods", "方法说明待补充")
+            lines.append(f"#### {zh_title(card)}")
             lines.append(f"- 原始标题：{card['title']}")
             lines.append(f"- 来源：{card['source_name']}；发布时间：{card.get('published') or '未标注'}")
             lines.append(f"- 原始链接：[{card['url']}]({card['url']})")
-            lines.append(f"- {summary_label}：{summary}")
+            lines.append(f"- 中文摘要：{summary}")
             lines.append(f"- 核心贡献/可借鉴：{contribution}")
             lines.append(f"- 方法/关键机制：{', '.join(methods) if methods else '未从摘要中提取'}")
             lines.append(f"- {score_line(card)}")
             lines.append(f"- {action_line(card)}")
             lines.append("")
     else:
-        lines.append("- no relevant industry cards in this window")
+        lines.append("- 本窗口没有相关的大厂文章卡片。")
     lines.append("")
     lines.append("## 🏛️ 历史精选")
     lines.append("")
     if historical_cards:
         for idx, card in enumerate(historical_cards[:4], 1):
-            lines.append(f"{idx}. [{card.get('title_zh') or card['title']}]({card['url']})")
-            lines.append(f"   - source: {card['source_name']} (historical pick)")
-            lines.append(f"   - why: {card.get('deep_read_reason_zh') or card['deep_read_reason']}")
+            lines.append(f"{idx}. [{zh_title(card)}]({card['url']})")
+            lines.append(f"   - 来源：{card['source_name']}（历史精选）")
+            lines.append(f"   - 原因：{zh_reason(card)}")
     else:
         lines.append("暂无历史精选。")
     lines.append("")
@@ -1524,14 +1778,14 @@ def render_report(
     lines.append("")
     queue = paper_deep_reads[:8] or [c for c in top_cards if c["source_type"] != "industry"][:5]
     if not queue:
-        lines.append("No deep-read candidates.")
+        lines.append("暂无论文深读候选。")
     for idx, card in enumerate(queue, 1):
-        lines.append(f"{idx}. [{card.get('title_zh') or card['title']}]({card['url']})")
-        lines.append(f"   - original title: {card['title']}")
-        lines.append(f"   - source: {card['source_name']} ({card['source_type']})")
+        lines.append(f"{idx}. [{zh_title(card)}]({card['url']})")
+        lines.append(f"   - 原文标题：{card['title']}")
+        lines.append(f"   - 来源：{card['source_name']}（{card['source_type']}）")
         lines.append(f"   - {score_line(card)}")
         lines.append(f"   - {action_line(card)}")
-        lines.append(f"   - why: {card.get('deep_read_reason_zh') or card['deep_read_reason']}")
+        lines.append(f"   - 原因：{zh_reason(card)}")
     lines.append("")
     lines.append("## 📝 业界文章深读队列")
     lines.append("")
@@ -1541,68 +1795,77 @@ def render_report(
         reverse=True,
     )
     if not industry_queue:
-        lines.append("本窗口没有达到深读阈值的业界文章；相关业界文章仍见上方“大厂技术文章覆盖”。")
+        lines.append("本窗口没有达到深读阈值的业界文章；相关条目仍见上方“大厂技术文章覆盖”。")
     for idx, card in enumerate(industry_queue[:8], 1):
-        summary = card.get("abstract_or_excerpt_zh") or card.get("abstract_or_excerpt") or "来源页未提供可验证摘要，建议打开原文核验。"
-        contribution = card.get("core_contribution_zh") or card.get("core_contribution") or "未能从来源页提取明确贡献。"
-        lines.append(f"{idx}. [{card.get('title_zh') or card['title']}]({card['url']})")
-        lines.append(f"   - source: {card['source_name']}")
+        summary = zh_text(card.get("abstract_or_excerpt_zh"), "中文摘要待补充；请打开原文核验。")
+        contribution = zh_text(card.get("core_contribution_zh"), "中文核心贡献待补充。")
+        lines.append(f"{idx}. [{zh_title(card)}]({card['url']})")
+        lines.append(f"   - 来源：{card['source_name']}")
         lines.append(f"   - 摘要：{summary}")
         lines.append(f"   - 核心贡献/可借鉴：{contribution}")
         lines.append(f"   - {score_line(card)}")
         lines.append(f"   - {action_line(card)}")
-        lines.append(f"   - why: {card.get('deep_read_reason_zh') or card['deep_read_reason']}")
+        lines.append(f"   - 原因：{zh_reason(card)}")
     lines.append("")
     lines.append("## 🗂️ 论文结构化卡片")
     lines.append("")
     for card in top_cards:
-        lines.append(f"### {card.get('title_zh') or card['title']}")
+        lines.append(f"### {zh_title(card)}")
         lines.append("")
-        lines.append(f"- original title: {card['title']}")
-        lines.append(f"- link: {card['url']}")
-        lines.append(f"- contribution: {card.get('core_contribution_zh') or card['core_contribution']}")
-        lines.append(f"- methods: {', '.join(card.get('methods_zh') or card['methods']) if card['methods'] else 'not explicit'}")
-        lines.append(f"- limitations: {'; '.join(card.get('limitations_zh') or card['limitations']) if card.get('limitations') else 'not explicit'}")
-        lines.append(f"- future directions: {'; '.join(card.get('future_directions_zh') or card['future_directions']) if card.get('future_directions') else 'not explicit'}")
+        lines.append(f"- 原文标题：{card['title']}")
+        lines.append(f"- 原始链接：{card['url']}")
+        lines.append(f"- 中文摘要：{zh_text(card.get('abstract_or_excerpt_zh'), '中文摘要待补充；请打开原文核验。')}")
+        lines.append(f"- 核心贡献：{zh_text(card.get('core_contribution_zh'), '中文核心贡献待补充。')}")
+        methods = zh_list(card, "methods_zh", "methods", "方法说明待补充")
+        limitations = zh_list(card, "limitations_zh", "limitations", "局限性说明待补充")
+        future = zh_list(card, "future_directions_zh", "future_directions", "未来方向说明待补充")
+        lines.append(f"- 方法：{', '.join(methods) if methods else '未从摘要中提取'}")
+        lines.append(f"- 局限性：{'；'.join(limitations) if limitations else '未明确说明'}")
+        lines.append(f"- 未来方向：{'；'.join(future) if future else '未明确说明'}")
         if card.get("related_reading"):
-            related = card.get("related_reading_zh") or card["related_reading"]
-            lines.append("- related reading: " + "; ".join(f"[{item['title']}]({item['url']})" for item in related))
+            related = zh_related_reading(card)
+            lines.append("- 拓展阅读：" + ("；".join(related) if related else "相关文献中文说明待补充"))
         lines.append(
-            "- datasets/benchmarks: "
-            + (", ".join(card.get("datasets_or_benchmarks_zh") or card["datasets_or_benchmarks"]) if card["datasets_or_benchmarks"] else "not explicit")
+            "- 数据集/基准："
+            + (", ".join(zh_list(card, "datasets_or_benchmarks_zh", "datasets_or_benchmarks", "数据集说明待补充")) if card["datasets_or_benchmarks"] else "未明确说明")
         )
-        lines.append(f"- matched topics: {', '.join(card['matched_topics']) if card['matched_topics'] else 'none'}")
-        lines.append(f"- evidence: {'; '.join(card['evidence']) if card['evidence'] else 'limited feed metadata'}")
+        lines.append(f"- 主题：{', '.join(TOPIC_LABELS_ZH.get(topic, topic) for topic in card['matched_topics']) if card['matched_topics'] else '未明确匹配'}")
+        lines.append(f"- 证据：{'；'.join(card['evidence']) if card['evidence'] else '来源元数据有限'}")
         if card["possible_experiments"]:
-            experiment = card.get("possible_experiments_zh") or card["possible_experiments"]
-            lines.append(f"- possible experiment: {experiment[0].get('experiment_zh') or experiment[0]['experiment']}")
+            experiment = zh_experiment(card)
+            lines.append(f"- 小型实验：{experiment['experiment_zh']}")
         lines.append("")
     lines.append("## 💡 研究创意与小型实验")
     lines.append("")
     if not ideas:
-        lines.append("No grounded small experiment ideas were generated.")
+        lines.append("本窗口没有生成有明确来源依据的小型实验创意。")
     for idx, idea in enumerate(ideas, 1):
-        lines.append(f"{idx}. {idea.get('title_zh') or idea['title']}")
-        lines.append(f"   - hypothesis: {idea.get('hypothesis_zh') or idea['hypothesis']}")
-        lines.append(f"   - experiment: {idea.get('smallest_experiment_zh') or idea['smallest_experiment']}")
-        lines.append(f"   - baseline: {idea.get('baseline_zh') or idea['baseline']}")
-        lines.append(f"   - dataset/setup: {idea.get('dataset_or_setup_zh') or idea['dataset_or_setup']}")
-        lines.append(f"   - metric: {idea.get('metric_zh') or idea['metric']}")
-        lines.append(f"   - failure modes: {', '.join(idea.get('failure_modes_zh') or idea['failure_modes'])}")
+        lines.append(f"{idx}. {zh_text(idea.get('title_zh'), '实验标题待补充')}")
+        lines.append(f"   - 假设：{zh_text(idea.get('hypothesis_zh'), '实验假设待补充')}")
+        lines.append(f"   - 观察：{zh_text(idea.get('observation_zh'), '动机说明待补充')}")
+        lines.append(f"   - 实验：{zh_text(idea.get('smallest_experiment_zh'), '实验方案待补充')}")
+        lines.append(f"   - 基线：{zh_text(idea.get('baseline_zh'), '基线方案待补充')}")
+        lines.append(f"   - 数据集/设置：{zh_text(idea.get('dataset_or_setup_zh'), '数据集或实验设置待补充')}")
+        lines.append(f"   - 指标：{zh_text(idea.get('metric_zh'), '评估指标待补充')}")
+        lines.append(f"   - 预计耗时：{zh_text(idea.get('expected_runtime_zh'), '笔记本 CPU 玩具实验预计少于 30 分钟')}")
+        failure_modes = idea.get("failure_modes_zh")
+        if not isinstance(failure_modes, list) or not any(has_chinese_text(item) for item in failure_modes):
+            failure_modes = ["离线指标提升无法复现", "收益只出现在高流行度用户或物品", "复杂度增加导致延迟或稳定性变差"]
+        lines.append(f"   - 失败模式：{'；'.join(str(item) for item in failure_modes)}")
     lines.append("")
-    lines.append("## Action Plan")
+    lines.append("## ✅ 行动计划")
     lines.append("")
     if queue:
-        lines.append(f"- read today: {queue[0]['title']}")
+        lines.append(f"- 今日深读：{zh_title(queue[0])}")
     if ideas:
-        lines.append(f"- implement this week: {ideas[0]['title']}")
+        lines.append(f"- 本周尝试：{zh_text(ideas[0].get('title_zh'), '小型实验标题待补充')}")
     track = [c for c in new_cards if c["recommended_action"] == "track"]
     if track:
-        lines.append(f"- track for later: {track[0]['title']}")
+        lines.append(f"- 后续跟踪：{zh_title(track[0])}")
     if errors:
-        lines.append("- coverage gaps to fix: inspect failed sources or add official proceedings/manual URLs.")
+        lines.append("- 来源补强：检查失败来源，或补充官方会议页面/手工文章链接。")
     else:
-        lines.append("- coverage gaps to fix: add any conference proceedings or company post URLs not covered by feeds.")
+        lines.append("- 来源补强：继续补充尚未被订阅源覆盖的顶会页面和大厂文章链接。")
     lines.append("")
     return "\n".join(lines)
 
@@ -1785,6 +2048,16 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--offline-sample", action="store_true")
     parser.add_argument("--no-history", dest="include_history", action="store_false")
     parser.add_argument("--include-seen", action="store_true", help="Include items already reported in the current-window sections.")
+    parser.add_argument(
+        "--translation-file",
+        type=Path,
+        help="JSON payload produced by the model translation pass; merged before rendering.",
+    )
+    parser.add_argument(
+        "--require-translations",
+        action="store_true",
+        help="Return a non-zero status when any required Chinese field is missing.",
+    )
     parser.set_defaults(include_history=True)
     return parser.parse_args(argv)
 
@@ -1815,6 +2088,10 @@ def main(argv: list[str] | None = None) -> int:
         if not c.get("is_historical") and (args.include_seen or not c.get("is_repeat"))
     ]
     ideas = build_ideas(idea_cards)
+    if args.translation_file:
+        translation_payload = json.loads(args.translation_file.read_text(encoding="utf-8"))
+        cards, ideas = apply_translation_payload(cards, ideas, translation_payload)
+    translation_gaps = missing_translation_fields(cards, ideas)
     output_date = window_end.astimezone(LOCAL_TZ).date().isoformat()
     report = render_report(cards, ideas, errors, counts, output_date, window_label, args.report_limit, args.include_seen)
     paths = write_outputs(args.output_dir, cards, ideas, report, output_date)
@@ -1822,9 +2099,23 @@ def main(argv: list[str] | None = None) -> int:
     save_state(state_path, state)
     paths["state"] = str(state_path)
 
-    print(json.dumps({"counts": counts, "cards": len(cards), "ideas": len(ideas), "paths": paths}, ensure_ascii=False, indent=2))
+    print(
+        json.dumps(
+            {
+                "counts": counts,
+                "cards": len(cards),
+                "ideas": len(ideas),
+                "translation_gaps": len(translation_gaps),
+                "paths": paths,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     if any(error.startswith("error:") for error in errors):
         return 2
+    if args.require_translations and translation_gaps:
+        return 3
     return 0
 
 
