@@ -70,6 +70,8 @@ Render compact cards with:
 - relevance, novelty, difficulty
 - possible experiment
 
+An empty Chinese field is a validation failure, not permission to display the English source field in its place. Preserve exact numbers, metric names, URLs, and quoted claims; mark thin or uncertain translations as `待人工核验`.
+
 ## Research Ideas
 
 Each idea must contain:
