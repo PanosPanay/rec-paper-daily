@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-08-17</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-08-17</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个工作日及周末窗口；日报精选上限：8 项。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口新增 7 项与推荐算法相关的论文或业界文章，其中 3 项适合深读或尝试实验。<br> 优先阅读：<a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告中的应用</a>；原文标题：大规模异构图召回在美团到店推荐广告的应用；原因：与召回与候选生成、图与知识增强推荐、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 2.8/5）</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 1</li>
+<li>historical: 4</li>
+<li>manual: 9</li>
+<li>openreview: 0</li>
+<li>rss: 0</li>
+<li>来源错误：无</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>排序、粗排与重排：6 项</li>
+<li>召回与候选生成：3 项</li>
+<li>评估、去偏与公平性：2 项</li>
+<li>服务、延迟与基础设施：2 项</li>
+<li>广告与市场排序：1 项</li>
+<li>生成式/大模型推荐：1 项</li>
+<li>趋势：排序/重排正在与延迟、吞吐和服务架构联合优化。</li>
+<li>趋势：召回层继续向生成式检索和大模型辅助候选生成扩展。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<p>本窗口暂无明确命中粗排/重排关键词的条目。</p>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>华为云：推荐系统 RES 博客: 1</li>
+<li>华为开发者：信息流内容推荐服务: 1</li>
+<li>字节跳动：一文读懂推荐系统中的 debias: 1</li>
+<li>字节跳动：人人都能搭建大规模推荐系统: 1</li>
+<li>美团：大规模异构图召回在到店推荐广告的应用: 1</li>
+<li>阿里云：智能开放搜索 OpenSearch: 1</li>
+</ul>
+<h3>文章结构化摘要</h3>
+<p>#### 大规模异构图召回在美团到店推荐广告中的应用</p>
+<ul>
+<li>原始标题：大规模异构图召回在美团到店推荐广告的应用</li>
+<li>来源：美团：大规模异构图召回在到店推荐广告的应用；发布时间：2022-11-24</li>
+<li>原始链接：<a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html</a></li>
+<li>中文摘要：美团介绍了一套面向到店推荐广告的生产级大规模异构图召回系统，覆盖图建模、大规模训练和低延迟在线服务。文章将图结构中的长期兴趣与短期时空序列结合，用于改善本地生活场景下的候选生成，并报告了离线 Hitrate 和在线 RPS 的提升。</li>
+<li>核心贡献/可借鉴：把异构图中的长期兴趣与短期时空行为结合到到店推荐广告召回链路，并同时讨论大规模训练与低延迟服务。</li>
+<li>方法/关键机制：召回/检索, 方法说明待补充, 方法说明待补充, 在线服务, 延迟优化, 方法说明待补充</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 2.0 · 🧩 难度 2.8 · 🎯 优先级 2.914</li>
+<li>🧪 建议：尝试小实验</li>
+</ul>
+<p>#### 一站式智能搜索业务开发平台：智能开放搜索 OpenSearch</p>
+<ul>
+<li>原始标题：一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</li>
+<li>来源：阿里云：智能开放搜索 OpenSearch；发布时间：未标注</li>
+<li>原始链接：<a href="https://help.aliyun.com/zh/open-search/">https://help.aliyun.com/zh/open-search/</a></li>
+<li>中文摘要：阿里云 OpenSearch 是一个分布式搜索平台，覆盖查询理解、机器学习排序、向量检索、召回、评估以及 LLM/RAG 组件。对推荐系统而言，它提供了从查询解析、候选召回到排序和评测的一体化工程入口，可借鉴其多阶段检索、向量与关键词混合以及在线服务能力。</li>
+<li>核心贡献/可借鉴：把查询理解、机器学习排序、向量召回、评估和 LLM/RAG 能力组合成可产品化的搜索与推荐基础平台。</li>
+<li>方法/关键机制：召回/检索, 方法说明待补充, 排序, 方法说明待补充, 大语言模型（LLM）</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.638</li>
+<li>🧪 建议：尝试小实验</li>
+</ul>
+<p>#### 推荐系统 RES 博客</p>
+<ul>
+<li>原始标题：推荐系统 RES 博客</li>
+<li>来源：华为云：推荐系统 RES 博客；发布时间：未标注</li>
+<li>原始链接：<a href="https://developer.huaweicloud.com/tags/200293/blog_1">https://developer.huaweicloud.com/tags/200293/blog_1</a></li>
+<li>中文摘要：华为云 RES 标签页汇总推荐系统相关博客与工程文档，覆盖召回、排序和推荐服务等主题。它更适合作为工程实现和产品化能力的入口，而不是单篇论文的实验结论。</li>
+<li>核心贡献/可借鉴：提供围绕推荐召回、排序和服务化落地的工程文章与文档索引。</li>
+<li>方法/关键机制：召回/检索, 排序</li>
+<li>🔎 相关性 4.4 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.218</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### 一文读懂推荐系统中的 Debias</p>
+<ul>
+<li>原始标题：一文读懂推荐系统中的 debias</li>
+<li>来源：字节跳动：一文读懂推荐系统中的 debias；发布时间：2026-01-26</li>
+<li>原始链接：<a href="https://developer.volcengine.com/articles/7599494081681981481">https://developer.volcengine.com/articles/7599494081681981481</a></li>
+<li>中文摘要：字节跳动解释推荐系统中的位置偏差、曝光偏差和选择偏差，并说明隐式反馈标签为什么不能被直接视为无偏的用户偏好。文章适合作为粗排、重排和离线评估中的去偏检查清单，帮助区分用户没有点击、没有看到和不感兴趣这几类不同信号。</li>
+<li>核心贡献/可借鉴：把位置、曝光和选择偏差放在同一套推荐反馈解释框架中，强调在训练和评估前先校正观测数据的生成过程。</li>
+<li>方法/关键机制：排序, 方法说明待补充, 方法说明待补充</li>
+<li>🔎 相关性 4.1 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.083</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### 为君作磐石：人人都能搭建大规模推荐系统</p>
+<ul>
+<li>原始标题：为君作磐石——人人都能搭建大规模推荐系统</li>
+<li>来源：字节跳动：人人都能搭建大规模推荐系统；发布时间：未标注</li>
+<li>原始链接：<a href="https://developer.volcengine.com/articles/7599494337362559017">https://developer.volcengine.com/articles/7599494337362559017</a></li>
+<li>中文摘要：字节跳动从训练和在线服务两个方面介绍大规模个性化推荐的工程挑战，覆盖多目标预测、分布式 Embedding、特征一致性和实时服务。文章更适合用来梳理一个推荐系统从模型指标走向生产时必须补齐的基础设施与监控能力。</li>
+<li>核心贡献/可借鉴：总结大规模推荐从多目标建模、分布式参数存储、特征一致性到实时推理服务的关键工程问题。</li>
+<li>方法/关键机制：排序, 在线服务, 实时处理</li>
+<li>🔎 相关性 3.8 · ✨ 新颖性 1.0 · 🧩 难度 3.1 · 🎯 优先级 1.888</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### 信息流内容推荐服务</p>
+<ul>
+<li>原始标题：信息流内容推荐服务</li>
+<li>来源：华为开发者：信息流内容推荐服务；发布时间：未标注</li>
+<li>原始链接：<a href="https://developer.huawei.com/consumer/cn/hnc-recommendationservice/">https://developer.huawei.com/consumer/cn/hnc-recommendationservice/</a></li>
+<li>中文摘要：华为提供的信息流内容推荐服务融合用户个性化、内容热度、内容相关性、内容质量和多种内容类型，面向内容分发效率与业务转化。它可以作为推荐服务产品化的参考入口，重点关注多目标融合、实时推荐和 A/B 测试接口。</li>
+<li>核心贡献/可借鉴：将个性化、热度、相关性、内容质量和多内容类型组合为可部署的信息流推荐服务。</li>
+<li>方法/关键机制：排序</li>
+<li>🔎 相关性 2.8 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.498</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">深度兴趣演化网络：用于点击率预测</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">深度兴趣网络：用于点击率预测</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2608.12845">FSGR：缓解基于语义 ID 的生成式推荐中的 Token 频率偏差</a></li>
+<li>原文标题：FSGR: Mitigating Token Frequency Bias for Fair SID-Based Generative Recommendation</li>
+<li>来源：arXiv (OpenAlex fallback)（arxiv）</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.4 · 🧩 难度 1.9 · 🎯 优先级 2.897</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与排序、粗排与重排、生成式/大模型推荐、评估、去偏与公平性相关；相关性较高；适合先做小型实验（实现难度 1.9/5）。</li>
+</ul>
+<h2>📝 业界文章深读队列</h2>
+<ul>
+<li><a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告中的应用</a></li>
+<li>来源：美团：大规模异构图召回在到店推荐广告的应用</li>
+<li>摘要：美团介绍了一套面向到店推荐广告的生产级大规模异构图召回系统，覆盖图建模、大规模训练和低延迟在线服务。文章将图结构中的长期兴趣与短期时空序列结合，用于改善本地生活场景下的候选生成，并报告了离线 Hitrate 和在线 RPS 的提升。</li>
+<li>核心贡献/可借鉴：把异构图中的长期兴趣与短期时空行为结合到到店推荐广告召回链路，并同时讨论大规模训练与低延迟服务。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 2.0 · 🧩 难度 2.8 · 🎯 优先级 2.914</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、图与知识增强推荐、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 2.8/5）</li>
+<li><a href="https://help.aliyun.com/zh/open-search/">一站式智能搜索业务开发平台：智能开放搜索 OpenSearch</a></li>
+<li>来源：阿里云：智能开放搜索 OpenSearch</li>
+<li>摘要：阿里云 OpenSearch 是一个分布式搜索平台，覆盖查询理解、机器学习排序、向量检索、召回、评估以及 LLM/RAG 组件。对推荐系统而言，它提供了从查询解析、候选召回到排序和评测的一体化工程入口，可借鉴其多阶段检索、向量与关键词混合以及在线服务能力。</li>
+<li>核心贡献/可借鉴：把查询理解、机器学习排序、向量召回、评估和 LLM/RAG 能力组合成可产品化的搜索与推荐基础平台。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.638</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、搜索与信息检索、排序、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.huaweicloud.com/tags/200293/blog_1">推荐系统 RES 博客</a></li>
+<li>来源：华为云：推荐系统 RES 博客</li>
+<li>摘要：华为云 RES 标签页汇总推荐系统相关博客与工程文档，覆盖召回、排序和推荐服务等主题。它更适合作为工程实现和产品化能力的入口，而不是单篇论文的实验结论。</li>
+<li>核心贡献/可借鉴：提供围绕推荐召回、排序和服务化落地的工程文章与文档索引。</li>
+<li>🔎 相关性 4.4 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.218</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与召回与候选生成、排序、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.volcengine.com/articles/7599494081681981481">一文读懂推荐系统中的 Debias</a></li>
+<li>来源：字节跳动：一文读懂推荐系统中的 debias</li>
+<li>摘要：字节跳动解释推荐系统中的位置偏差、曝光偏差和选择偏差，并说明隐式反馈标签为什么不能被直接视为无偏的用户偏好。文章适合作为粗排、重排和离线评估中的去偏检查清单，帮助区分用户没有点击、没有看到和不感兴趣这几类不同信号。</li>
+<li>核心贡献/可借鉴：把位置、曝光和选择偏差放在同一套推荐反馈解释框架中，强调在训练和评估前先校正观测数据的生成过程。</li>
+<li>🔎 相关性 4.1 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.083</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排、评估、去偏与公平性相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.volcengine.com/articles/7599494337362559017">为君作磐石：人人都能搭建大规模推荐系统</a></li>
+<li>来源：字节跳动：人人都能搭建大规模推荐系统</li>
+<li>摘要：字节跳动从训练和在线服务两个方面介绍大规模个性化推荐的工程挑战，覆盖多目标预测、分布式 Embedding、特征一致性和实时服务。文章更适合用来梳理一个推荐系统从模型指标走向生产时必须补齐的基础设施与监控能力。</li>
+<li>核心贡献/可借鉴：总结大规模推荐从多目标建模、分布式参数存储、特征一致性到实时推理服务的关键工程问题。</li>
+<li>🔎 相关性 3.8 · ✨ 新颖性 1.0 · 🧩 难度 3.1 · 🎯 优先级 1.888</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排、服务、延迟与基础设施相关；相关性较高（实现难度 3.1/5）</li>
+<li><a href="https://developer.huawei.com/consumer/cn/hnc-recommendationservice/">信息流内容推荐服务</a></li>
+<li>来源：华为开发者：信息流内容推荐服务</li>
+<li>摘要：华为提供的信息流内容推荐服务融合用户个性化、内容热度、内容相关性、内容质量和多种内容类型，面向内容分发效率与业务转化。它可以作为推荐服务产品化的参考入口，重点关注多目标融合、实时推荐和 A/B 测试接口。</li>
+<li>核心贡献/可借鉴：将个性化、热度、相关性、内容质量和多内容类型组合为可部署的信息流推荐服务。</li>
+<li>🔎 相关性 2.8 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.498</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.6/5）</li>
+</ul>
+<h2>🗂️ 论文结构化卡片</h2>
+<h3>FSGR：缓解基于语义 ID 的生成式推荐中的 Token 频率偏差</h3>
+<ul>
+<li>原文标题：FSGR: Mitigating Token Frequency Bias for Fair SID-Based Generative Recommendation</li>
+<li>原始链接：https://arxiv.org/abs/2608.12845</li>
+<li>中文摘要：基于语义 ID（SID）的生成式推荐把物品表示为由多个语义 token 组成的标识符，但现有方法存在一个容易被忽视的公平性问题：高频 SID token 会被系统性过度预测，低频 token 则被低估，形成 Token 频率偏差。论文认为，这一问题来自 SID 构造阶段语义码本不均衡，以及推荐训练中的流行度偏差和最大似然目标共同作用，最终造成不同物品类别之间的曝光不公平。直接把大语言模型去偏方法用于 SID 推荐效果有限，因为 SID token 具有层级语义。为此，论文提出 FSGR 公平性优化框架，在 SID 构造阶段使用基于最优传输的分配优化和双标准重新锚定机制，构造更均衡的 SID 表示空间，再缓解生成式推荐中的频率偏差。</li>
+<li>核心贡献：提出 FSGR 公平性优化框架，针对 SID 构造和生成式推荐训练中的 Token 频率偏差，联合优化语义标识符空间与下游推荐公平性。</li>
+<li>方法：校准, 生成式推荐, 偏差校正, 公平性, 大语言模型（LLM）</li>
+<li>局限性：现有 SID 生成式推荐方法可能存在 Token 频率偏差：高频语义 token 被过度预测，低频 token 被低估，进而形成曝光不公平。</li>
+<li>未来方向：进一步研究语义码本均衡、生成式推荐公平性和准确率之间的权衡，以及不同 SID 层级结构在长尾物品上的影响。</li>
+<li>拓展阅读：<a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3">GenRec：迈向 Netflix 的 LLM 原生推荐</a>（业界大模型原生推荐架构实践，可对照生成式推荐的物品表示、解码和公平性约束。）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：排序、粗排与重排, 生成式/大模型推荐, 评估、去偏与公平性</li>
+<li>证据：matched keywords: bias, calibration, fairness, generative recommendation；categories/venue: OpenAlex index</li>
+<li>小型实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+</ul>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li>小实验：大规模异构图召回在美团到店推荐广告中的应用</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：把异构图中的长期兴趣与短期时空行为结合到到店推荐广告召回链路，并同时讨论大规模训练与低延迟服务。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：FSGR：缓解基于语义 ID 的生成式推荐中的 Token 频率偏差</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：提出 FSGR 公平性优化框架，针对 SID 构造和生成式推荐训练中的 Token 频率偏差，联合优化语义标识符空间与下游推荐公平性。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：一站式智能搜索业务开发平台：智能开放搜索 OpenSearch</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：把查询理解、机器学习排序、向量召回、评估和 LLM/RAG 能力组合成可产品化的搜索与推荐基础平台。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：小型公开数据集或合成隐式反馈数据</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：推荐系统 RES 博客</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：提供围绕推荐召回、排序和服务化落地的工程文章与文档索引。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：一文读懂推荐系统中的 Debias</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：把位置、曝光和选择偏差放在同一套推荐反馈解释框架中，强调在训练和评估前先校正观测数据的生成过程。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+</ul>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>今日深读：FSGR：缓解基于语义 ID 的生成式推荐中的 Token 频率偏差</li>
+<li>本周尝试：小实验：大规模异构图召回在美团到店推荐广告中的应用</li>
+<li>来源补强：继续补充尚未被订阅源覆盖的顶会页面和大厂文章链接。</li>
+</ul></main></body>
+</html>
