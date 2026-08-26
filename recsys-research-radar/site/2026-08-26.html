@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-08-26</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-08-26</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个自然日窗口；日报精选上限：8 项。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口新增 8 项与推荐算法相关的论文或业界文章，其中 2 项适合深读或尝试实验。<br> 优先阅读：<a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告的应用</a>；原文标题：大规模异构图召回在美团到店推荐广告的应用；原因：与召回与候选生成、图与知识增强推荐、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 2.8/5）</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 1</li>
+<li>historical: 4</li>
+<li>manual: 9</li>
+<li>openreview: 0</li>
+<li>rss: 1</li>
+<li>来源错误：无</li>
+<li>来源备注：</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 56.; curl: (56) The requested URL returned error: 429</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15007 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15011 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15010 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15007 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15011 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15004 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15011 milliseconds with 0 bytes received&gt;</li>
+<li>arXiv fallback used: OpenAlex index of arXiv-linked works</li>
+<li>warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; use the official conference portal when no credential is configured</li>
+<li>Manual URL fetch failed for https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3: HTTP Error 403: Forbidden</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>排序、粗排与重排：6 项</li>
+<li>召回与候选生成：3 项</li>
+<li>评估、去偏与公平性：2 项</li>
+<li>服务、延迟与基础设施：2 项</li>
+<li>广告与市场排序：1 项</li>
+<li>探索、强化学习与因果评估：1 项</li>
+<li>趋势：排序/重排正在与延迟、吞吐和服务架构联合优化。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<p>本窗口暂无明确命中粗排/重排关键词的条目。</p>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>Meta Engineering: 1</li>
+<li>华为云：推荐系统 RES 博客: 1</li>
+<li>华为开发者：信息流内容推荐服务: 1</li>
+<li>字节跳动：一文读懂推荐系统中的 debias: 1</li>
+<li>字节跳动：人人都能搭建大规模推荐系统: 1</li>
+<li>美团：大规模异构图召回在到店推荐广告的应用: 1</li>
+<li>阿里云：智能开放搜索 OpenSearch: 1</li>
+</ul>
+<h3>文章结构化摘要</h3>
+<p>#### 大规模异构图召回在美团到店推荐广告的应用</p>
+<ul>
+<li>原始标题：大规模异构图召回在美团到店推荐广告的应用</li>
+<li>来源：美团：大规模异构图召回在到店推荐广告的应用；发布时间：2022-11-24</li>
+<li>原始链接：<a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html</a></li>
+<li>中文摘要：美团介绍在到店推荐广告中落地大规模异构图召回：把用户、商品、店铺、时间和地理关系建图，用图神经网络建模长期兴趣，再与短期时空序列融合；同时通过离线 Embedding、KV 缓存和并行特征抽取控制线上延迟。文章报告离线 Hitrate 提升，以及线上 RPS 累计提升约 10%–15%。</li>
+<li>核心贡献/可借鉴：把异构图召回从模型设计推进到亿级节点、百亿级边训练和低延迟在线部署，适合借鉴“图召回 + 时空用户建模 + 服务优化”的完整链路。</li>
+<li>方法/关键机制：召回/检索, 召回, 异构图, 在线服务, 延迟优化, 交易/市场</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 2.0 · 🧩 难度 2.8 · 🎯 优先级 2.914</li>
+<li>🧪 建议：尝试小实验</li>
+</ul>
+<p>#### 一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</p>
+<ul>
+<li>原始标题：一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</li>
+<li>来源：阿里云：智能开放搜索 OpenSearch；发布时间：未标注</li>
+<li>原始链接：<a href="https://help.aliyun.com/zh/open-search/">https://help.aliyun.com/zh/open-search/</a></li>
+<li>中文摘要：阿里云 OpenSearch 是面向搜索和 RAG 的一站式平台，包含查询语义理解、机器学习排序、向量检索、召回、效果评估和 LLM 服务，可迁移到推荐的召回与重排链路。</li>
+<li>核心贡献/可借鉴：值得借鉴的是把查询理解、召回、排序和评估做成可组合组件，并把向量检索与传统排序放在同一条可观测链路中。</li>
+<li>方法/关键机制：召回/检索, 查询理解, 排序, 检索增强生成（RAG）, 大语言模型（LLM）</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.638</li>
+<li>🧪 建议：尝试小实验</li>
+</ul>
+<p>#### 推荐系统 RES 博客</p>
+<ul>
+<li>原始标题：推荐系统 RES 博客</li>
+<li>来源：华为云：推荐系统 RES 博客；发布时间：未标注</li>
+<li>原始链接：<a href="https://developer.huaweicloud.com/tags/200293/blog_1">https://developer.huaweicloud.com/tags/200293/blog_1</a></li>
+<li>中文摘要：华为云 RES 推荐系统标签聚合页，集中提供召回、排序和推荐服务相关的工程文章入口；这是来源目录页，不应被当作单篇技术结论。</li>
+<li>核心贡献/可借鉴：适合做粗排、精排和推荐工程的补充检索入口，具体方法需要进入单篇文章后再核验。</li>
+<li>方法/关键机制：召回/检索, 排序</li>
+<li>🔎 相关性 4.4 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.218</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### 一文读懂推荐系统中的 Debias</p>
+<ul>
+<li>原始标题：一文读懂推荐系统中的 debias</li>
+<li>来源：字节跳动：一文读懂推荐系统中的 debias；发布时间：2026-01-26</li>
+<li>原始链接：<a href="https://developer.volcengine.com/articles/7599494081681981481">https://developer.volcengine.com/articles/7599494081681981481</a></li>
+<li>中文摘要：字节跳动梳理推荐系统中的位置偏差、曝光偏差和选择偏差，解释为什么“未点击”不一定等于负反馈，以及这些偏差如何沿着曝光、反馈、训练和评估链路累积。</li>
+<li>核心贡献/可借鉴：适合作为去偏实验的概念地图：先区分展现与真正曝光，再比较随机负采样、重加权和反事实评估对长尾内容与排序指标的影响。</li>
+<li>方法/关键机制：排序, 去偏, 偏差建模</li>
+<li>🔎 相关性 4.1 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.083</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### 为君作磐石——人人都能搭建大规模推荐系统</p>
+<ul>
+<li>原始标题：为君作磐石——人人都能搭建大规模推荐系统</li>
+<li>来源：字节跳动：人人都能搭建大规模推荐系统；发布时间：未标注</li>
+<li>原始链接：<a href="https://developer.volcengine.com/articles/7599494337362559017">https://developer.volcengine.com/articles/7599494337362559017</a></li>
+<li>中文摘要：字节跳动从训练和 Serving 两条线讲解大规模推荐系统：多目标预估、百亿到万亿级样本、超大 Embedding、分布式训练、特征一致性和实时模型更新都需要一起设计。</li>
+<li>核心贡献/可借鉴：更像一张工业系统架构地图，适合用来检查自己的推荐链路是否遗漏训练吞吐、模型存储、在线特征一致性和回滚监控等基础能力。</li>
+<li>方法/关键机制：排序, 在线服务, 实时处理</li>
+<li>🔎 相关性 3.8 · ✨ 新颖性 1.0 · 🧩 难度 3.1 · 🎯 优先级 1.888</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### MTIA 300：首款内置网卡与通信卸载引擎的 Meta 训练芯片</p>
+<ul>
+<li>原始标题：MTIA 300: Meta’s First Training Chip with Built-in NICs and Communication-Offloading Engines</li>
+<li>来源：Meta Engineering；发布时间：Mon, 24 Aug 2026 17:45:52 +0000</li>
+<li>原始链接：<a href="https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/">https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/</a></li>
+<li>中文摘要：Meta 介绍 MTIA 300 这款面向排序与推荐模型训练、推理的自研加速器，重点说明内置 NIC 芯粒如何承担分布式训练通信，以及通信库 HCCL 如何与芯片协同设计。</li>
+<li>核心贡献/可借鉴：把推荐与排序模型训练的网络通信卸载纳入芯片和通信库的协同设计，通过内置 NIC 芯粒与 HCCL 降低分布式训练通信开销；文章主要说明基础设施能力，不是推荐效果论文。</li>
+<li>方法/关键机制：排序, 推荐模型训练, 通信卸载, 分布式训练, 专用硬件</li>
+<li>🔎 相关性 2.8 · ✨ 新颖性 1.4 · 🧩 难度 2.6 · 🎯 优先级 1.618</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<p>#### 信息流内容推荐服务</p>
+<ul>
+<li>原始标题：信息流内容推荐服务</li>
+<li>来源：华为开发者：信息流内容推荐服务；发布时间：未标注</li>
+<li>原始链接：<a href="https://developer.huawei.com/consumer/cn/hnc-recommendationservice/">https://developer.huawei.com/consumer/cn/hnc-recommendationservice/</a></li>
+<li>中文摘要：华为提供信息流内容推荐服务，融合用户个性化、内容热度、内容相关性、精品调性和多内容类型，面向内容分发效率与经营转化。</li>
+<li>核心贡献/可借鉴：可作为推荐服务产品化的参考入口，重点关注多目标融合、内容质量约束、实时推荐和 A/B 测试接口。</li>
+<li>方法/关键机制：排序</li>
+<li>🔎 相关性 2.8 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.498</li>
+<li>📝 建议：快速总结</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">点击率预测的深度兴趣网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2304.07278">强化学习中的极小极大最优无奖励探索</a></li>
+<li>原文标题：Minimax-Optimal Reward-Agnostic Exploration in Reinforcement Learning</li>
+<li>来源：arXiv (OpenAlex fallback)（arxiv）</li>
+<li>🔎 相关性 1.9 · ✨ 新颖性 1.9 · 🧩 难度 1.5 · 🎯 优先级 1.7</li>
+<li>👀 建议：持续跟踪</li>
+<li>原因：与探索、强化学习与因果评估、评估、去偏与公平性相关；适合先做小型实验（实现难度 1.5/5）</li>
+</ul>
+<h2>📝 业界文章深读队列</h2>
+<ul>
+<li><a href="https://tech.meituan.com/2022/11/24/Application-of-Large-scale-Heterogeneous-Graph-in-Meituan-Recommended-Ads.html">大规模异构图召回在美团到店推荐广告的应用</a></li>
+<li>来源：美团：大规模异构图召回在到店推荐广告的应用</li>
+<li>摘要：美团介绍在到店推荐广告中落地大规模异构图召回：把用户、商品、店铺、时间和地理关系建图，用图神经网络建模长期兴趣，再与短期时空序列融合；同时通过离线 Embedding、KV 缓存和并行特征抽取控制线上延迟。文章报告离线 Hitrate 提升，以及线上 RPS 累计提升约 10%–15%。</li>
+<li>核心贡献/可借鉴：把异构图召回从模型设计推进到亿级节点、百亿级边训练和低延迟在线部署，适合借鉴“图召回 + 时空用户建模 + 服务优化”的完整链路。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 2.0 · 🧩 难度 2.8 · 🎯 优先级 2.914</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、图与知识增强推荐、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 2.8/5）</li>
+<li><a href="https://help.aliyun.com/zh/open-search/">一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</a></li>
+<li>来源：阿里云：智能开放搜索 OpenSearch</li>
+<li>摘要：阿里云 OpenSearch 是面向搜索和 RAG 的一站式平台，包含查询语义理解、机器学习排序、向量检索、召回、效果评估和 LLM 服务，可迁移到推荐的召回与重排链路。</li>
+<li>核心贡献/可借鉴：值得借鉴的是把查询理解、召回、排序和评估做成可组合组件，并把向量检索与传统排序放在同一条可观测链路中。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.638</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、搜索与信息检索、排序、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.huaweicloud.com/tags/200293/blog_1">推荐系统 RES 博客</a></li>
+<li>来源：华为云：推荐系统 RES 博客</li>
+<li>摘要：华为云 RES 推荐系统标签聚合页，集中提供召回、排序和推荐服务相关的工程文章入口；这是来源目录页，不应被当作单篇技术结论。</li>
+<li>核心贡献/可借鉴：适合做粗排、精排和推荐工程的补充检索入口，具体方法需要进入单篇文章后再核验。</li>
+<li>🔎 相关性 4.4 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.218</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与召回与候选生成、排序、粗排与重排相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.volcengine.com/articles/7599494081681981481">一文读懂推荐系统中的 Debias</a></li>
+<li>来源：字节跳动：一文读懂推荐系统中的 debias</li>
+<li>摘要：字节跳动梳理推荐系统中的位置偏差、曝光偏差和选择偏差，解释为什么“未点击”不一定等于负反馈，以及这些偏差如何沿着曝光、反馈、训练和评估链路累积。</li>
+<li>核心贡献/可借鉴：适合作为去偏实验的概念地图：先区分展现与真正曝光，再比较随机负采样、重加权和反事实评估对长尾内容与排序指标的影响。</li>
+<li>🔎 相关性 4.1 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 2.083</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排、评估、去偏与公平性相关；相关性较高；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.volcengine.com/articles/7599494337362559017">为君作磐石——人人都能搭建大规模推荐系统</a></li>
+<li>来源：字节跳动：人人都能搭建大规模推荐系统</li>
+<li>摘要：字节跳动从训练和 Serving 两条线讲解大规模推荐系统：多目标预估、百亿到万亿级样本、超大 Embedding、分布式训练、特征一致性和实时模型更新都需要一起设计。</li>
+<li>核心贡献/可借鉴：更像一张工业系统架构地图，适合用来检查自己的推荐链路是否遗漏训练吞吐、模型存储、在线特征一致性和回滚监控等基础能力。</li>
+<li>🔎 相关性 3.8 · ✨ 新颖性 1.0 · 🧩 难度 3.1 · 🎯 优先级 1.888</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排、服务、延迟与基础设施相关；相关性较高（实现难度 3.1/5）</li>
+<li><a href="https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/">MTIA 300：首款内置网卡与通信卸载引擎的 Meta 训练芯片</a></li>
+<li>来源：Meta Engineering</li>
+<li>摘要：Meta 介绍 MTIA 300 这款面向排序与推荐模型训练、推理的自研加速器，重点说明内置 NIC 芯粒如何承担分布式训练通信，以及通信库 HCCL 如何与芯片协同设计。</li>
+<li>核心贡献/可借鉴：把推荐与排序模型训练的网络通信卸载纳入芯片和通信库的协同设计，通过内置 NIC 芯粒与 HCCL 降低分布式训练通信开销；文章主要说明基础设施能力，不是推荐效果论文。</li>
+<li>🔎 相关性 2.8 · ✨ 新颖性 1.4 · 🧩 难度 2.6 · 🎯 优先级 1.618</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.6/5）</li>
+<li><a href="https://developer.huawei.com/consumer/cn/hnc-recommendationservice/">信息流内容推荐服务</a></li>
+<li>来源：华为开发者：信息流内容推荐服务</li>
+<li>摘要：华为提供信息流内容推荐服务，融合用户个性化、内容热度、内容相关性、精品调性和多内容类型，面向内容分发效率与经营转化。</li>
+<li>核心贡献/可借鉴：可作为推荐服务产品化的参考入口，重点关注多目标融合、内容质量约束、实时推荐和 A/B 测试接口。</li>
+<li>🔎 相关性 2.8 · ✨ 新颖性 1.0 · 🧩 难度 2.6 · 🎯 优先级 1.498</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.6/5）</li>
+</ul>
+<h2>🗂️ 论文结构化卡片</h2>
+<h3>强化学习中的极小极大最优无奖励探索</h3>
+<ul>
+<li>原文标题：Minimax-Optimal Reward-Agnostic Exploration in Reinforcement Learning</li>
+<li>原始链接：https://arxiv.org/abs/2304.07278</li>
+<li>中文摘要：论文研究奖励无关探索：学习器在探索阶段不知道奖励函数，先在有限时域、非齐次马尔可夫决策过程中收集轨迹，再为一组可能的奖励函数寻找近似最优策略。作者提出一种接近极小极大最优的探索方案，并进一步讨论对任意、甚至对抗设计的奖励函数进行无奖励探索。摘要中的样本复杂度公式在元数据中被截断，需以论文原文核验。</li>
+<li>核心贡献：提出接近极小极大最优的奖励无关探索框架，并给出样本量足够时面向任意奖励函数的保证；对推荐的直接价值在于把探索数据采集与后续多目标奖励设计解耦，但仍需在推荐日志上验证。</li>
+<li>方法：强化学习, 探索, 奖励无关探索, 离线策略评估, 反事实评估</li>
+<li>局限性：论文建立在有限时域马尔可夫决策过程等理论假设上，不能直接等同于推荐系统中的曝光、点击和长期价值反馈。；元数据中的公式和部分技术细节被截断，当前日报不据此补写精确理论结论。</li>
+<li>未来方向：在带曝光日志的推荐环境中检验奖励无关探索对多目标排序和长期价值学习的帮助。；结合离线策略评估与流行度分层，比较探索数据覆盖、估计偏差和线上候选质量之间的权衡。</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：探索、强化学习与因果评估, 评估、去偏与公平性</li>
+<li>证据：matched keywords: exploration, novelty, reinforcement learning；categories/venue: OpenAlex index</li>
+<li>小型实验：针对论文提出的去偏或探索方法，运行一个离线策略评估玩具实验。</li>
+</ul>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li>小实验：大规模异构图召回在美团到店推荐广告的应用</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：美团介绍了面向到店推荐广告的生产级异构图召回系统，覆盖图建模、大规模训练和低延迟在线服务。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：一站式智能搜索业务开发平台——智能开放搜索 OpenSearch</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：阿里云 OpenSearch 将查询理解、机器学习排序、向量召回、评估和 LLM/RAG 组件组合成一站式搜索开发平台，可迁移为推荐系统的多阶段检索与排序基础设施。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：小型公开数据集或合成隐式反馈数据</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：推荐系统 RES 博客</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：华为云 RES 标签页汇总推荐系统召回、排序和推荐服务相关博客与工程文档，更适合作为工程实践索引而非单篇论文结论。</li>
+<li>实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+<li>基线：矩阵分解或 BM25 风格的流行度召回</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：Recall@50、NDCG@50，以及 Embedding 构建/查询耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：一文读懂推荐系统中的 Debias</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：字节跳动把位置偏差、曝光偏差和选择偏差放在同一套推荐反馈解释框架中，强调隐式反馈不能直接等同于无偏的用户偏好。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：为君作磐石——人人都能搭建大规模推荐系统</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：字节跳动从训练和 Serving 两条线梳理大规模推荐系统，强调多目标预估、超大 Embedding、分布式训练、特征一致性和实时模型更新需要协同设计。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：MovieLens-small 或合成隐式反馈矩阵</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+</ul>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>今日深读：强化学习中的极小极大最优无奖励探索</li>
+<li>本周尝试：小实验：大规模异构图召回在美团到店推荐广告的应用</li>
+<li>后续跟踪：强化学习中的极小极大最优无奖励探索</li>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
+</ul></main></body>
+</html>
