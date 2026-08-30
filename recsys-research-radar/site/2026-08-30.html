@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-08-30</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-08-30</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个自然日窗口；日报精选上限：8 项。</blockquote>
+<blockquote>已自动去重：7 项此前已出现在日报中；可用 <code>--include-seen</code> 重新展示。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口没有新的未重复内容；已过滤 7 项此前已报道的条目。</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 0</li>
+<li>historical: 4</li>
+<li>manual: 9</li>
+<li>openreview: 0</li>
+<li>rss: 1</li>
+<li>来源错误：无</li>
+<li>来源备注：</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15010 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15007 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' timed out after 25.0 seconds; curl: (56) The requested URL returned error: 429&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15009 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15008 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15009 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (56) The requested URL returned error: 429</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' timed out after 25.0 seconds; curl: (56) The requested URL returned error: 429&gt;</li>
+<li>warning: Semantic Scholar fallback skipped: set SEMANTIC_SCHOLAR_API_KEY for this optional source</li>
+<li>warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; use the official conference portal when no credential is configured</li>
+<li>Manual URL fetch failed for https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3: HTTP Error 403: Forbidden</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<p>今日新增不足以形成稳定主题聚类。</p>
+<h2>🔀 粗排与重排专题</h2>
+<p>本窗口暂无明确命中粗排/重排关键词的条目。</p>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>本窗口没有相关的大厂文章卡片。</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">点击率预测的深度兴趣网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<p>暂无论文深读候选。</p>
+<h2>📝 业界文章深读队列</h2>
+<p>本窗口没有达到深读阈值的业界文章；相关条目仍见上方“大厂技术文章覆盖”。</p>
+<h2>🗂️ 论文结构化卡片</h2>
+<h2>💡 研究创意与小型实验</h2>
+<p>本窗口没有生成有明确来源依据的小型实验创意。</p>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
+</ul></main></body>
+</html>
