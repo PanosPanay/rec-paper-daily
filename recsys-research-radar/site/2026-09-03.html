@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-09-03</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-09-03</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个自然日窗口；日报精选上限：8 项。</blockquote>
+<blockquote>已自动去重：6 项此前已出现在日报中；可用 <code>--include-seen</code> 重新展示。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口新增 9 项与推荐算法相关的论文或业界文章，其中 1 项适合深读或尝试实验。<br> 优先阅读：<a href="https://arxiv.org/pdf/2609.02162v1">GenCAR：面向分布外推荐的生成式反事实对齐与风险控制选择</a>；原文标题：GenCAR: Generative Counterfactual Alignment with Risk-Controlled Selection for Out-of-Distribution Recommendation；原因：与排序、粗排与重排、探索、强化学习与因果评估、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 1.5/5）</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 20</li>
+<li>historical: 4</li>
+<li>manual: 9</li>
+<li>openreview: 0</li>
+<li>rss: 0</li>
+<li>来源错误：无</li>
+<li>来源备注：</li>
+<li>warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; use the official conference portal when no credential is configured</li>
+<li>Manual URL fetch failed for https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3: HTTP Error 403: Forbidden</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>探索、强化学习与因果评估：3 项</li>
+<li>服务、延迟与基础设施：3 项</li>
+<li>召回与候选生成：2 项</li>
+<li>评估、去偏与公平性：1 项</li>
+<li>多模态推荐：1 项</li>
+<li>排序、粗排与重排：1 项</li>
+<li>趋势：排序/重排正在与延迟、吞吐和服务架构联合优化。</li>
+<li>趋势：用户建模重点从更长历史转向更有结构的序列和多兴趣状态。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<p>本窗口暂无明确命中粗排/重排关键词的条目。</p>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>本窗口没有相关的大厂文章卡片。</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">点击率预测的深度兴趣网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<ul>
+<li><a href="https://arxiv.org/pdf/2609.02162v1">GenCAR：面向分布外推荐的生成式反事实对齐与风险控制选择</a></li>
+<li>原文标题：GenCAR: Generative Counterfactual Alignment with Risk-Controlled Selection for Out-of-Distribution Recommendation</li>
+<li>来源：arXiv（arxiv）</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 1.0 · 🧩 难度 1.5 · 🎯 优先级 2.825</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与排序、粗排与重排、探索、强化学习与因果评估、服务、延迟与基础设施相关；相关性较高；适合先做小型实验（实现难度 1.5/5）</li>
+</ul>
+<h2>📝 业界文章深读队列</h2>
+<p>本窗口没有达到深读阈值的业界文章；相关条目仍见上方“大厂技术文章覆盖”。</p>
+<h2>🗂️ 论文结构化卡片</h2>
+<h3>GenCAR：面向分布外推荐的生成式反事实对齐与风险控制选择</h3>
+<ul>
+<li>原文标题：GenCAR: Generative Counterfactual Alignment with Risk-Controlled Selection for Out-of-Distribution Recommendation</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02162v1</li>
+<li>中文摘要：在分布偏移下提供有用推荐，对于平衡分布外（OOD）推荐中的效用与风险至关重要。现有多数 OOD 方法改进排序或构造反事实候选，却没有控制已服务集合中代理标签的错误发现率（FDR）。论文将 OOD 服务形式化为 α-Valid Counterfactual Recommendation（α-VCR）问题：在保留从反事实监督中学习到的候选支持的同时，控制代理标签 FDR。作者提出 GenCAR，将基于偏好的反事实监督与校准集合选择结合：固定稳定偏好表示、对环境因素做干预；通过偏好锚点和信任半径过滤为离线大语言模型提议提供依据；使用保形 p 值和 Benjamini–Hochberg 进行选择。论文在可交换性和正回归依赖假设下给出条件反事实近似误差界与有限样本、分布无关的代理标签 FDR 控制，并在任意依赖下给出 Benjamini–Yekutieli 保证；实验细节在当前摘要中被截断。</li>
+<li>核心贡献：将分布外推荐服务表述为 α-VCR 问题，并提出 GenCAR：把基于偏好的反事实监督、偏好锚点与信任半径过滤、保形 p 值和风险控制集合选择结合起来，在扩展候选支持的同时控制代理标签错误发现率。</li>
+<li>方法：排序, 反事实学习/评估, 在线服务</li>
+<li>局限性：理论保证依赖可交换性、正回归依赖或任意依赖下相应的统计假设；代理标签、环境干预和风险阈值在真实推荐中的定义与质量仍需单独验证。</li>
+<li>未来方向：未明确说明</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：排序、粗排与重排, 探索、强化学习与因果评估, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: counterfactual, ranking, serving；categories/venue: cs.IR, cs.LG</li>
+<li>小型实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+</ul>
+<h3>超越模态协调：面向冲突感知多模态推荐的正交净化与拓扑引导 MoE</h3>
+<ul>
+<li>原文标题：Beyond Modality Harmony: Orthogonal Purification and Topology-Guided MoE for Conflict-Aware Multimodal Recommendation</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02152v1</li>
+<li>中文摘要：多模态推荐系统通常依赖有缺陷的‘模态协调’假设，认为多模态特征天然有益，并且与用户的协同交互模式严格一致。但在真实场景中，欺骗性的视觉标题党和语义不匹配会造成普遍的模态与拓扑冲突。盲目融合这些噪声模态会污染原本干净的协同空间，造成严重的表示失真。论文提出面向冲突感知多模态推荐的正交净化与拓扑引导混合专家框架 OrthoRec。其核心模块协同引导正交净化（CGOP）以协同锚点为参照，将多模态特征几何分解为平行方向和正交方向，通过自适应截断正交噪声并进行能量保持归一化，在保留模态内在表示能力的同时修正欺骗性的语义方向；同时设计拓扑感知路由混合专家（TAR-MoE）。</li>
+<li>核心贡献：提出 OrthoRec，用协同引导正交净化分离多模态信号与协同锚点之间的有用方向和冲突噪声，再用拓扑感知路由混合专家按协同结构处理不同模态信息。</li>
+<li>方法：多模态推荐</li>
+<li>局限性：真实场景中的欺骗性视觉标题党和语义不匹配会造成模态与协同拓扑冲突，直接融合多模态特征可能污染协同表示。</li>
+<li>未来方向：设计拓扑感知路由混合专家（TAR-MoE），由协同拓扑引导路由，以处理不同模态之间的冲突信息。</li>
+<li>数据集/基准：Amazon 评论数据</li>
+<li>主题：多模态推荐</li>
+<li>证据：matched keywords: multimodal recommendation；categories/venue: cs.IR, cs.AI</li>
+<li>小型实验：在物品召回基线上加入轻量图像/文本 Embedding，测量稀疏用户上的收益。</li>
+</ul>
+<h3>将推荐系统视为慢思考者与快思考者</h3>
+<ul>
+<li>原文标题：Recommender System as Slow and Fast Thinkers</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02671v1</li>
+<li>中文摘要：序列推荐模型是现代个性化服务的基础，但在不同用户环境中的效果差异很大。静态的单次推理模型可能擅长常见行为模式，却会在长历史用户或偏好非主流物品等挑战群体上退化。论文提出 DS-Frame，一种面向序列推荐的自适应快慢推理框架：快速系统负责高效的常规预测，慢速系统进行迭代式潜变量细化，学习得到的选择器则在可控计算预算下为每个样本路由推理路径。五个真实数据集上的实验显示，DS-Frame 能持续改善代表性序列推荐骨干模型，在挑战群体上收益更大，并形成有效的准确率与效率权衡。代码已公开。</li>
+<li>核心贡献：提出 DS-Frame，将快速常规预测、慢速潜变量迭代细化和可学习路由选择器结合，使序列推荐模型能够按样本难度分配推理计算预算。</li>
+<li>方法：序列推荐</li>
+<li>局限性：当前元数据的限制字段实际重复了方法动机：静态单次推理在长历史用户或非主流物品等挑战群体上可能退化；具体适用边界需以论文全文核验。</li>
+<li>未来方向：未明确说明</li>
+<li>拓展阅读：<a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a>（把用户兴趣演化引入序列行为建模）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：序列推荐与用户建模</li>
+<li>证据：matched keywords: sequential recommendation；categories/venue: cs.IR</li>
+<li>小型实验：在 MovieLens 或合成会话上，测试序列建模改动是否提升下一物品预测。</li>
+</ul>
+<h3>DMRL：面向广告推荐技能优化的文档介导强化学习</h3>
+<ul>
+<li>原文标题：DMRL: Document-Mediated Reinforcement Learning for Skill Optimization in Advertising Recommendation</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02170v1</li>
+<li>中文摘要：广告推荐需要持续调节复杂的系统参数，同时平衡商业回报与用户体验。近期工作尝试用带技能文档的大语言模型辅助这一劳动密集型过程，但技能优化大多仍由提示词驱动，缺少把奖励归因到具体文档修改的原则性机制。论文提出文档介导强化学习（DMRL），把技能自进化建模为一系列结构化编辑动作：上层智能体执行受控的文档修改，下层冻结的任务智能体通过 A/B 测试评估修改效果。为处理信用分配和长期结果，作者提出双相对策略优化（DRPO）以及长期奖励预测器（LRP），后者用解耦表示学习和交叉注意力迁移建模人群异质性。DMRL 已部署在大规模短视频广告平台上，摘要称其在主要广告指标上优于现有先进基线。</li>
+<li>核心贡献：提出 DMRL，把推荐技能文档的优化视为结构化编辑动作序列，并用上层文档编辑智能体、下层 A/B 评估智能体、风险感知的 DRPO 和长期奖励预测器处理信用分配与延迟收益。</li>
+<li>方法：强化学习</li>
+<li>局限性：现有带技能文档的 LLM 优化大多由提示词驱动，缺少将奖励归因到具体文档修改的原则性机制。；把技能文档修改作为策略动作并依赖 A/B 反馈，迁移到推荐时仍会受到实验成本、反馈延迟、策略安全和长期奖励估计误差的约束。</li>
+<li>未来方向：未明确说明</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：探索、强化学习与因果评估</li>
+<li>证据：matched keywords: reinforcement learning；categories/venue: cs.LG</li>
+<li>小型实验：针对论文提出的去偏或探索方法，运行一个离线策略评估玩具实验。</li>
+</ul>
+<h3>CAPTURE：分离个性化 LLM 智能体中的偏好漂移与记忆投毒</h3>
+<ul>
+<li>原文标题：CAPTURE: Disentangling Preference Drift from Memory Poisoning in Personalized LLM Agents</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02265v1</li>
+<li>中文摘要：个性化语言智能体使用持久记忆随时间适应用户，但同一机制也带来了攻击面。当新信息与已存偏好冲突时，智能体必须区分真实的偏好漂移、暂时的上下文变化、歧义和对抗性记忆投毒。论文将问题形式化为关于潜在用户状态的连续时间部分可观测决策过程，并说明仅依据新近性和来源无法解决该问题。CAPTURE 结合神经微分方程信念跟踪器、多时间尺度记忆账本、不确定性触发的澄清和对所引用记忆的反事实审计。在来自 96 名用户的 480 个留出回合上，CAPTURE 的胜率为 71.5%，同监督基线为 69.3%，最强启发式基线为 66.1%；固定策略投毒成功率为 11.5%，同时接受 83.5% 的真实偏好更新。在可访问发布权重的自适应攻击者下，攻击成功率上升到 24.7%，暴露出适应性与安全性的真实权衡。摘要后续内容被截断。</li>
+<li>核心贡献：提出 CAPTURE，用神经微分方程信念跟踪、多时间尺度记忆账本、不确定性触发澄清和反事实记忆审计，区分真实偏好更新与临时上下文变化或记忆投毒。</li>
+<li>方法：反事实学习/评估, 大语言模型（LLM）</li>
+<li>局限性：未明确说明</li>
+<li>未来方向：作者还在独立构建的基准上对冻结系统进行零样本评估，并回放从 40 名用户收集的、持续两到三周的纵向交互历史。</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：探索、强化学习与因果评估</li>
+<li>证据：matched keywords: counterfactual；categories/venue: cs.LG</li>
+<li>小型实验：针对论文提出的去偏或探索方法，运行一个离线策略评估玩具实验。</li>
+</ul>
+<h3>SPAR：通过真实世界空间感知增强工业级生成式 POI 推荐</h3>
+<ul>
+<li>原文标题：SPAR: Enhancing Industrial-Scale Generative POI Recommendation via Real-World Spatial Perception</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02062v1</li>
+<li>中文摘要：生成式兴趣点（POI）推荐通过自回归生成目标 POI 的语义 ID（SID），对位置服务很有潜力，因为只有用户能够到达的推荐才真正有用。然而，现有方法在由行为序列和协同信号定义的兴趣空间中运行，地理信息只是 SID 的文本属性，没有显式机制学习或保留城市地点之间的距离、方向和可达性关系，因此预测在行为上可能合理，却远离用户实时位置。论文认为，这类服务需要把真实城市空间知识注入兴趣空间，而不是仅从行为中推断地理关系。为此提出 SPAR，通过三个协同阶段构建、培育并保留城市空间知识；在分词层面，Spatially-Intrinsic SID（SI-SID）把经纬度坐标编码为正弦地理嵌入，并与文本语义嵌入融合，再通过 RQ-Kmeans 生成同时具有语义和地理属性的标识。摘要后续内容被截断。</li>
+<li>核心贡献：提出 SPAR，将经纬度编码、文本语义和生成式 SID 结合，把距离、方向和可达性等真实城市空间知识显式注入工业级 POI 推荐的兴趣空间。</li>
+<li>方法：实时处理, 大语言模型（LLM）</li>
+<li>局限性：未明确说明</li>
+<li>未来方向：未明确说明</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：服务、延迟与基础设施</li>
+<li>证据：matched keywords: real-time；categories/venue: cs.IR</li>
+<li>小型实验：在小型召回/排序服务中实现该服务优化原型，测量速度与质量的权衡。</li>
+</ul>
+<h3>ViSAR：无需训练的自适应 k 视觉文档检索</h3>
+<ul>
+<li>原文标题：ViSAR: Training-Free Adaptive-$k$ Retrieval for Visual Document Question Answering</li>
+<li>原始链接：https://arxiv.org/pdf/2609.02486v1</li>
+<li>中文摘要：视觉文档问答通常使用检索增强生成（RAG）：先用晚交互编码器找出与用户查询相关的文档页面，再由大型视觉语言模型生成答案。现有方法通常不论查询复杂度都检索固定数量的 top-k 页面，这会增加视觉语言模型延迟，也可能降低答案准确率。论文提出 ViSAR（Visual Semantic Activation Retrieval），一种无需训练的自适应 k 晚交互视觉文档检索方法。ViSAR 直接在嵌入空间构造由查询决定的页面级相似度矩阵，突出与查询相关的语义并动态决定检索页面数。在多个编码器和视觉语言模型上，ViSAR 生成紧凑且适配查询的页面集合，使 RAG 延迟最多降低 58.7%，同时相比固定 top-k 和自适应启发式方法保持或提升答案准确率。作者还发现相似度矩阵结构与答案准确率相关，这为检索质量感知的文档理解提供了方向。</li>
+<li>核心贡献：提出无需训练的 ViSAR，通过查询条件化页面相似度矩阵动态选择检索数量，使视觉文档 RAG 在保持答案质量的同时减少不必要的页面和大模型推理延迟。</li>
+<li>方法：召回/检索, 延迟优化, 检索增强生成（RAG）</li>
+<li>局限性：未明确说明</li>
+<li>未来方向：相似度矩阵结构与答案准确率之间的相关性提示，可以进一步研究面向检索质量的视觉文档理解和动态预算分配。</li>
+<li>拓展阅读：<a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a>（经典的候选生成与排序两阶段工业架构）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：召回与候选生成, 服务、延迟与基础设施</li>
+<li>证据：matched keywords: latency, retrieval；categories/venue: cs.IR, cs.AI, cs.CL, cs.CV</li>
+<li>小型实验：在小型隐式反馈矩阵上，对比双塔召回基线与论文提出的召回信号。</li>
+</ul>
+<h3>延迟 bandit 中的池化与漂移</h3>
+<ul>
+<li>原文标题：Pooling and Drift in Delayed Bandits</li>
+<li>原始链接：https://arxiv.org/pdf/2609.01761v1</li>
+<li>中文摘要：系统往往必须在很久之后才知道某个动作是否有效：推荐器几秒内看到点击，却可能数天后才看到购买。在有 K 个动作、延迟 d 轮和 T 轮交互的设置中，已知的最佳速率会随动作数量和延迟一起变贵。论文指出，如果结果只通过动作产生的状态依赖动作，那么一个延迟结果可以同时告知所有可能产生该状态的动作，学习代价应由真正不同的状态数量决定，而不是动作数量。作者用介于 1 和状态数之间的有效维度 v_t 度量这一点，并分析旋转算法、实践中使用的单副本算法，以及合并相似状态带来的显式偏差。论文还给出存在漂移方向时的下界；公式和后续实例在当前摘要中被截断。</li>
+<li>核心贡献：研究延迟反馈和状态漂移下的 bandit 学习，提出用有效维度刻画可区分状态数，说明池化相似状态可能降低延迟反馈推荐中的探索代价，但会引入可量化偏差。</li>
+<li>方法：偏差分析与延迟反馈 bandit</li>
+<li>局限性：未明确说明</li>
+<li>未来方向：如果结果只通过动作产生的状态依赖动作，一个延迟结果可以告知所有可能产生该状态的动作，学习成本由真正不同的状态数量决定，而不是动作数量。；作者用有效维度刻画状态复杂度，分析旋转算法和实践中的单副本算法；合并相似状态可以进一步降低成本，但会产生显式偏差。</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：评估、去偏与公平性</li>
+<li>证据：matched keywords: bias；categories/venue: stat.ML, cs.LG</li>
+<li>小型实验：在带有流行度分层的小型推荐基准上，测量该指标或去偏技巧的效果。</li>
+</ul>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li>小实验：GenCAR：面向分布外推荐的生成式反事实对齐与风险控制选择</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：GenCAR 将分布外推荐服务、反事实监督和风险控制集合选择结合起来；对推荐的直接迁移点是用校准的集合选择控制代理标签错误发现率，但代理标签和环境干预需要在真实日志上验证。</li>
+<li>实验：在公开点击数据子集上，分别训练加入和不加入该特征/目标的小型重排模型。</li>
+<li>基线：逻辑回归或 LambdaMART 风格排序基线</li>
+<li>数据集/设置：带已知倾向得分的合成 bandit 日志反馈</li>
+<li>指标：NDCG@10、AUC、校准误差和推理延迟</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：超越模态协调：面向冲突感知多模态推荐的正交净化与拓扑引导 MoE</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：OrthoRec 认为多模态特征可能与协同拓扑冲突，并用正交净化和拓扑感知路由专家抑制噪声；可在稀疏用户或模态污染切片上验证内容信号是否真正带来增益。</li>
+<li>实验：在物品召回基线上加入轻量图像/文本 Embedding，测量稀疏用户上的收益。</li>
+<li>基线：仅使用 ID 的协同过滤</li>
+<li>数据集/设置：小型公开数据集或合成隐式反馈数据</li>
+<li>指标：Recall@20，以及按用户历史长度分层的表现</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：将推荐系统视为慢思考者与快思考者</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：DS-Frame 按样本难度在快速常规预测和慢速潜变量细化之间路由计算预算；对推荐系统的可迁移点是把长历史、长尾物品用户作为困难样本进行自适应重排。</li>
+<li>实验：在 MovieLens 或合成会话上，测试序列建模改动是否提升下一物品预测。</li>
+<li>基线：流行度、item-kNN 或 SASRec-lite</li>
+<li>数据集/设置：将 MovieLens-1M 转为用户行为序列，或使用合成会话</li>
+<li>指标：HitRate@10、NDCG@10，以及冷启动分层结果</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：DMRL：面向广告推荐技能优化的文档介导强化学习</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：DMRL 把广告推荐技能文档修改作为强化学习动作，并用 A/B 反馈和长期奖励预测器做信用分配；可先在离线模拟器中验证文档修改、反馈延迟和风险约束的关系。</li>
+<li>实验：针对论文提出的去偏或探索方法，运行一个离线策略评估玩具实验。</li>
+<li>基线：IPS/SNIPS 或 epsilon-greedy 模拟器</li>
+<li>数据集/设置：带已知倾向得分的合成 bandit 日志反馈</li>
+<li>指标：模拟中的估计奖励偏差、方差和遗憾值</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>小实验：CAPTURE：分离个性化 LLM 智能体中的偏好漂移与记忆投毒</li>
+<li>假设：在小规模公开数据上，与简单基线相比，该方法或信号至少提升一个离线推荐指标。</li>
+<li>观察：CAPTURE 通过多时间尺度记忆、澄清和反事实审计区分真实偏好漂移与记忆投毒；对推荐代理的迁移点是为长期用户画像增加可信度、更新确认和安全回滚机制。</li>
+<li>实验：针对论文提出的去偏或探索方法，运行一个离线策略评估玩具实验。</li>
+<li>基线：IPS/SNIPS 或 epsilon-greedy 模拟器</li>
+<li>数据集/设置：带已知倾向得分的合成 bandit 日志反馈</li>
+<li>指标：模拟中的估计奖励偏差、方差和遗憾值</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+</ul>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>今日深读：GenCAR：面向分布外推荐的生成式反事实对齐与风险控制选择</li>
+<li>本周尝试：小实验：GenCAR：面向分布外推荐的生成式反事实对齐与风险控制选择</li>
+<li>后续跟踪：用于低成本检索模型选择的增量池化 LLM 评估</li>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
+</ul></main></body>
+</html>

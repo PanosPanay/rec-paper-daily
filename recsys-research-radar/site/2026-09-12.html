@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-09-12</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-09-12</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个自然日窗口；日报精选上限：8 项。</blockquote>
+<blockquote>已自动去重：7 项此前已出现在日报中；可用 <code>--include-seen</code> 重新展示。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口新增 1 项与推荐算法相关的论文或业界文章，其中 1 项适合深读或尝试实验。<br> 优先阅读：<a href="https://medium.com/pinterest-engineering/evolving-pinterests-embedding-retrieval-platform-aede4e831e01?source=rss----4c5a5f6279b6---4">Pinterest Embedding 召回平台的演进</a>；原文标题：Evolving Pinterest’s Embedding Retrieval Platform；原因：文章直接讨论大规模 Embedding 召回、ANN 索引和量化压缩，适合验证召回质量、索引内存与查询延迟之间的工程权衡；由于目前只有 RSS 摘要，深读前应打开原文核验细节。</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 0</li>
+<li>historical: 4</li>
+<li>manual: 9</li>
+<li>openreview: 0</li>
+<li>rss: 2</li>
+<li>来源错误：</li>
+<li>error: arXiv unavailable after mirror, OpenAlex, Semantic Scholar, and cache fallbacks</li>
+<li>来源备注：</li>
+<li>warning: arXiv export API returned HTTP 429 for some queries; other requests timed out after 15 seconds.</li>
+<li>warning: Semantic Scholar fallback skipped: no API key configured.</li>
+<li>warning: OpenReview skipped: API2 access token is not configured.</li>
+<li>Manual URL fetch failed for https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3: HTTP Error 403: Forbidden</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>排序、粗排与重排：1 项</li>
+<li>召回与候选生成：1 项</li>
+<li>服务、延迟与基础设施：1 项</li>
+<li>趋势：排序/重排正在与延迟、吞吐和服务架构联合优化。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<p>本窗口暂无明确命中粗排/重排关键词的条目。</p>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>Pinterest Engineering: 1</li>
+</ul>
+<h3>文章结构化摘要</h3>
+<p>#### Pinterest Embedding 召回平台的演进</p>
+<ul>
+<li>原始标题：Evolving Pinterest’s Embedding Retrieval Platform</li>
+<li>来源：Pinterest Engineering；发布时间：Fri, 11 Sep 2026 15:01:03 GMT</li>
+<li>原始链接：<a href="https://medium.com/pinterest-engineering/evolving-pinterests-embedding-retrieval-platform-aede4e831e01?source=rss----4c5a5f6279b6---4">https://medium.com/pinterest-engineering/evolving-pinterests-embedding-retrieval-platform-aede4e831e01?source=rss----4c5a5f6279b6---4</a></li>
+<li>中文摘要：Pinterest 工程文章介绍 Manas 自研分布式检索平台中的 Embedding 召回能力。RSS 摘要称该系统支持多种近似最近邻（ANN）算法、文本与向量混合查询和秒级实时更新，部署在 80 多个集群并服务数十亿级 Embedding，覆盖首页、搜索、Related Pins、广告和通知。摘要还指出，随着语料向数百亿级增长，成本、扩展性和灵活性成为挑战；当前未取得完整正文，后续技术细节和完整评测口径需回原文核验。</li>
+<li>核心贡献/可借鉴：可见摘要与条目要点显示，文章讨论如何扩展 Pinterest 的 Manas Embedding 召回平台，包括向量量化以降低索引内存，以及 SQ/PQ 与 HNSW/IVF 组合中的压缩率和召回权衡。RSS 还提及下一步采用 SPANN 和探索模型化检索；这些是摘要级信息，不能替代全文核验。</li>
+<li>方法/关键机制：召回/检索, 双塔召回, Embedding 召回, 排序, 在线服务, 实时处理</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 2.5 · 🧩 难度 2.1 · 🎯 优先级 3.253</li>
+<li>🧪 建议：尝试小实验</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">点击率预测的深度兴趣网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<p>暂无论文深读候选。</p>
+<h2>📝 业界文章深读队列</h2>
+<ul>
+<li><a href="https://medium.com/pinterest-engineering/evolving-pinterests-embedding-retrieval-platform-aede4e831e01?source=rss----4c5a5f6279b6---4">Pinterest Embedding 召回平台的演进</a></li>
+<li>来源：Pinterest Engineering</li>
+<li>摘要：Pinterest 工程文章介绍 Manas 自研分布式检索平台中的 Embedding 召回能力。RSS 摘要称该系统支持多种近似最近邻（ANN）算法、文本与向量混合查询和秒级实时更新，部署在 80 多个集群并服务数十亿级 Embedding，覆盖首页、搜索、Related Pins、广告和通知。摘要还指出，随着语料向数百亿级增长，成本、扩展性和灵活性成为挑战；当前未取得完整正文，后续技术细节和完整评测口径需回原文核验。</li>
+<li>核心贡献/可借鉴：可见摘要与条目要点显示，文章讨论如何扩展 Pinterest 的 Manas Embedding 召回平台，包括向量量化以降低索引内存，以及 SQ/PQ 与 HNSW/IVF 组合中的压缩率和召回权衡。RSS 还提及下一步采用 SPANN 和探索模型化检索；这些是摘要级信息，不能替代全文核验。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 2.5 · 🧩 难度 2.1 · 🎯 优先级 3.253</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：文章直接讨论大规模 Embedding 召回、ANN 索引和量化压缩，适合验证召回质量、索引内存与查询延迟之间的工程权衡；由于目前只有 RSS 摘要，深读前应打开原文核验细节。</li>
+</ul>
+<h2>🗂️ 论文结构化卡片</h2>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li>向量量化对推荐召回的质量、内存与延迟权衡</li>
+<li>假设：对推荐物品 Embedding 使用 SQ 或 PQ 可以降低 ANN 索引内存；PQ 的压缩更强但可能损失更多召回，SQ 则可能以较小的召回损失换取适度压缩。</li>
+<li>观察：Pinterest 的 Manas 平台文章摘要报告了 SQ/PQ 与 HNSW/IVF 的压缩率—召回权衡，并指出大规模 HNSW 索引的内存成本问题。由于目前只取得 RSS 摘要，实验假设来自该摘要，具体原文设置需复核。</li>
+<li>实验：在 MovieLens-1M 上训练 64 维矩阵分解物品向量，以用户历史向量作查询，使用 FAISS 构建 Flat、HNSW-SQ、IVF-SQ 和 IVF-PQ 索引；在固定候选数和查询集上比较推荐指标、ANN 近邻保持率、内存和 p95 延迟。</li>
+<li>基线：float32 精确向量检索（FAISS IndexFlatIP/IndexFlatL2，按向量归一化方式固定一种）。</li>
+<li>数据集/设置：MovieLens-1M 隐式反馈划分；用训练集拟合 64 维矩阵分解，用户历史构造查询向量；控制索引参数、候选数和查询硬件一致。</li>
+<li>指标：Recall@20、NDCG@20、相对精确检索的 ANN Recall@20、索引内存、构建时间及 p95 查询延迟。</li>
+<li>预计耗时：小规模 CPU 原型通常可在笔记本上完成；实际时长取决于矩阵分解和 FAISS 配置。</li>
+<li>失败模式：MovieLens 目录较小，测得的索引内存和延迟差异不能外推到十亿级语料。；PQ 压缩导致的近邻损失可能主要伤害长尾物品或稀疏用户，需要分层报告而不能只看总体指标。；不同 ANN 索引参数可能混入量化效果；若不固定候选数、召回阈值和硬件，质量—延迟比较不公平。</li>
+</ul>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>本周尝试：向量量化对推荐召回的质量、内存与延迟权衡</li>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
+</ul>
+<h2>🔎 可靠性说明</h2>
+<ul>
+<li>去重统计：本轮包含 1 项新增、7 项重复过滤、3 项历史精选；重复项未进入新增分析。</li>
+<li>arXiv：主站、镜像及备用索引本轮均不可用，arXiv 结果缺失；不能据此判断本窗口没有新论文。</li>
+<li>OpenReview：未配置 API 访问 token，本轮跳过 OpenReview API；这不等同于该来源没有新内容。</li>
+<li>业界来源：有 1 条手工链接未能抓取正文；保留链接，但摘要和结论需打开原文复核。</li>
+<li>证据边界：作者、机构、日期和结论只使用来源元数据或页面摘要；来源失败、缺字段和不确定信息不会被补写成确定事实。</li>
+</ul></main></body>
+</html>

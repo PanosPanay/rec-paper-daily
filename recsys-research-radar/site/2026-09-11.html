@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-09-11</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-09-11</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个自然日窗口；日报精选上限：8 项。</blockquote>
+<blockquote>已自动去重：6 项此前已出现在日报中；可用 <code>--include-seen</code> 重新展示。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口新增 1 项与推荐算法相关的论文或业界文章，其中 1 项适合深读或尝试实验。<br> 优先阅读：<a href="https://medium.com/pinterest-engineering/building-pinterests-vlm-serving-stack-on-nvidia-dynamo-0dce6e93d0f3?source=rss----4c5a5f6279b6---4">在 NVIDIA Dynamo 上构建 Pinterest 的 VLM 服务栈</a>；原文标题：Building Pinterest’s VLM Serving Stack on NVIDIA Dynamo；原因：与召回与候选生成、排序、粗排与重排、粗排与重排相关；相关性较高；包含明确的新颖性线索；适合先做小型实验（实现难度 2.4/5）</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 1</li>
+<li>historical: 4</li>
+<li>manual: 9</li>
+<li>openreview: 0</li>
+<li>rss: 1</li>
+<li>来源错误：无</li>
+<li>来源备注：</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15011 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15001 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15007 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15010 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15008 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15006 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15009 milliseconds with 0 bytes received&gt;</li>
+<li>arXiv fallback used: https://arxiv.org/api/query</li>
+<li>arXiv fallback used: OpenAlex index of arXiv-linked works</li>
+<li>OpenAlex arXiv fallback failed for generative recommendation: &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '30', '--retry-max-time', '20', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://api.openalex.org/works?search=generative+recommendation&amp;filter=from_publication_date%3A2026-09-09%2Cto_publication_date%3A2026-09-11&amp;per-page=20']' returned non-zero exit status 56.; curl: (56) The requested URL returned error: 429</li>
+<li>warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; use the official conference portal when no credential is configured</li>
+<li>Manual URL fetch failed for https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3: HTTP Error 403: Forbidden</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>粗排与重排：1 项</li>
+<li>排序、粗排与重排：1 项</li>
+<li>召回与候选生成：1 项</li>
+<li>服务、延迟与基础设施：1 项</li>
+<li>趋势：排序/重排正在与延迟、吞吐和服务架构联合优化。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<p>本专题只收录明确命中粗排、重排或级联排序关键词的条目，便于单独跟踪效果-延迟权衡。</p>
+<ul>
+<li><a href="https://medium.com/pinterest-engineering/building-pinterests-vlm-serving-stack-on-nvidia-dynamo-0dce6e93d0f3?source=rss----4c5a5f6279b6---4">在 NVIDIA Dynamo 上构建 Pinterest 的 VLM 服务栈</a> — Pinterest Engineering；尝试小实验</li>
+</ul>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>Pinterest Engineering: 1</li>
+</ul>
+<h3>文章结构化摘要</h3>
+<p>#### 在 NVIDIA Dynamo 上构建 Pinterest 的 VLM 服务栈</p>
+<ul>
+<li>原始标题：Building Pinterest’s VLM Serving Stack on NVIDIA Dynamo</li>
+<li>来源：Pinterest Engineering；发布时间：Thu, 10 Sep 2026 23:08:16 GMT</li>
+<li>原始链接：<a href="https://medium.com/pinterest-engineering/building-pinterests-vlm-serving-stack-on-nvidia-dynamo-0dce6e93d0f3?source=rss----4c5a5f6279b6---4">https://medium.com/pinterest-engineering/building-pinterests-vlm-serving-stack-on-nvidia-dynamo-0dce6e93d0f3?source=rss----4c5a5f6279b6---4</a></li>
+<li>中文摘要：Pinterest 文章介绍如何用 NVIDIA Dynamo 为视觉语言模型（VLM）构建生产服务栈，重点涉及预填充/解码解耦、KV 缓存卸载、多模态 KV 感知路由、PinCLIP 投影 Embedding、自动扩缩容和部署评估。RSS 本轮未返回完整正文；公开演讲页还概述了这些组件对首 token 延迟、端到端延迟和每输出 token 时间的报告性改进，具体数字需以原文和演讲材料核验。</li>
+<li>核心贡献/可借鉴：把多模态 VLM 的视觉编码、缓存、路由和推理阶段拆开优化，使大规模图像候选比较能够进入低延迟在线服务；对推荐的直接借鉴是把视觉内容表示、召回、粗排/重排和服务资源预算联动起来。</li>
+<li>方法/关键机制：召回/检索, 重排, 在线服务, 实时处理, 延迟优化, 大语言模型（LLM）, 预填充/解码解耦, KV 缓存感知路由</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 3.4 · 🧩 难度 2.4 · 🎯 优先级 3.487</li>
+<li>🧪 建议：尝试小实验</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">点击率预测的深度兴趣网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<p>暂无论文深读候选。</p>
+<h2>📝 业界文章深读队列</h2>
+<ul>
+<li><a href="https://medium.com/pinterest-engineering/building-pinterests-vlm-serving-stack-on-nvidia-dynamo-0dce6e93d0f3?source=rss----4c5a5f6279b6---4">在 NVIDIA Dynamo 上构建 Pinterest 的 VLM 服务栈</a></li>
+<li>来源：Pinterest Engineering</li>
+<li>摘要：Pinterest 文章介绍如何用 NVIDIA Dynamo 为视觉语言模型（VLM）构建生产服务栈，重点涉及预填充/解码解耦、KV 缓存卸载、多模态 KV 感知路由、PinCLIP 投影 Embedding、自动扩缩容和部署评估。RSS 本轮未返回完整正文；公开演讲页还概述了这些组件对首 token 延迟、端到端延迟和每输出 token 时间的报告性改进，具体数字需以原文和演讲材料核验。</li>
+<li>核心贡献/可借鉴：把多模态 VLM 的视觉编码、缓存、路由和推理阶段拆开优化，使大规模图像候选比较能够进入低延迟在线服务；对推荐的直接借鉴是把视觉内容表示、召回、粗排/重排和服务资源预算联动起来。</li>
+<li>🔎 相关性 5.0 · ✨ 新颖性 3.4 · 🧩 难度 2.4 · 🎯 优先级 3.487</li>
+<li>🧪 建议：尝试小实验</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、粗排与重排相关；相关性较高；包含明确的新颖性线索；适合先做小型实验（实现难度 2.4/5）</li>
+</ul>
+<h2>🗂️ 论文结构化卡片</h2>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li>Pinterest VLM 视觉特征缓存与粗排-重排级联实验</li>
+<li>假设：将视觉表示预计算并缓存，同时只让 VLM 重排少量候选，可以在保持召回和排序质量的同时降低 p95 延迟与单请求成本。</li>
+<li>观察：Pinterest 的文章把多图像 VLM 服务拆成预填充/解码解耦、KV 缓存卸载和多模态 KV 感知路由；公开演讲页进一步概述了延迟改进，但具体数字需回到原文核验。对推荐的直接迁移点是把视觉表示缓存和粗排候选预算纳入同一条服务链路。</li>
+<li>实验：在 MovieLens-small 加标题或合成海报上，用冻结视觉/文本 Embedding 做双塔召回，再只对 Top-50 候选运行轻量重排，比较缓存与按请求计算两种方案。</li>
+<li>基线：仅使用 ID 的双塔召回，或单阶段逻辑回归排序器</li>
+<li>数据集/设置：MovieLens-small 加标题/类型和可用的图像代理特征；按用户历史长度与物品交互量分层，模拟冷启动和稀疏用户</li>
+<li>指标：Recall@50、NDCG@10、p95 延迟、候选集压缩比例、Embedding 查询成本和目录覆盖率</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+</ul>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>本周尝试：Pinterest VLM 视觉特征缓存与粗排-重排级联实验</li>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
+</ul>
+<h2>🔎 可靠性说明</h2>
+<ul>
+<li>去重统计：本轮包含 1 项新增、6 项重复过滤、3 项历史精选；重复项未进入新增分析。</li>
+<li>arXiv：主站与镜像 API 本轮访问失败，已使用备用索引/缓存核验；未把备用结果未经去重地计为新增。</li>
+<li>OpenReview：未配置 API 访问 token，本轮跳过 OpenReview API；这不等同于该来源没有新内容。</li>
+<li>业界来源：有 1 条手工链接未能抓取正文；保留链接，但摘要和结论需打开原文复核。</li>
+<li>证据边界：作者、机构、日期和结论只使用来源元数据或页面摘要；来源失败、缺字段和不确定信息不会被补写成确定事实。</li>
+</ul></main></body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>daily-2026-09-07</title>
+<style>
+:root { color-scheme: light dark; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif; }
+body { margin: 0; background: #f5f7fb; color: #18202a; line-height: 1.65; }
+main { max-width: 920px; margin: 0 auto; padding: 42px 20px 72px; }
+article, .report-list { background: white; border: 1px solid #e3e8ef; border-radius: 12px; padding: 28px clamp(20px, 5vw, 48px); box-shadow: 0 8px 28px rgba(25, 45, 70, .06); }
+h1 { line-height: 1.25; margin-top: 0; } h2 { margin-top: 2em; border-bottom: 1px solid #e8edf3; padding-bottom: .35em; }
+a { color: #1769d1; } li { margin: .45em 0; } code { background: #eef2f7; padding: .1em .3em; border-radius: 4px; }
+blockquote { border-left: 4px solid #4c9ffe; margin: 1em 0; padding: .4em 1em; color: #536171; background: #f4f8ff; }
+.back { display: inline-block; margin-bottom: 18px; text-decoration: none; } .meta { color: #657384; }
+@media (prefers-color-scheme: dark) { body { background: #11161c; color: #e8edf3; } article, .report-list { background: #1a2129; border-color: #303b48; } blockquote { background: #182b40; color: #b7c4d2; } code { background: #2b3540; } h2 { border-color: #303b48; } }
+</style>
+</head>
+<body><main><a class="back" href="index.html">← 返回日报列表</a><h1>推荐算法研究日报 - 2026-09-07</h1>
+<blockquote>翻译状态：中文优先字段已完成校验；英文原文保留在原文/证据字段中供核验。</blockquote>
+<blockquote>新增窗口：上一个工作日及周末窗口；日报精选上限：8 项。</blockquote>
+<blockquote>已自动去重：5 项此前已出现在日报中；可用 <code>--include-seen</code> 重新展示。</blockquote>
+<h2>Executive Answer</h2>
+<p>本窗口新增 3 项与推荐算法相关的论文或业界文章，其中 0 项适合深读或尝试实验。<br> 优先阅读：<a href="https://arxiv.org/abs/2609.03522">EPIC：面向语义 ID 扩散推荐的显式后验物品条件建模</a>；原文标题：EPIC: Explicit Posterior Item Conditioning for Semantic ID Diffusion Recommendation；原因：与序列推荐与用户建模、生成式/大模型推荐相关；相关性较高；适合先做小型实验（实现难度 1.9/5）</p>
+<h2>来源覆盖</h2>
+<ul>
+<li>arxiv: 5</li>
+<li>historical: 4</li>
+<li>manual: 8</li>
+<li>openreview: 0</li>
+<li>rss: 0</li>
+<li>来源错误：无</li>
+<li>来源备注：</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15008 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22recommender+system%22+OR+all%3A%22recommendation%22+OR+all%3A%22personalization%22+OR+all%3A%22collaborative+filtering%22+OR+all%3A%22learning+to+rank%22+OR+all%3A%22sequential+recommendation%22+OR+all%3A%22session-based+recommendation%22+OR+all%3A%22retrieval+augmented+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15007 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15009 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22generative+recommendation%22+OR+all%3A%22multimodal+recommendation%22+OR+all%3A%22graph+recommendation%22+OR+all%3A%22counterfactual+recommendation%22+OR+all%3A%22bandit+recommendation%22+OR+all%3A%22ranking+model%22+OR+all%3A%22information+retrieval%22+OR+all%3A%22search+ranking%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15009 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15003 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22query+understanding%22+OR+all%3A%22semantic+search%22+OR+all%3A%22dense+retrieval%22+OR+all%3A%22ads+ranking%22+OR+all%3A%22ctr+prediction%22+OR+all%3A%22cvr+prediction%22+OR+all%3A%22multi-objective+ranking%22+OR+all%3A%22llm+recommender%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' timed out after 25.0 seconds; curl: (56) The requested URL returned error: 429&gt;</li>
+<li>warning: arXiv endpoint failed (https://export.arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://export.arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15006 milliseconds with 0 bytes received&gt;</li>
+<li>warning: arXiv endpoint failed (https://arxiv.org/api/query): &lt;urlopen error curl failed after 2 attempts: Command '['curl', '-fsSL', '--retry', '1', '--retry-delay', '1', '--retry-all-errors', '--connect-timeout', '10', '--max-time', '15', '--retry-max-time', '15', '-A', 'RecSysResearchRadar/0.1 (local Codex skill; mailto:research@localhost)', 'https://arxiv.org/api/query?search_query=%28cat%3Acs.IR+OR+cat%3Acs.LG+OR+cat%3Acs.AI+OR+cat%3Astat.ML%29+AND+%28all%3A%22large+language+model+recommendation%22+OR+all%3A%22agentic+recommendation%22%29&amp;start=0&amp;max_results=20&amp;sortBy=submittedDate&amp;sortOrder=descending']' returned non-zero exit status 28.; curl: (28) Operation timed out after 15007 milliseconds with 0 bytes received&gt;</li>
+<li>arXiv fallback used: OpenAlex index of arXiv-linked works</li>
+<li>warning: OpenReview skipped: API2 requires OPENREVIEW_ACCESS_TOKEN; use the official conference portal when no credential is configured</li>
+<li>Manual URL fetch failed for https://developer.huaweicloud.com/tags/200293/blog_1: &lt;urlopen error EOF occurred in violation of protocol (_ssl.c:1129)&gt;</li>
+<li>Manual URL fetch failed for https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3: HTTP Error 403: Forbidden</li>
+</ul>
+<h2>📊 今日主题聚类与趋势</h2>
+<ul>
+<li>生成式/大模型推荐：2 项</li>
+<li>评估、去偏与公平性：1 项</li>
+<li>序列推荐与用户建模：1 项</li>
+<li>趋势：用户建模重点从更长历史转向更有结构的序列和多兴趣状态。</li>
+</ul>
+<h2>🔀 粗排与重排专题</h2>
+<p>本窗口暂无明确命中粗排/重排关键词的条目。</p>
+<h2>🏢 大厂技术文章覆盖</h2>
+<ul>
+<li>本窗口没有相关的大厂文章卡片。</li>
+</ul>
+<h2>🏛️ 历史精选</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1809.03672">点击率预测的深度兴趣进化网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排、序列推荐与用户建模、广告与市场排序相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://research.google/pubs/deep-neural-networks-for-youtube-recommendations/">用于 YouTube 推荐的深度神经网络</a></li>
+<li>来源：Google Research（历史精选）</li>
+<li>原因：与召回与候选生成、排序、粗排与重排、多模态推荐相关；相关性较高；适合先做小型实验（实现难度 2.2/5）</li>
+<li><a href="https://arxiv.org/abs/1706.06978">点击率预测的深度兴趣网络</a></li>
+<li>来源：Alibaba / arXiv（历史精选）</li>
+<li>原因：与排序、粗排与重排相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📚 论文深读队列</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2609.03522">EPIC：面向语义 ID 扩散推荐的显式后验物品条件建模</a></li>
+<li>原文标题：EPIC: Explicit Posterior Item Conditioning for Semantic ID Diffusion Recommendation</li>
+<li>来源：arXiv (OpenAlex fallback)（arxiv）</li>
+<li>🔎 相关性 3.9 · ✨ 新颖性 1.4 · 🧩 难度 1.9 · 🎯 优先级 2.402</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与序列推荐与用户建模、生成式/大模型推荐相关；相关性较高；适合先做小型实验（实现难度 1.9/5）</li>
+<li><a href="https://arxiv.org/abs/2609.03369">HypRQ-VAE：面向长尾感知生成式推荐的双曲物品索引</a></li>
+<li>原文标题：HypRQ-VAE: Hyperbolic Item Indexing for Long-Tail-Aware Generative Recommender Systems</li>
+<li>来源：arXiv (OpenAlex fallback)（arxiv）</li>
+<li>🔎 相关性 2.3 · ✨ 新颖性 1.9 · 🧩 难度 1.5 · 🎯 优先级 1.88</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与生成式/大模型推荐相关；适合先做小型实验（实现难度 1.5/5）</li>
+<li><a href="https://arxiv.org/abs/2609.04047">骰子滚动法：大语言模型品牌推荐重复查询审计的标准化协议</a></li>
+<li>原文标题：The Dice Roll Method: A Standardized Protocol for Repeated-Query Auditing of Large Language Model Brand Recommendations</li>
+<li>来源：arXiv (OpenAlex fallback)（arxiv）</li>
+<li>🔎 相关性 2.2 · ✨ 新颖性 1.0 · 🧩 难度 2.2 · 🎯 优先级 1.331</li>
+<li>📝 建议：快速总结</li>
+<li>原因：与评估、去偏与公平性相关；适合先做小型实验（实现难度 2.2/5）</li>
+</ul>
+<h2>📝 业界文章深读队列</h2>
+<p>本窗口没有达到深读阈值的业界文章；相关条目仍见上方“大厂技术文章覆盖”。</p>
+<h2>🗂️ 论文结构化卡片</h2>
+<h3>EPIC：面向语义 ID 扩散推荐的显式后验物品条件建模</h3>
+<ul>
+<li>原文标题：EPIC: Explicit Posterior Item Conditioning for Semantic ID Diffusion Recommendation</li>
+<li>原始链接：https://arxiv.org/abs/2609.03522</li>
+<li>中文摘要：当前条目来自 OpenAlex 对 arXiv 的备用索引，未取得完整原始摘要。标题与匹配关键词表明，论文研究在语义 ID 扩散式推荐中加入显式后验物品条件，以改善下一物品生成；具体方法与实验设置需打开 arXiv 全文核验。</li>
+<li>核心贡献：从可核验元数据看，核心思路是把后验物品条件显式引入语义 ID 扩散推荐；当前不能仅凭备用索引确认完整模型结构或效果幅度。</li>
+<li>方法：下一物品预测, 生成式推荐, 语义 ID, 扩散模型</li>
+<li>局限性：本轮只取得 OpenAlex 备用索引，未取得完整摘要、实验设置和限制段落。</li>
+<li>未来方向：语义 ID 生成式推荐通过生成短离散 token 元组来预测下一物品；需核验显式后验条件如何接入这一过程。；核验显式后验物品条件对候选覆盖、长尾物品和下一物品预测的影响，并比较其额外推理成本。</li>
+<li>拓展阅读：<a href="https://arxiv.org/abs/1809.03672">用于点击率预测的深度兴趣演化网络</a>（把用户兴趣演化引入序列行为建模）；<a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3">GenRec：迈向 Netflix 的 LLM 原生推荐</a>（业界大模型原生推荐架构实践）</li>
+<li>数据集/基准：Amazon 评论数据</li>
+<li>主题：序列推荐与用户建模, 生成式/大模型推荐</li>
+<li>证据：matched keywords: generative recommendation, next item；categories/venue: OpenAlex index</li>
+<li>小型实验：在 MovieLens 或合成会话上，测试序列建模改动是否提升下一物品预测。</li>
+</ul>
+<h3>HypRQ-VAE：面向长尾感知生成式推荐的双曲物品索引</h3>
+<ul>
+<li>原文标题：HypRQ-VAE: Hyperbolic Item Indexing for Long-Tail-Aware Generative Recommender Systems</li>
+<li>原始链接：https://arxiv.org/abs/2609.03369</li>
+<li>中文摘要：当前条目来自 OpenAlex 对 arXiv 的备用索引，完整原始摘要未返回。标题与匹配关键词显示，方法关注双曲空间物品索引、长尾感知和生成式推荐；具体编码器、解码器与实验设置需打开 arXiv 全文核验。</li>
+<li>核心贡献：从标题和备用摘要片段看，工作尝试用双曲空间中的物品索引改善生成式推荐对长尾物品的表达与生成；具体增益不能仅凭当前元数据确认。</li>
+<li>方法：生成式推荐, 双曲表示/索引, 长尾推荐</li>
+<li>局限性：本轮未获取完整摘要中的方法细节、数据集说明和消融实验。</li>
+<li>未来方向：核验双曲物品索引对长尾召回、目录覆盖、生成式解码错误率和推理成本的影响。</li>
+<li>拓展阅读：<a href="https://netflixtechblog.com/genrec-towards-llm-native-recommendation-at-netflix-f20be6f643e3">GenRec：迈向 Netflix 的 LLM 原生推荐</a>（业界大模型原生推荐架构实践）</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：生成式/大模型推荐</li>
+<li>证据：matched keywords: generative recommendation；categories/venue: OpenAlex index</li>
+<li>小型实验：在采样物品上，对比小型 LLM/RAG 推荐提示与非生成式召回-排序链路。</li>
+</ul>
+<h3>骰子滚动法：大语言模型品牌推荐重复查询审计的标准化协议</h3>
+<ul>
+<li>原文标题：The Dice Roll Method: A Standardized Protocol for Repeated-Query Auditing of Large Language Model Brand Recommendations</li>
+<li>原始链接：https://arxiv.org/abs/2609.04047</li>
+<li>中文摘要：当前条目来自 OpenAlex 对 arXiv 的备用索引，完整原始摘要未返回。标题与 fairness 匹配关键词表明，工作面向大语言模型品牌推荐的重复查询审计，并尝试标准化审计流程；具体指标与实验需打开 arXiv 全文核验。</li>
+<li>核心贡献：从标题可确认其目标是用重复查询协议检查大语言模型品牌推荐的稳定性与公平性；具体审计指标、采样方式和结论尚待原文核验。</li>
+<li>方法：公平性审计, 大语言模型（LLM）, 重复查询评估</li>
+<li>局限性：本轮未获取完整摘要和实验细节，不能确认协议在传统推荐离线评估或线上推荐中的适用边界。</li>
+<li>未来方向：在不同流行度、品牌和用户群体切片上重复查询，比较稳定性、目录覆盖和曝光偏差，并与常规离线评估并列报告。</li>
+<li>数据集/基准：未明确说明</li>
+<li>主题：评估、去偏与公平性</li>
+<li>证据：matched keywords: fairness；categories/venue: OpenAlex index</li>
+<li>小型实验：在带有流行度分层的小型推荐基准上，测量该指标或去偏技巧的效果。</li>
+</ul>
+<h2>💡 研究创意与小型实验</h2>
+<ul>
+<li>EPIC 语义 ID 扩散推荐的下一物品条件实验</li>
+<li>假设：显式后验物品条件能在保持简单生成式基线成本可控的同时提升下一物品预测。</li>
+<li>观察：EPIC 的标题指向在语义 ID 扩散推荐中显式注入后验物品条件；由于本轮只取得备用索引，先在小型序列任务上验证方向，不把摘要片段当作完整结论。</li>
+<li>实验：在 MovieLens-small 或合成会话上，实现 SASRec-lite 与简化语义 ID 生成基线，再加入显式后验物品条件，比较下一物品预测。</li>
+<li>基线：流行度、item-kNN 和 SASRec-lite</li>
+<li>数据集/设置：MovieLens-small；按时间切分训练、验证和测试，额外报告冷启动物品切片</li>
+<li>指标：HitRate@10、NDCG@10、冷启动切片和单次推理耗时</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>HypRQ-VAE 双曲索引的长尾推荐实验</li>
+<li>假设：双曲物品索引能够更好地表达长尾层级结构，在不明显牺牲总体排序质量的情况下提升尾部物品覆盖。</li>
+<li>观察：HypRQ-VAE 关注双曲空间物品索引与长尾感知生成式推荐；可在流行度分层的公开数据上比较普通语义 ID 与双曲索引的尾部收益。</li>
+<li>实验：在物品按交互量分层的 MovieLens-small 上，对比普通 VQ-VAE/语义 ID 索引与简化双曲索引，测量尾部物品召回和覆盖。</li>
+<li>基线：普通 VQ-VAE 或语义 ID 生成式推荐基线</li>
+<li>数据集/设置：MovieLens-small；按物品交互量划分头部、中部和尾部，保持候选数量与训练步数一致</li>
+<li>指标：Recall@50、NDCG@10、尾部 Recall、目录覆盖率和生成错误率</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+<li>重复查询审计大语言模型品牌推荐的稳定性与偏差</li>
+<li>假设：固定提示模板并重复查询，可以揭示传统单次离线评估看不到的品牌推荐稳定性和流行度偏差。</li>
+<li>观察：骰子滚动法关注对大语言模型品牌推荐进行重复查询审计；可在小型品牌或物品目录上测量推荐稳定性、流行度偏差和目录覆盖，而不是直接假定其协议已适用于传统推荐。</li>
+<li>实验：固定用户偏好提示和候选品牌集合，改变随机种子并重复查询，记录推荐集合的一致性、品牌曝光和流行度分层结果。</li>
+<li>基线：单次查询的 NDCG/Recall 评估与均匀随机重复查询</li>
+<li>数据集/设置：小型品牌物品目录或 MovieLens 标签；每个用户提示重复查询 20 次，按流行度和品牌分层</li>
+<li>指标：集合 Jaccard 稳定性、目录覆盖率、Gini 曝光、流行度偏差和 NDCG@10</li>
+<li>预计耗时：笔记本 CPU 上运行玩具版本预计少于 30 分钟</li>
+<li>失败模式：离线指标提升无法复现；收益只出现在高流行度用户或物品；复杂度增加导致延迟或稳定性变差</li>
+</ul>
+<h2>✅ 行动计划</h2>
+<ul>
+<li>今日深读：EPIC：面向语义 ID 扩散推荐的显式后验物品条件建模</li>
+<li>本周尝试：EPIC 语义 ID 扩散推荐的下一物品条件实验</li>
+<li>来源补强：检查失败来源，或补充官方会议页面/手工文章链接。</li>
+</ul>
+<h2>🔎 可靠性说明</h2>
+<ul>
+<li>去重统计：本轮包含 3 项新增、5 项重复过滤、3 项历史精选；重复项未进入新增分析。</li>
+<li>arXiv：主站与镜像 API 本轮访问失败，已使用备用索引/缓存核验；未把备用结果未经去重地计为新增。</li>
+<li>OpenReview：未配置 API 访问 token，本轮跳过 OpenReview API；这不等同于该来源没有新内容。</li>
+<li>业界来源：有 2 条手工链接未能抓取正文；保留链接，但摘要和结论需打开原文复核。</li>
+<li>证据边界：作者、机构、日期和结论只使用来源元数据或页面摘要；来源失败、缺字段和不确定信息不会被补写成确定事实。</li>
+</ul></main></body>
+</html>
